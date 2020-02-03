@@ -20,6 +20,12 @@ Requirements:
             Get employees - Validate token, return paginated employees and pagination data
             Put update employee - Validate token, find employee for update, update values of model instance, update in database
             Delete employee - Validate credentials, remove employee
+                Schedule:
+                    Post new task to schedule for employee - Validate token, add task for employee
+                    Get schedule - Validate token, return schedule within dates, by user and employee name
+                    Get day - Validate token, return return schedule for specific date, by user and employee name
+                    Put update scheduled task - Validate token, find scheduled task for update, update values of model instance, update in database
+                    Delete employee - Validate credentials, remove scheduled task
         Tasks:
             Post new task - Validate token, add task for user
             Get task - Validate token, return specific task, by user and task name
@@ -46,10 +52,16 @@ Requirements:
                             Delete common difficulty - Validate credentials, remove common difficulty
     
     Client Side App Routes:
-        User sign up
-        User log in
-        User dashboard
-        Task creation
+        User register:
+            User sign up
+            Log in
+            Log out
+
+        User dashboard:
+            Departments
+
+        Task creation:
+        cd ..
         Task editing
         Task searching 
         Task assignment

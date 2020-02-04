@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BackEnd.Data;
+using Backend.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

@@ -1,6 +1,7 @@
 Process Management app for collecting and organizing methodology of task completion within an organization, to stimulate repeatability and ease of training.
 
 Requirements:
+
     API endpoints:
         User Registration:
             Post sign up - Create user, return email/username
@@ -61,7 +62,6 @@ Requirements:
             Departments
 
         Task creation:
-        cd ..
         Task editing
         Task searching 
         Task assignment

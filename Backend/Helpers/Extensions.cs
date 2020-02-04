@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-namespace BackEnd.Helpers
+namespace Backend.Helpers
 {
     public static class Extensions
     {

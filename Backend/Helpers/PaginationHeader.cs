@@ -1,4 +1,4 @@
-namespace BackEnd.Helpers
+namespace Backend.Helpers
 {
     public class PaginationHeader
     {

@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace BackEnd.Dtos
+namespace Backend.Dtos
 {
     public class UserForRegisterDto
     {

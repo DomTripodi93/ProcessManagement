@@ -1,8 +1,8 @@
 using AutoMapper;
-using BackEnd.Dtos;
-using BackEnd.Models;
+using Backend.Dtos;
+using Backend.Models;
 
-namespace BackEnd.Helpers
+namespace Backend.Helpers
 {
     public class AutoMapperProfiles : Profile
     {

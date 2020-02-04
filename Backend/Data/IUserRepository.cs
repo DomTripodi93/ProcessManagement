@@ -1,8 +1,8 @@
 using System.Threading.Tasks;
-using BackEnd.Helpers;
-using BackEnd.Models;
+using Backend.Helpers;
+using Backend.Models;
 
-namespace BackEnd.Data
+namespace Backend.Data
 {
     public interface IUserRepository
     {

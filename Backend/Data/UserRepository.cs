@@ -1,12 +1,12 @@
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using BackEnd.Data;
-using BackEnd.Helpers;
-using BackEnd.Models;
+using Backend.Data;
+using Backend.Helpers;
+using Backend.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace BackEnd.Data
+namespace Backend.Data
 {
     public class UserRepository : IUserRepository
     {

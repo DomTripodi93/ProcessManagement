@@ -1,11 +1,11 @@
 using System;
 using System.Threading.Tasks;
 using AutoMapper;
-using BackEnd.Dtos;
-using BackEnd.Models;
+using Backend.Dtos;
+using Backend.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace BackEnd.Data
+namespace Backend.Data
 {
     public class AuthRepository : IAuthRepository
     {

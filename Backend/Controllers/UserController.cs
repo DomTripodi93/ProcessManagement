@@ -1,12 +1,12 @@
 using System.Threading.Tasks;
 using AutoMapper;
-using BackEnd.Data;
-using BackEnd.Dtos;
+using Backend.Data;
+using Backend.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace BackEnd.Controllers
+namespace Backend.Controllers
 {
     [Authorize]
     [Route("api/[controller]")]

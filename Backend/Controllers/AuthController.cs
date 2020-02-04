@@ -4,16 +4,16 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
-using BackEnd.Data;
-using BackEnd.Dtos;
-using BackEnd.Models;
+using Backend.Data;
+using Backend.Dtos;
+using Backend.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
-namespace BackEnd.Controllers
+namespace Backend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

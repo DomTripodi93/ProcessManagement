@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace BackEnd.Models
+namespace Backend.Models
 {
     public class User
     {
@@ -9,5 +9,7 @@ namespace BackEnd.Models
         public string Name { get; set; }
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
+        public ICollection<Department> Department { get; set; }
+        public ICollection<Employee> Employee { get; set; }
     }
 }

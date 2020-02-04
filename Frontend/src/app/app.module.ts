@@ -6,10 +6,10 @@ import { RegisterComponent } from './register/register.component';
 import { SigninComponent } from './register/signin/signin.component';
 import { SignoutComponent } from './register/signout/signout.component';
 import { DepartmentComponent } from './department/department.component';
-import { ObjectiveComponent } from './department/task/task.component';
-import { StepComponent } from './department/task/step/step.component';
-import { BestPracticeComponent } from './department/task/step/best-practice/best-practice.component';
-import { CommonDifficultyComponent } from './department/task/step/common-difficulty/common-difficulty.component';
+import { ObjectiveComponent } from './department/objective/objective.component';
+import { StepComponent } from './department/objective/step/step.component';
+import { BestPracticeComponent } from './department/objective/step/best-practice/best-practice.component';
+import { CommonDifficultyComponent } from './department/objective/step/common-difficulty/common-difficulty.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { ScheduleComponent } from './employees/schedule/schedule.component';
 

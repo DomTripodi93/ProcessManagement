@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ObjectiveComponent } from './task.component';
+import { ObjectiveComponent } from './objective.component';
 
 describe('ObjectiveComponent', () => {
   let component: ObjectiveComponent;

@@ -27,7 +27,7 @@ Requirements:
                     Get day - Validate token, return return schedule for specific date, by user and employee name
                     Put update scheduled task - Validate token, find scheduled task for update, update values of model instance, update in database
                     Delete employee - Validate credentials, remove scheduled task
-        Tasks:
+        Objectives:
             Post new task - Validate token, add task for user
             Get task - Validate token, return specific task, by user and task name
             Get tasks - Validate token, return paginated tasks and pagination data
@@ -61,7 +61,7 @@ Requirements:
         User dashboard:
             Departments
 
-        Task creation:
-        Task editing
-        Task searching 
-        Task assignment
+        Objective creation:
+        Objective editing
+        Objective searching 
+        Objective assignment

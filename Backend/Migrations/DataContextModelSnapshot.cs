@@ -172,6 +172,12 @@ namespace Backend.Migrations
                     b.Property<int>("Number")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("DepartmentDeptName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("DepartmentuserId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("DeptName")
                         .HasColumnType("TEXT");
 
@@ -191,6 +197,8 @@ namespace Backend.Migrations
                         .HasColumnType("INTEGER");
 
                     b.HasKey("userId", "TaskName", "Number");
+
+                    b.HasIndex("DepartmentuserId", "DepartmentDeptName");
 
                     b.HasIndex("TaskuserId", "TaskDeptName", "TaskName1");
 
@@ -311,7 +319,11 @@ namespace Backend.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Backend.Models.Task", null)
+                    b.HasOne("Backend.Models.Department", "Department")
+                        .WithMany()
+                        .HasForeignKey("DepartmentuserId", "DepartmentDeptName");
+
+                    b.HasOne("Backend.Models.Task", "Task")
                         .WithMany("Step")
                         .HasForeignKey("TaskuserId", "TaskDeptName", "TaskName1");
                 });
@@ -324,7 +336,7 @@ namespace Backend.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Backend.Models.Department", null)
+                    b.HasOne("Backend.Models.Department", "Department")
                         .WithMany("Task")
                         .HasForeignKey("userId", "DeptName")
                         .OnDelete(DeleteBehavior.Cascade)

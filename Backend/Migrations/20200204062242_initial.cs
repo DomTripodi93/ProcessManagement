@@ -135,12 +135,14 @@ namespace Backend.Migrations
                     userId = table.Column<int>(nullable: false),
                     TaskName = table.Column<string>(nullable: false),
                     Number = table.Column<int>(nullable: false),
-                    DeptName = table.Column<string>(nullable: true),
-                    Name = table.Column<string>(nullable: true),
-                    Goal = table.Column<string>(nullable: true),
+                    TaskuserId = table.Column<int>(nullable: true),
                     TaskDeptName = table.Column<string>(nullable: true),
                     TaskName1 = table.Column<string>(nullable: true),
-                    TaskuserId = table.Column<int>(nullable: true)
+                    DepartmentuserId = table.Column<int>(nullable: true),
+                    DepartmentDeptName = table.Column<string>(nullable: true),
+                    DeptName = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
+                    Goal = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -151,6 +153,12 @@ namespace Backend.Migrations
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Steps_Departments_DepartmentuserId_DepartmentDeptName",
+                        columns: x => new { x.DepartmentuserId, x.DepartmentDeptName },
+                        principalTable: "Departments",
+                        principalColumns: new[] { "userId", "DeptName" },
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Steps_Tasks_TaskuserId_TaskDeptName_TaskName1",
                         columns: x => new { x.TaskuserId, x.TaskDeptName, x.TaskName1 },
@@ -253,6 +261,11 @@ namespace Backend.Migrations
                 name: "IX_Schedules_TaskuserId_TaskDeptName_TaskName",
                 table: "Schedules",
                 columns: new[] { "TaskuserId", "TaskDeptName", "TaskName" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Steps_DepartmentuserId_DepartmentDeptName",
+                table: "Steps",
+                columns: new[] { "DepartmentuserId", "DepartmentDeptName" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Steps_TaskuserId_TaskDeptName_TaskName1",

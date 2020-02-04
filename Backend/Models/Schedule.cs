@@ -8,7 +8,7 @@ namespace Backend.Models
         public User User { get; set; }
         public int userId { get; set; }
         public Employee Employee { get; set; }
-        public Task Task { get; set; }
+        public Objective Objective { get; set; }
         public string DeptName { get; set; }
         public DateTime Date { get; set; }
         

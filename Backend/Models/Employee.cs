@@ -4,7 +4,7 @@ namespace Backend.Models
 {
     public class Employee
     {
-        public int Id { get; set; }
+        public int EmployeeId { get; set; }
         public User User { get; set; }
         public int userId { get; set; }
         public ICollection<Schedule> Schedule { get; set; }

@@ -6,7 +6,7 @@ import { RegisterComponent } from './register/register.component';
 import { SigninComponent } from './register/signin/signin.component';
 import { SignoutComponent } from './register/signout/signout.component';
 import { DepartmentComponent } from './department/department.component';
-import { TaskComponent } from './department/task/task.component';
+import { ObjectiveComponent } from './department/task/task.component';
 import { StepComponent } from './department/task/step/step.component';
 import { BestPracticeComponent } from './department/task/step/best-practice/best-practice.component';
 import { CommonDifficultyComponent } from './department/task/step/common-difficulty/common-difficulty.component';
@@ -20,7 +20,7 @@ import { ScheduleComponent } from './employees/schedule/schedule.component';
     SigninComponent,
     SignoutComponent,
     DepartmentComponent,
-    TaskComponent,
+    ObjectiveComponent,
     StepComponent,
     BestPracticeComponent,
     CommonDifficultyComponent,

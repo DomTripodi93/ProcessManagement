@@ -22,9 +22,9 @@ namespace Backend.Data
             modelBuilder.Entity<Employee>()
                 .HasKey(e => new {e.userId, e.EmployeeId});
             modelBuilder.Entity<Step>()
-                .HasKey(s => new {s.userId, s.ObjectiveName, s.Number});
+                .HasKey(s => new {s.userId, s.deptName, s.objectiveName, s.StepNumber});
             modelBuilder.Entity<Objective>()
-                .HasKey(t => new {t.userId, t.DeptName, t.ObjectiveName});
+                .HasKey(t => new {t.userId, t.deptName, t.ObjectiveName});
         }
     }
 }

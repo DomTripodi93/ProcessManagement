@@ -46,7 +46,7 @@ namespace Backend.Migrations
                 name: "Employees",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
+                    EmployeeId = table.Column<int>(nullable: false),
                     userId = table.Column<int>(nullable: false),
                     Department = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
@@ -54,7 +54,7 @@ namespace Backend.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Employees", x => new { x.userId, x.Id });
+                    table.PrimaryKey("PK_Employees", x => new { x.userId, x.EmployeeId });
                     table.ForeignKey(
                         name: "FK_Employees_Users_userId",
                         column: x => x.userId,
@@ -64,27 +64,27 @@ namespace Backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tasks",
+                name: "Objectives",
                 columns: table => new
                 {
                     userId = table.Column<int>(nullable: false),
-                    DeptName = table.Column<string>(nullable: false),
-                    TaskName = table.Column<string>(nullable: false),
+                    deptName = table.Column<string>(nullable: false),
+                    ObjectiveName = table.Column<string>(nullable: false),
                     Goal = table.Column<string>(nullable: true),
                     Time = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tasks", x => new { x.userId, x.DeptName, x.TaskName });
+                    table.PrimaryKey("PK_Objectives", x => new { x.userId, x.deptName, x.ObjectiveName });
                     table.ForeignKey(
-                        name: "FK_Tasks_Users_userId",
+                        name: "FK_Objectives_Users_userId",
                         column: x => x.userId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Tasks_Departments_userId_DeptName",
-                        columns: x => new { x.userId, x.DeptName },
+                        name: "FK_Objectives_Departments_userId_deptName",
+                        columns: x => new { x.userId, x.deptName },
                         principalTable: "Departments",
                         principalColumns: new[] { "userId", "DeptName" },
                         onDelete: ReferentialAction.Cascade);
@@ -96,12 +96,12 @@ namespace Backend.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    userId = table.Column<int>(nullable: false),
+                    UserId = table.Column<int>(nullable: true),
                     EmployeeuserId = table.Column<int>(nullable: true),
                     EmployeeId = table.Column<int>(nullable: true),
-                    TaskuserId = table.Column<int>(nullable: true),
-                    TaskDeptName = table.Column<string>(nullable: true),
-                    TaskName = table.Column<string>(nullable: true),
+                    ObjectiveuserId = table.Column<int>(nullable: true),
+                    ObjectivedeptName = table.Column<string>(nullable: true),
+                    ObjectiveName = table.Column<string>(nullable: true),
                     DeptName = table.Column<string>(nullable: true),
                     Date = table.Column<DateTime>(nullable: false)
                 },
@@ -109,22 +109,22 @@ namespace Backend.Migrations
                 {
                     table.PrimaryKey("PK_Schedules", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Schedules_Users_userId",
-                        column: x => x.userId,
+                        name: "FK_Schedules_Users_UserId",
+                        column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Schedules_Employees_EmployeeuserId_EmployeeId",
                         columns: x => new { x.EmployeeuserId, x.EmployeeId },
                         principalTable: "Employees",
-                        principalColumns: new[] { "userId", "Id" },
+                        principalColumns: new[] { "userId", "EmployeeId" },
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Schedules_Tasks_TaskuserId_TaskDeptName_TaskName",
-                        columns: x => new { x.TaskuserId, x.TaskDeptName, x.TaskName },
-                        principalTable: "Tasks",
-                        principalColumns: new[] { "userId", "DeptName", "TaskName" },
+                        name: "FK_Schedules_Objectives_ObjectiveuserId_ObjectivedeptName_ObjectiveName",
+                        columns: x => new { x.ObjectiveuserId, x.ObjectivedeptName, x.ObjectiveName },
+                        principalTable: "Objectives",
+                        principalColumns: new[] { "userId", "deptName", "ObjectiveName" },
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -133,20 +133,15 @@ namespace Backend.Migrations
                 columns: table => new
                 {
                     userId = table.Column<int>(nullable: false),
-                    TaskName = table.Column<string>(nullable: false),
-                    Number = table.Column<int>(nullable: false),
-                    TaskuserId = table.Column<int>(nullable: true),
-                    TaskDeptName = table.Column<string>(nullable: true),
-                    TaskName1 = table.Column<string>(nullable: true),
-                    DepartmentuserId = table.Column<int>(nullable: true),
-                    DepartmentDeptName = table.Column<string>(nullable: true),
-                    DeptName = table.Column<string>(nullable: true),
+                    objectiveName = table.Column<string>(nullable: false),
+                    deptName = table.Column<string>(nullable: false),
+                    StepNumber = table.Column<string>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     Goal = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Steps", x => new { x.userId, x.TaskName, x.Number });
+                    table.PrimaryKey("PK_Steps", x => new { x.userId, x.deptName, x.objectiveName, x.StepNumber });
                     table.ForeignKey(
                         name: "FK_Steps_Users_userId",
                         column: x => x.userId,
@@ -154,17 +149,17 @@ namespace Backend.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Steps_Departments_DepartmentuserId_DepartmentDeptName",
-                        columns: x => new { x.DepartmentuserId, x.DepartmentDeptName },
+                        name: "FK_Steps_Departments_userId_deptName",
+                        columns: x => new { x.userId, x.deptName },
                         principalTable: "Departments",
                         principalColumns: new[] { "userId", "DeptName" },
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Steps_Tasks_TaskuserId_TaskDeptName_TaskName1",
-                        columns: x => new { x.TaskuserId, x.TaskDeptName, x.TaskName1 },
-                        principalTable: "Tasks",
-                        principalColumns: new[] { "userId", "DeptName", "TaskName" },
-                        onDelete: ReferentialAction.Restrict);
+                        name: "FK_Steps_Objectives_userId_deptName_objectiveName",
+                        columns: x => new { x.userId, x.deptName, x.objectiveName },
+                        principalTable: "Objectives",
+                        principalColumns: new[] { "userId", "deptName", "ObjectiveName" },
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -173,10 +168,11 @@ namespace Backend.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    userId = table.Column<int>(nullable: false),
+                    UserId = table.Column<int>(nullable: true),
                     StepuserId = table.Column<int>(nullable: true),
-                    StepTaskName = table.Column<string>(nullable: true),
-                    StepNumber = table.Column<int>(nullable: true),
+                    StepdeptName = table.Column<string>(nullable: true),
+                    StepobjectiveName = table.Column<string>(nullable: true),
+                    StepNumber = table.Column<string>(nullable: true),
                     Method = table.Column<string>(nullable: true),
                     Objective = table.Column<string>(nullable: true)
                 },
@@ -184,16 +180,16 @@ namespace Backend.Migrations
                 {
                     table.PrimaryKey("PK_BestPractices", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_BestPractices_Users_userId",
-                        column: x => x.userId,
+                        name: "FK_BestPractices_Users_UserId",
+                        column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_BestPractices_Steps_StepuserId_StepTaskName_StepNumber",
-                        columns: x => new { x.StepuserId, x.StepTaskName, x.StepNumber },
+                        name: "FK_BestPractices_Steps_StepuserId_StepdeptName_StepobjectiveName_StepNumber",
+                        columns: x => new { x.StepuserId, x.StepdeptName, x.StepobjectiveName, x.StepNumber },
                         principalTable: "Steps",
-                        principalColumns: new[] { "userId", "TaskName", "Number" },
+                        principalColumns: new[] { "userId", "deptName", "objectiveName", "StepNumber" },
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -203,10 +199,11 @@ namespace Backend.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    userId = table.Column<int>(nullable: false),
+                    UserId = table.Column<int>(nullable: true),
                     StepuserId = table.Column<int>(nullable: true),
-                    StepTaskName = table.Column<string>(nullable: true),
-                    StepNumber = table.Column<int>(nullable: true),
+                    StepdeptName = table.Column<string>(nullable: true),
+                    StepobjectiveName = table.Column<string>(nullable: true),
+                    StepNumber = table.Column<string>(nullable: true),
                     Cause = table.Column<string>(nullable: true),
                     Solution = table.Column<string>(nullable: true)
                 },
@@ -214,43 +211,43 @@ namespace Backend.Migrations
                 {
                     table.PrimaryKey("PK_CommonDifficulties", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CommonDifficulties_Users_userId",
-                        column: x => x.userId,
+                        name: "FK_CommonDifficulties_Users_UserId",
+                        column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_CommonDifficulties_Steps_StepuserId_StepTaskName_StepNumber",
-                        columns: x => new { x.StepuserId, x.StepTaskName, x.StepNumber },
+                        name: "FK_CommonDifficulties_Steps_StepuserId_StepdeptName_StepobjectiveName_StepNumber",
+                        columns: x => new { x.StepuserId, x.StepdeptName, x.StepobjectiveName, x.StepNumber },
                         principalTable: "Steps",
-                        principalColumns: new[] { "userId", "TaskName", "Number" },
+                        principalColumns: new[] { "userId", "deptName", "objectiveName", "StepNumber" },
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_BestPractices_userId",
+                name: "IX_BestPractices_UserId",
                 table: "BestPractices",
-                column: "userId");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BestPractices_StepuserId_StepTaskName_StepNumber",
+                name: "IX_BestPractices_StepuserId_StepdeptName_StepobjectiveName_StepNumber",
                 table: "BestPractices",
-                columns: new[] { "StepuserId", "StepTaskName", "StepNumber" });
+                columns: new[] { "StepuserId", "StepdeptName", "StepobjectiveName", "StepNumber" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CommonDifficulties_userId",
+                name: "IX_CommonDifficulties_UserId",
                 table: "CommonDifficulties",
-                column: "userId");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CommonDifficulties_StepuserId_StepTaskName_StepNumber",
+                name: "IX_CommonDifficulties_StepuserId_StepdeptName_StepobjectiveName_StepNumber",
                 table: "CommonDifficulties",
-                columns: new[] { "StepuserId", "StepTaskName", "StepNumber" });
+                columns: new[] { "StepuserId", "StepdeptName", "StepobjectiveName", "StepNumber" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Schedules_userId",
+                name: "IX_Schedules_UserId",
                 table: "Schedules",
-                column: "userId");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Schedules_EmployeeuserId_EmployeeId",
@@ -258,19 +255,9 @@ namespace Backend.Migrations
                 columns: new[] { "EmployeeuserId", "EmployeeId" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Schedules_TaskuserId_TaskDeptName_TaskName",
+                name: "IX_Schedules_ObjectiveuserId_ObjectivedeptName_ObjectiveName",
                 table: "Schedules",
-                columns: new[] { "TaskuserId", "TaskDeptName", "TaskName" });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Steps_DepartmentuserId_DepartmentDeptName",
-                table: "Steps",
-                columns: new[] { "DepartmentuserId", "DepartmentDeptName" });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Steps_TaskuserId_TaskDeptName_TaskName1",
-                table: "Steps",
-                columns: new[] { "TaskuserId", "TaskDeptName", "TaskName1" });
+                columns: new[] { "ObjectiveuserId", "ObjectivedeptName", "ObjectiveName" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -291,7 +278,7 @@ namespace Backend.Migrations
                 name: "Employees");
 
             migrationBuilder.DropTable(
-                name: "Tasks");
+                name: "Objectives");
 
             migrationBuilder.DropTable(
                 name: "Departments");

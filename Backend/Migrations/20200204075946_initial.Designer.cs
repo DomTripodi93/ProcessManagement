@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200204062242_initial")]
+    [Migration("20200204075946_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,23 +30,26 @@ namespace Backend.Migrations
                     b.Property<string>("Objective")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("StepNumber")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("StepNumber")
+                        .HasColumnType("TEXT");
 
-                    b.Property<string>("StepTaskName")
+                    b.Property<string>("StepdeptName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("StepobjectiveName")
                         .HasColumnType("TEXT");
 
                     b.Property<int?>("StepuserId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("userId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("userId");
+                    b.HasIndex("UserId");
 
-                    b.HasIndex("StepuserId", "StepTaskName", "StepNumber");
+                    b.HasIndex("StepuserId", "StepdeptName", "StepobjectiveName", "StepNumber");
 
                     b.ToTable("BestPractices");
                 });
@@ -63,23 +66,26 @@ namespace Backend.Migrations
                     b.Property<string>("Solution")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("StepNumber")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("StepNumber")
+                        .HasColumnType("TEXT");
 
-                    b.Property<string>("StepTaskName")
+                    b.Property<string>("StepdeptName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("StepobjectiveName")
                         .HasColumnType("TEXT");
 
                     b.Property<int?>("StepuserId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("userId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("userId");
+                    b.HasIndex("UserId");
 
-                    b.HasIndex("StepuserId", "StepTaskName", "StepNumber");
+                    b.HasIndex("StepuserId", "StepdeptName", "StepobjectiveName", "StepNumber");
 
                     b.ToTable("CommonDifficulties");
                 });
@@ -105,7 +111,7 @@ namespace Backend.Migrations
                     b.Property<int>("userId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Id")
+                    b.Property<int>("EmployeeId")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("CanEdit")
@@ -117,9 +123,31 @@ namespace Backend.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("userId", "Id");
+                    b.HasKey("userId", "EmployeeId");
 
                     b.ToTable("Employees");
+                });
+
+            modelBuilder.Entity("Backend.Models.Objective", b =>
+                {
+                    b.Property<int>("userId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("deptName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ObjectiveName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Goal")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Time")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("userId", "deptName", "ObjectiveName");
+
+                    b.ToTable("Objectives");
                 });
 
             modelBuilder.Entity("Backend.Models.Schedule", b =>
@@ -140,25 +168,25 @@ namespace Backend.Migrations
                     b.Property<int?>("EmployeeuserId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("TaskDeptName")
+                    b.Property<string>("ObjectiveName")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("TaskName")
+                    b.Property<string>("ObjectivedeptName")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("TaskuserId")
+                    b.Property<int?>("ObjectiveuserId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("userId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("userId");
+                    b.HasIndex("UserId");
 
                     b.HasIndex("EmployeeuserId", "EmployeeId");
 
-                    b.HasIndex("TaskuserId", "TaskDeptName", "TaskName");
+                    b.HasIndex("ObjectiveuserId", "ObjectivedeptName", "ObjectiveName");
 
                     b.ToTable("Schedules");
                 });
@@ -168,19 +196,13 @@ namespace Backend.Migrations
                     b.Property<int>("userId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("TaskName")
+                    b.Property<string>("deptName")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Number")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("DepartmentDeptName")
+                    b.Property<string>("objectiveName")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("DepartmentuserId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("DeptName")
+                    b.Property<string>("StepNumber")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Goal")
@@ -189,44 +211,9 @@ namespace Backend.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("TaskDeptName")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("TaskName1")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int?>("TaskuserId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("userId", "TaskName", "Number");
-
-                    b.HasIndex("DepartmentuserId", "DepartmentDeptName");
-
-                    b.HasIndex("TaskuserId", "TaskDeptName", "TaskName1");
+                    b.HasKey("userId", "deptName", "objectiveName", "StepNumber");
 
                     b.ToTable("Steps");
-                });
-
-            modelBuilder.Entity("Backend.Models.Task", b =>
-                {
-                    b.Property<int>("userId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("DeptName")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("TaskName")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Goal")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Time")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("userId", "DeptName", "TaskName");
-
-                    b.ToTable("Tasks");
                 });
 
             modelBuilder.Entity("Backend.Models.User", b =>
@@ -256,26 +243,22 @@ namespace Backend.Migrations
                 {
                     b.HasOne("Backend.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("userId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.HasOne("Backend.Models.Step", "Step")
                         .WithMany("BestPractice")
-                        .HasForeignKey("StepuserId", "StepTaskName", "StepNumber");
+                        .HasForeignKey("StepuserId", "StepdeptName", "StepobjectiveName", "StepNumber");
                 });
 
             modelBuilder.Entity("Backend.Models.CommonDifficulty", b =>
                 {
                     b.HasOne("Backend.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("userId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.HasOne("Backend.Models.Step", "Step")
                         .WithMany("CommonDifficulty")
-                        .HasForeignKey("StepuserId", "StepTaskName", "StepNumber");
+                        .HasForeignKey("StepuserId", "StepdeptName", "StepobjectiveName", "StepNumber");
                 });
 
             modelBuilder.Entity("Backend.Models.Department", b =>
@@ -296,7 +279,7 @@ namespace Backend.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Backend.Models.Schedule", b =>
+            modelBuilder.Entity("Backend.Models.Objective", b =>
                 {
                     b.HasOne("Backend.Models.User", "User")
                         .WithMany()
@@ -304,13 +287,26 @@ namespace Backend.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Backend.Models.Department", "Department")
+                        .WithMany("Objective")
+                        .HasForeignKey("userId", "deptName")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Backend.Models.Schedule", b =>
+                {
+                    b.HasOne("Backend.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
                     b.HasOne("Backend.Models.Employee", "Employee")
                         .WithMany("Schedule")
                         .HasForeignKey("EmployeeuserId", "EmployeeId");
 
-                    b.HasOne("Backend.Models.Task", "Task")
+                    b.HasOne("Backend.Models.Objective", "Objective")
                         .WithMany()
-                        .HasForeignKey("TaskuserId", "TaskDeptName", "TaskName");
+                        .HasForeignKey("ObjectiveuserId", "ObjectivedeptName", "ObjectiveName");
                 });
 
             modelBuilder.Entity("Backend.Models.Step", b =>
@@ -323,24 +319,13 @@ namespace Backend.Migrations
 
                     b.HasOne("Backend.Models.Department", "Department")
                         .WithMany()
-                        .HasForeignKey("DepartmentuserId", "DepartmentDeptName");
-
-                    b.HasOne("Backend.Models.Task", "Task")
-                        .WithMany("Step")
-                        .HasForeignKey("TaskuserId", "TaskDeptName", "TaskName1");
-                });
-
-            modelBuilder.Entity("Backend.Models.Task", b =>
-                {
-                    b.HasOne("Backend.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("userId")
+                        .HasForeignKey("userId", "deptName")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Backend.Models.Department", "Department")
-                        .WithMany("Task")
-                        .HasForeignKey("userId", "DeptName")
+                    b.HasOne("Backend.Models.Objective", "Objective")
+                        .WithMany("Step")
+                        .HasForeignKey("userId", "deptName", "objectiveName")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

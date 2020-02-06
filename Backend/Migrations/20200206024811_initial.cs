@@ -97,13 +97,12 @@ namespace Backend.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     UserId = table.Column<int>(nullable: true),
-                    EmployeeuserId = table.Column<int>(nullable: true),
-                    EmployeeId = table.Column<int>(nullable: true),
-                    ObjectiveuserId = table.Column<int>(nullable: true),
-                    ObjectivedeptName = table.Column<string>(nullable: true),
+                    EmployeeId = table.Column<string>(nullable: true),
                     ObjectiveName = table.Column<string>(nullable: true),
                     DeptName = table.Column<string>(nullable: true),
-                    Date = table.Column<DateTime>(nullable: false)
+                    Date = table.Column<DateTime>(nullable: false),
+                    EmployeeId1 = table.Column<int>(nullable: true),
+                    EmployeeuserId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -115,16 +114,10 @@ namespace Backend.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Schedules_Employees_EmployeeuserId_EmployeeId",
-                        columns: x => new { x.EmployeeuserId, x.EmployeeId },
+                        name: "FK_Schedules_Employees_EmployeeuserId_EmployeeId1",
+                        columns: x => new { x.EmployeeuserId, x.EmployeeId1 },
                         principalTable: "Employees",
                         principalColumns: new[] { "userId", "EmployeeId" },
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Schedules_Objectives_ObjectiveuserId_ObjectivedeptName_ObjectiveName",
-                        columns: x => new { x.ObjectiveuserId, x.ObjectivedeptName, x.ObjectiveName },
-                        principalTable: "Objectives",
-                        principalColumns: new[] { "userId", "deptName", "ObjectiveName" },
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -174,7 +167,7 @@ namespace Backend.Migrations
                     StepobjectiveName = table.Column<string>(nullable: true),
                     StepNumber = table.Column<string>(nullable: true),
                     Method = table.Column<string>(nullable: true),
-                    Objective = table.Column<string>(nullable: true)
+                    Purpose = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -250,14 +243,9 @@ namespace Backend.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Schedules_EmployeeuserId_EmployeeId",
+                name: "IX_Schedules_EmployeeuserId_EmployeeId1",
                 table: "Schedules",
-                columns: new[] { "EmployeeuserId", "EmployeeId" });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Schedules_ObjectiveuserId_ObjectivedeptName_ObjectiveName",
-                table: "Schedules",
-                columns: new[] { "ObjectiveuserId", "ObjectivedeptName", "ObjectiveName" });
+                columns: new[] { "EmployeeuserId", "EmployeeId1" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

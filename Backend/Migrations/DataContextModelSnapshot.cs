@@ -25,7 +25,7 @@ namespace Backend.Migrations
                     b.Property<string>("Method")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Objective")
+                    b.Property<string>("Purpose")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("StepNumber")
@@ -160,7 +160,10 @@ namespace Backend.Migrations
                     b.Property<string>("DeptName")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("EmployeeId")
+                    b.Property<string>("EmployeeId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("EmployeeId1")
                         .HasColumnType("INTEGER");
 
                     b.Property<int?>("EmployeeuserId")
@@ -169,12 +172,6 @@ namespace Backend.Migrations
                     b.Property<string>("ObjectiveName")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("ObjectivedeptName")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int?>("ObjectiveuserId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int?>("UserId")
                         .HasColumnType("INTEGER");
 
@@ -182,9 +179,7 @@ namespace Backend.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.HasIndex("EmployeeuserId", "EmployeeId");
-
-                    b.HasIndex("ObjectiveuserId", "ObjectivedeptName", "ObjectiveName");
+                    b.HasIndex("EmployeeuserId", "EmployeeId1");
 
                     b.ToTable("Schedules");
                 });
@@ -298,13 +293,9 @@ namespace Backend.Migrations
                         .WithMany()
                         .HasForeignKey("UserId");
 
-                    b.HasOne("Backend.Models.Employee", "Employee")
+                    b.HasOne("Backend.Models.Employee", null)
                         .WithMany("Schedule")
-                        .HasForeignKey("EmployeeuserId", "EmployeeId");
-
-                    b.HasOne("Backend.Models.Objective", "Objective")
-                        .WithMany()
-                        .HasForeignKey("ObjectiveuserId", "ObjectivedeptName", "ObjectiveName");
+                        .HasForeignKey("EmployeeuserId", "EmployeeId1");
                 });
 
             modelBuilder.Entity("Backend.Models.Step", b =>

@@ -56,37 +56,12 @@ namespace Backend.Data
             throw new System.NotImplementedException();
         }
 
-        public Task<Employee> GetEmployee(int userId, int employeeId)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<IEnumerable<Employee>> GetEmployees(int userId)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public Task<Objective> GetObjective(int userId, string deptName, string objectiveName)
         {
             throw new System.NotImplementedException();
         }
 
         public Task<IEnumerable<Objective>> GetObjectivesByDepartment(int userId, string deptName)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<Schedule> GetScheduledTask(int id)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<IEnumerable<Schedule>> GetScheduledTasksForAccount(int userId)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<IEnumerable<Schedule>> GetScheduledTasksForEmployee(int userId, int employeeId)
         {
             throw new System.NotImplementedException();
         }

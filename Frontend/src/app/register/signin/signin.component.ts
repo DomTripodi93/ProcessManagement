@@ -24,8 +24,7 @@ export class SigninComponent {
 
   onSubmit(){
     this.isError = false;
-    this.user = this.signinForm.value;
-    this.auth.signinUser(this.user)
+    this.auth.signinUser(this.signinForm.value)
     .subscribe(
       (responseData) => {
         this.auth.token = responseData.body['token'];

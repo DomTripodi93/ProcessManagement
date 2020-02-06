@@ -1,0 +1,80 @@
+<nav class='navbar navbar-default'>
+  <div class='container-fluid'>
+      <div class='navbar-header'>
+      </div>
+      <div class='navbar-default'><strong>
+        <ul class = 'nav navbar-nav'>
+          <li
+            routerLinkActive="!active">
+            <div routerLink='/'  class="logo">
+              <img src="../../assets/favicon.png" width="50px">
+            </div>
+          </li>
+          <li routerLinkActive="!active"><a routerLink='/'>Home</a></li>
+          <li
+            *ngIf="!auth.isAuthenticated" 
+            routerLinkActive="active">
+            <a routerLink='/register'>Sign Up</a></li>
+          <li
+            *ngIf="!auth.isAuthenticated" 
+            routerLinkActive="active">
+            <a routerLink='/login'>Log In</a></li>
+          <li
+            *ngIf="auth.isAuthenticated" 
+            routerLinkActive="active">
+            <a routerLink='/logout'>Log Out</a></li>
+          <li class="dropdown" *ngIf="auth.isAuthenticated" appDropdown>
+            <a
+            style ='cursor: pointer;'
+            class="dropdown-toggle"  
+            data-toggle="dropdown" 
+            type="button">
+              Schedule
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a routerLink='lathe/machine'>Machines</a></li>
+              <li><a routerLink='lathe/parts'>Parts</a></li>
+              <li><a routerLink='lathe/jobs'>Jobs</a></li>
+              <li><a routerLink='lathe/production'>Production</a></li>
+              <li><a routerLink='lathe/jobs/calculator'>Length From Weight</a></li>
+            </ul>
+          </li> 
+          <li class="dropdown" *ngIf="auth.isAuthenticated" appDropdown>
+            <a
+            style ='cursor: pointer;'
+            class="dropdown-toggle"  
+            data-toggle="dropdown" 
+            type="button">
+              Processes
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a routerLink='mill/machine'>Machines</a></li>
+              <li><a routerLink='mill/parts'>Parts</a></li>
+              <li><a routerLink='mill/jobs'>Jobs</a></li>
+              <li><a routerLink='mill/production'>Production</a></li>
+            </ul>
+          </li> 
+          <li
+            *ngIf="auth.isAuthenticated" 
+            routerLinkActive="active">
+            <a routerLink='hourly'>Hourly</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li 
+            *ngIf="auth.isAuthenticated" 
+            routerLinkActive="active" 
+            [routerLinkActiveOptions]="{exact: true}">
+            <a routerLink='/changes'>Change Log</a></li>
+          <li 
+            *ngIf="auth.isAuthenticated" 
+            routerLinkActive="active" 
+            [routerLinkActiveOptions]="{exact: true}">
+            <a routerLink='/settings'>Settings</a></li>
+        </ul>
+      </strong>
+    </div>
+  </div>
+</nav>

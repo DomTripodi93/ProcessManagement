@@ -1,7 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
+import { AppRouteModule } from './app-routing.module';
 import { RegisterComponent } from './register/register.component';
 import { SigninComponent } from './register/signin/signin.component';
 import { SignoutComponent } from './register/signout/signout.component';
@@ -12,6 +15,9 @@ import { BestPracticeComponent } from './department/objective/step/best-practice
 import { CommonDifficultyComponent } from './department/objective/step/common-difficulty/common-difficulty.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { ScheduleComponent } from './employees/schedule/schedule.component';
+import { HeaderComponent } from './shared/header/header.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import { HomeComponent } from './shared/home/home.component';
 
 @NgModule({
   declarations: [
@@ -25,10 +31,18 @@ import { ScheduleComponent } from './employees/schedule/schedule.component';
     BestPracticeComponent,
     CommonDifficultyComponent,
     EmployeesComponent,
-    ScheduleComponent
+    ScheduleComponent,
+    HeaderComponent,
+    FooterComponent,
+    HomeComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    AppRouteModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

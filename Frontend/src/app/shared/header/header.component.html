@@ -33,11 +33,8 @@
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a routerLink='lathe/machine'>Machines</a></li>
-              <li><a routerLink='lathe/parts'>Parts</a></li>
-              <li><a routerLink='lathe/jobs'>Jobs</a></li>
-              <li><a routerLink='lathe/production'>Production</a></li>
-              <li><a routerLink='lathe/jobs/calculator'>Length From Weight</a></li>
+              <li><a routerLink='employee'>Employees</a></li>
+              <li><a routerLink='schedule'>Full Schedule</a></li>
             </ul>
           </li> 
           <li class="dropdown" *ngIf="auth.isAuthenticated" appDropdown>
@@ -50,29 +47,10 @@
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a routerLink='mill/machine'>Machines</a></li>
-              <li><a routerLink='mill/parts'>Parts</a></li>
-              <li><a routerLink='mill/jobs'>Jobs</a></li>
-              <li><a routerLink='mill/production'>Production</a></li>
+              <li><a routerLink='department'>Departments</a></li>
+              <li><a routerLink='objective'>Objectives</a></li>
             </ul>
           </li> 
-          <li
-            *ngIf="auth.isAuthenticated" 
-            routerLinkActive="active">
-            <a routerLink='hourly'>Hourly</a>
-          </li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li 
-            *ngIf="auth.isAuthenticated" 
-            routerLinkActive="active" 
-            [routerLinkActiveOptions]="{exact: true}">
-            <a routerLink='/changes'>Change Log</a></li>
-          <li 
-            *ngIf="auth.isAuthenticated" 
-            routerLinkActive="active" 
-            [routerLinkActiveOptions]="{exact: true}">
-            <a routerLink='/settings'>Settings</a></li>
         </ul>
       </strong>
     </div>

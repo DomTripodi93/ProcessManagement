@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -59,10 +60,59 @@ namespace Backend.Controllers
 
             var bestPracticeFromRepo = _repo.GetBestPractice(id);
 
-            var bestPracticeForReturn = _mapper.Map<BestPracticeForReturnDto>(bestPracticeFromRepo);
+            BestPracticeForReturnDto bestPracticeForReturn = _mapper.Map<BestPracticeForReturnDto>(bestPracticeFromRepo);
 
             return Ok(bestPracticeForReturn);
 
+        }
+
+        [HttpGet("byStep/{department}/{objective}/{step}")]
+        public async Task<IActionResult> GetBestPractices(int userId, string department, string objective, string step)
+        {
+            var creator = await _userRepo.GetUser(userId);
+
+            if (creator.Id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            IEnumerable<BestPractice> bestPracticesFromRepo = await _repo.GetBestPractices(userId, department, objective, step);
+
+            IEnumerable<BestPracticeForReturnDto> bestPracticeForReturn = _mapper.Map<IEnumerable<BestPracticeForReturnDto>>(bestPracticesFromRepo);
+
+            return Ok(bestPracticeForReturn);
+
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateBestPractice(int userId, int id, BestPracticeForCreationDto bestPracticeForUpdateDto)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            var bestPracticeFromRepo = await _repo.GetBestPractice(id);
+
+            _mapper.Map(bestPracticeForUpdateDto, bestPracticeFromRepo);
+
+            if (await _repo.SaveAll())
+                return CreatedAtRoute("GetProd", new {id = bestPracticeFromRepo.Id, userId = userId }, bestPracticeForUpdateDto);
+
+            throw new Exception($"Updating best practice {id} failed on save");
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProduction(int userId, int id)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+            
+            var bestPracticeFromRepo = await _repo.GetBestPractice(id);
+            
+            _repo.Delete(bestPracticeFromRepo);
+            await _repo.SaveAll();
+            return Ok(
+                        "Best practice "
+                        + bestPracticeFromRepo.Id
+                        + " was deleted!"
+                    );
         }
         
     }

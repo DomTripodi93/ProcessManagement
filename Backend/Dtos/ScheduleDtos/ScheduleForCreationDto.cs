@@ -10,7 +10,7 @@ namespace Backend.Dtos
         
         [Required]
         public string ObjectiveName { get; set; }
-        public string DeptName { get; set; }
+        public string deptName { get; set; }
 
         [Required]
         public DateTime Date { get; set; }

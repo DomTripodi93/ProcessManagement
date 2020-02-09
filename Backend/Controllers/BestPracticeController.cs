@@ -93,7 +93,7 @@ namespace Backend.Controllers
             _mapper.Map(bestPracticeForUpdateDto, bestPracticeFromRepo);
 
             if (await _repo.SaveAll())
-                return CreatedAtRoute("GetProd", new {id = bestPracticeFromRepo.Id, userId = userId }, bestPracticeForUpdateDto);
+                return CreatedAtRoute("GetBestPractice", new {id = bestPracticeFromRepo.Id, userId = userId }, bestPracticeForUpdateDto);
 
             throw new Exception($"Updating best practice {id} failed on save");
         }

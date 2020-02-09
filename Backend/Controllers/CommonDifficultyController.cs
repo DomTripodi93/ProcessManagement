@@ -93,7 +93,7 @@ namespace Backend.Controllers
             _mapper.Map(commonDifficultyForUpdateDto, commonDifficultyFromRepo);
 
             if (await _repo.SaveAll())
-                return CreatedAtRoute("GetProd", new {id = commonDifficultyFromRepo.Id, userId = userId }, commonDifficultyForUpdateDto);
+                return CreatedAtRoute("GetCommonDifficulty", new {id = commonDifficultyFromRepo.Id, userId = userId }, commonDifficultyForUpdateDto);
 
             throw new Exception($"Updating best practice {id} failed on save");
         }

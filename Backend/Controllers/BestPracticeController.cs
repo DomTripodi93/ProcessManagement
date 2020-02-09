@@ -99,7 +99,7 @@ namespace Backend.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProduction(int userId, int id)
+        public async Task<IActionResult> DeleteBestPractice(int userId, int id)
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();
@@ -107,12 +107,11 @@ namespace Backend.Controllers
             var bestPracticeFromRepo = await _repo.GetBestPractice(id);
             
             _repo.Delete(bestPracticeFromRepo);
-            await _repo.SaveAll();
-            return Ok(
-                        "Best practice "
-                        + bestPracticeFromRepo.Id
-                        + " was deleted!"
-                    );
+            
+            if (await _repo.SaveAll())
+                return Ok("Best practice " + bestPracticeFromRepo.Id + " was deleted!");
+        
+            throw new Exception($"Deleting best practice {id} failed on save");
         }
         
     }

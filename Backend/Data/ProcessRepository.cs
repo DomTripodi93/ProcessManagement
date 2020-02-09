@@ -26,6 +26,11 @@ namespace Backend.Data
             _context.Remove(entity);
         }
 
+        public async Task<bool> SaveAll()
+        {
+            return await _context.SaveChangesAsync() > 0;
+        }
+
         public Task<BestPractice> GetBestPractice(int id)
         {
             throw new System.NotImplementedException();
@@ -74,11 +79,6 @@ namespace Backend.Data
         public Task<IEnumerable<Step>> GetSteps(int userId, string objectiveName)
         {
             throw new System.NotImplementedException();
-        }
-
-        public async Task<bool> SaveAll()
-        {
-            return await _context.SaveChangesAsync() > 0;
         }
         
     }

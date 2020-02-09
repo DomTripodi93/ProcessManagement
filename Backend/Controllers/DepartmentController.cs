@@ -113,5 +113,6 @@ namespace Backend.Controllers
         
             throw new Exception($"Deleting best practice {deptName} failed on save");
         }
+        
     }
 }

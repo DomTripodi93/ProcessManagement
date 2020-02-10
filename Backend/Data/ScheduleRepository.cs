@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Backend.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Data
 {
@@ -30,34 +32,61 @@ namespace Backend.Data
             return await _context.SaveChangesAsync() > 0;
         }
 
-        public Task<Employee> GetEmployee(int userId, int employeeId)
+        public async Task<Employee> GetEmployee(int userId, int employeeId)
         {
-            throw new System.NotImplementedException();
+            var employee = await _context.Employees
+                .Where(e => e.userId == userId)
+                .Where(e => e.EmployeeId == employeeId)
+                .FirstOrDefaultAsync();
+            
+            return employee;
         }
 
-        public Task<IEnumerable<Employee>> GetEmployees(int userId)
+        public async Task<IEnumerable<Employee>> GetEmployees(int userId)
         {
-            throw new System.NotImplementedException();
+            var employees = await _context.Employees
+                .Where(e => e.userId == userId)
+                .ToListAsync();
+
+            return employees;
         }
 
-        public Task<IEnumerable<Employee>> GetEmployeesByDepartment(int userId, string deptName)
+        public async Task<IEnumerable<Employee>> GetEmployeesByDepartment(int userId, string deptName)
         {
-            throw new System.NotImplementedException();
+            var employees = await _context.Employees
+                .Where(e => e.userId == userId)
+                .Where(e => e.deptName == deptName)
+                .ToListAsync();
+
+            return employees;
         }
 
-        public Task<Schedule> GetScheduledTask(int id)
+        public async Task<Schedule> GetScheduledTask(int id)
         {
-            throw new System.NotImplementedException();
+            var scheduledTask = await _context.Schedules
+                .Where(s => s.Id == id)
+                .FirstOrDefaultAsync();
+
+            return scheduledTask;
         }
 
-        public Task<IEnumerable<Schedule>> GetScheduledTasksForAccount(int userId)
+        public async Task<IEnumerable<Schedule>> GetScheduledTasksForAccount(int userId)
         {
-            throw new System.NotImplementedException();
+            var scheduledTasks = await _context.Schedules
+                .Where(s => s.userId == userId)
+                .ToListAsync();
+
+            return scheduledTasks;
         }
 
-        public Task<IEnumerable<Schedule>> GetScheduledTasksForEmployee(int userId, int employeeId)
+        public async Task<IEnumerable<Schedule>> GetScheduledTasksForEmployee(int userId, int employeeId)
         {
-            throw new System.NotImplementedException();
+            var scheduledTasks = await _context.Schedules
+                .Where(s => s.userId == userId)
+                .Where(s => s.EmployeeId == employeeId)
+                .ToListAsync();
+
+            return scheduledTasks;
         }
     }
 }

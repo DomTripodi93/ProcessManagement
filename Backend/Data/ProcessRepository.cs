@@ -31,26 +31,6 @@ namespace Backend.Data
             return await _context.SaveChangesAsync() > 0;
         }
 
-        public Task<BestPractice> GetBestPractice(int id)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<IEnumerable<BestPractice>> GetBestPractices(int userId, string deptName, string objectiveName, string stepNumber)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<IEnumerable<CommonDifficulty>> GetCommonDifficulties(int userId, string deptName, string objectiveName, string stepNumber)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<CommonDifficulty> GetCommonDifficulty(int id)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public Task<Department> GetDepartment(int userId, string deptName)
         {
             throw new System.NotImplementedException();
@@ -71,12 +51,32 @@ namespace Backend.Data
             throw new System.NotImplementedException();
         }
 
-        public Task<Step> GetStep(int userId, string objectiveName, string stepNumber)
+        public Task<Step> GetStep(int userId, string deptName, string objectiveName, string stepNumber)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<IEnumerable<Step>> GetSteps(int userId, string objectiveName)
+        public Task<IEnumerable<Step>> GetSteps(int userId, string deptName, string objectiveName)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<BestPractice> GetBestPractice(int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<IEnumerable<BestPractice>> GetBestPractices(int userId, string deptName, string objectiveName, string stepNumber)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<IEnumerable<CommonDifficulty>> GetCommonDifficulties(int userId, string deptName, string objectiveName, string stepNumber)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<CommonDifficulty> GetCommonDifficulty(int id)
         {
             throw new System.NotImplementedException();
         }

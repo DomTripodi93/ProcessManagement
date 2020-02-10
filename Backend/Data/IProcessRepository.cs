@@ -13,8 +13,8 @@ namespace Backend.Data
         Task<IEnumerable<Department>> GetDepartments(int userId);
         Task<Objective> GetObjective(int userId, string deptName, string objectiveName);
         Task<IEnumerable<Objective>> GetObjectivesByDepartment(int userId, string deptName);
-        Task<Step> GetStep(int userId, string objectiveName, string stepNumber);
-        Task<IEnumerable<Step>> GetSteps(int userId, string objectiveName);
+        Task<Step> GetStep(int userId, string deptName, string objectiveName, string stepNumber);
+        Task<IEnumerable<Step>> GetSteps(int userId, string deptName, string objectiveName);
         Task<BestPractice> GetBestPractice(int id);
         Task<IEnumerable<BestPractice>> GetBestPractices(int userId, string deptName, string objectiveName, string stepNumber);
         Task<CommonDifficulty> GetCommonDifficulty(int id);

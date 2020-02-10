@@ -53,12 +53,10 @@ namespace Backend.Controllers
         [HttpGet("{employeeId}", Name="GetEmployee")]
         public async Task<IActionResult> GetEmployee(int userId, int employeeId)
         {
-            var creator = await _userRepo.GetUser(userId);
-
-            if (creator.Id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();
 
-            var employeeFromRepo = _repo.GetEmployee(userId, employeeId);
+            var employeeFromRepo = await _repo.GetEmployee(userId, employeeId);
 
             EmployeeForCreationDto employeeForReturn = _mapper.Map<EmployeeForCreationDto>(employeeFromRepo);
 
@@ -69,9 +67,7 @@ namespace Backend.Controllers
         [HttpGet("byUser")]
         public async Task<IActionResult> GetEmployees(int userId)
         {
-            var creator = await _userRepo.GetUser(userId);
-
-            if (creator.Id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();
 
             IEnumerable<Employee> employeesFromRepo = await _repo.GetEmployees(userId);
@@ -79,6 +75,20 @@ namespace Backend.Controllers
             IEnumerable<EmployeeForCreationDto> employeeForReturn = _mapper.Map<IEnumerable<EmployeeForCreationDto>>(employeesFromRepo);
 
             return Ok(employeeForReturn);
+
+        }
+
+        [HttpGet("byDepartment/{deptName}")]
+        public async Task<IActionResult> GetEmployeesByDepartment(int userId, string deptName)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            IEnumerable<Employee> employeesFromRepo = await _repo.GetEmployeesByDepartment(userId, deptName);
+
+            IEnumerable<EmployeeForCreationDto> employeesForReturn = _mapper.Map<IEnumerable<EmployeeForCreationDto>>(employeesFromRepo);
+
+            return Ok(employeesForReturn);
 
         }
 

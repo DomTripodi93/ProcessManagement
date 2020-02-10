@@ -11,6 +11,7 @@ namespace Backend.Data
         Task<bool> SaveAll();
         Task<Employee> GetEmployee(int userId, int employeeId);
         Task<IEnumerable<Employee>> GetEmployees(int userId);
+        Task<IEnumerable<Employee>> GetEmployeesByDepartment(int userId, string deptName);
         Task<Schedule> GetScheduledTask(int id);
         Task<IEnumerable<Schedule>> GetScheduledTasksForEmployee(int userId, int employeeId);
         Task<IEnumerable<Schedule>> GetScheduledTasksForAccount(int userId);

@@ -40,6 +40,11 @@ namespace Backend.Data
             throw new System.NotImplementedException();
         }
 
+        public Task<IEnumerable<Employee>> GetEmployeesByDepartment(int userId, string deptName)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public Task<Schedule> GetScheduledTask(int id)
         {
             throw new System.NotImplementedException();
@@ -54,6 +59,5 @@ namespace Backend.Data
         {
             throw new System.NotImplementedException();
         }
-        
     }
 }

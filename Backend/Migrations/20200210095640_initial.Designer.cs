@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200206024811_initial")]
+    [Migration("20200210095640_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,13 +24,22 @@ namespace Backend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("DeptName")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Method")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ObjectiveName")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Purpose")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("StepNumber")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("StepNumber1")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("StepdeptName")
@@ -42,14 +51,14 @@ namespace Backend.Migrations
                     b.Property<int?>("StepuserId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int>("userId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("userId");
 
-                    b.HasIndex("StepuserId", "StepdeptName", "StepobjectiveName", "StepNumber");
+                    b.HasIndex("StepuserId", "StepdeptName", "StepobjectiveName", "StepNumber1");
 
                     b.ToTable("BestPractices");
                 });
@@ -63,10 +72,19 @@ namespace Backend.Migrations
                     b.Property<string>("Cause")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("DeptName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ObjectiveName")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Solution")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("StepNumber")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("StepNumber1")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("StepdeptName")
@@ -78,14 +96,14 @@ namespace Backend.Migrations
                     b.Property<int?>("StepuserId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int>("userId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("userId");
 
-                    b.HasIndex("StepuserId", "StepdeptName", "StepobjectiveName", "StepNumber");
+                    b.HasIndex("StepuserId", "StepdeptName", "StepobjectiveName", "StepNumber1");
 
                     b.ToTable("CommonDifficulties");
                 });
@@ -117,13 +135,21 @@ namespace Backend.Migrations
                     b.Property<bool>("CanEdit")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Department")
+                    b.Property<string>("DepartmentDeptName")
                         .HasColumnType("TEXT");
+
+                    b.Property<int?>("DepartmentuserId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("deptName")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("userId", "EmployeeId");
+
+                    b.HasIndex("DepartmentuserId", "DepartmentDeptName");
 
                     b.ToTable("Employees");
                 });
@@ -162,24 +188,24 @@ namespace Backend.Migrations
                     b.Property<string>("DeptName")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("EmployeeId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int?>("EmployeeId1")
+                    b.Property<int>("EmployeeId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("EmployeeuserId")
+                    b.Property<int>("EmployeeId1")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("EmployeeuserId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("ObjectiveName")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int>("userId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("userId");
 
                     b.HasIndex("EmployeeuserId", "EmployeeId1");
 
@@ -238,22 +264,26 @@ namespace Backend.Migrations
                 {
                     b.HasOne("Backend.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("userId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("Backend.Models.Step", "Step")
+                    b.HasOne("Backend.Models.Step", null)
                         .WithMany("BestPractice")
-                        .HasForeignKey("StepuserId", "StepdeptName", "StepobjectiveName", "StepNumber");
+                        .HasForeignKey("StepuserId", "StepdeptName", "StepobjectiveName", "StepNumber1");
                 });
 
             modelBuilder.Entity("Backend.Models.CommonDifficulty", b =>
                 {
                     b.HasOne("Backend.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("userId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("Backend.Models.Step", "Step")
+                    b.HasOne("Backend.Models.Step", null)
                         .WithMany("CommonDifficulty")
-                        .HasForeignKey("StepuserId", "StepdeptName", "StepobjectiveName", "StepNumber");
+                        .HasForeignKey("StepuserId", "StepdeptName", "StepobjectiveName", "StepNumber1");
                 });
 
             modelBuilder.Entity("Backend.Models.Department", b =>
@@ -272,6 +302,10 @@ namespace Backend.Migrations
                         .HasForeignKey("userId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Backend.Models.Department", "Department")
+                        .WithMany("Employee")
+                        .HasForeignKey("DepartmentuserId", "DepartmentDeptName");
                 });
 
             modelBuilder.Entity("Backend.Models.Objective", b =>
@@ -293,11 +327,15 @@ namespace Backend.Migrations
                 {
                     b.HasOne("Backend.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("userId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Backend.Models.Employee", null)
                         .WithMany("Schedule")
-                        .HasForeignKey("EmployeeuserId", "EmployeeId1");
+                        .HasForeignKey("EmployeeuserId", "EmployeeId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Backend.Models.Step", b =>

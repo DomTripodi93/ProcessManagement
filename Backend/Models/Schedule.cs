@@ -6,9 +6,10 @@ namespace Backend.Models
     {
         public int Id { get; set; }
         public User User { get; set; }
-        public string EmployeeId { get; set; }
+        public int userId { get; set; }
+        public int EmployeeId { get; set; }
         public string ObjectiveName { get; set; }
-        public string deptName { get; set; }
+        public string DeptName { get; set; }
         public DateTime Date { get; set; }
         
     }

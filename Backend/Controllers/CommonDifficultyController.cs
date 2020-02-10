@@ -46,7 +46,7 @@ namespace Backend.Controllers
                 return CreatedAtRoute("GetCommonDifficulty", new {id = commonDifficulty.Id, userId = userId }, jobToReturn);
             }
             
-            throw new Exception("Creation of Best Practice failed on save");
+            throw new Exception("Creation of Common difficulty failed on save");
 
         }
 
@@ -95,7 +95,7 @@ namespace Backend.Controllers
             if (await _repo.SaveAll())
                 return CreatedAtRoute("GetCommonDifficulty", new {id = commonDifficultyFromRepo.Id, userId = userId }, commonDifficultyForUpdateDto);
 
-            throw new Exception($"Updating best practice {id} failed on save");
+            throw new Exception($"Updating common difficulty {id} failed on save");
         }
 
         [HttpDelete("{id}")]
@@ -109,9 +109,9 @@ namespace Backend.Controllers
             _repo.Delete(commonDifficultyFromRepo);
             
             if (await _repo.SaveAll())
-                return Ok("Best practice " + commonDifficultyFromRepo.Id + " was deleted!");
+                return Ok("Common difficulty " + commonDifficultyFromRepo.Id + " was deleted!");
         
-            throw new Exception($"Deleting best practice {id} failed on save");
+            throw new Exception($"Deleting common difficulty {id} failed on save");
         }
         
     }

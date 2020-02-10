@@ -46,7 +46,7 @@ namespace Backend.Controllers
                 return CreatedAtRoute("GetBestPractice", new {id = bestPractice.Id, userId = userId }, jobToReturn);
             }
             
-            throw new Exception("Creation of Best Practice failed on save");
+            throw new Exception("Creation of Best practice failed on save");
 
         }
 

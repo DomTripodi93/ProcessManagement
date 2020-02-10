@@ -46,7 +46,7 @@ namespace Backend.Controllers
                 return CreatedAtRoute("GetDepartment", new {deptName = department.DeptName, userId = userId }, jobToReturn);
             }
             
-            throw new Exception("Creation of Best Practice failed on save");
+            throw new Exception("Creation of Department failed on save");
 
         }
 
@@ -95,7 +95,7 @@ namespace Backend.Controllers
             if (await _repo.SaveAll())
                 return CreatedAtRoute("GetDepartment", new {deptName = departmentFromRepo.DeptName, userId = userId }, departmentForUpdateDto);
 
-            throw new Exception($"Updating best practice {deptName} failed on save");
+            throw new Exception($"Updating department {deptName} failed on save");
         }
 
         [HttpDelete("{deptName}")]
@@ -109,9 +109,9 @@ namespace Backend.Controllers
             _repo.Delete(departmentFromRepo);
             
             if (await _repo.SaveAll())
-                return Ok("Best practice " + departmentFromRepo.DeptName + " was deleted!");
+                return Ok("Department " + departmentFromRepo.DeptName + " was deleted!");
         
-            throw new Exception($"Deleting best practice {deptName} failed on save");
+            throw new Exception($"Deleting department {deptName} failed on save");
         }
         
     }

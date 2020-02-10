@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Backend.Models;
@@ -31,54 +32,109 @@ namespace Backend.Data
             return await _context.SaveChangesAsync() > 0;
         }
 
-        public Task<Department> GetDepartment(int userId, string deptName)
+        public async Task<Department> GetDepartment(int userId, string deptName)
         {
-            throw new System.NotImplementedException();
+            var department = await _context.Departments
+                .Where(d => d.userId == userId)
+                .Where(d => d.DeptName == deptName)
+                .FirstOrDefaultAsync();
+            
+            return department;
         }
 
-        public Task<IEnumerable<Department>> GetDepartments(int userId)
+        public async Task<IEnumerable<Department>> GetDepartments(int userId)
         {
-            throw new System.NotImplementedException();
+            var departments = await _context.Departments
+                .Where(d => d.userId == userId)
+                .ToListAsync();
+            
+            return departments;
         }
 
-        public Task<Objective> GetObjective(int userId, string deptName, string objectiveName)
+        public async Task<Objective> GetObjective(int userId, string deptName, string objectiveName)
         {
-            throw new System.NotImplementedException();
+            var objective = await _context.Objectives
+                .Where(o => o.userId == userId)
+                .Where(o => o.ObjectiveName == objectiveName)
+                .Where(o => o.deptName == deptName)
+                .FirstOrDefaultAsync();
+
+            return objective;
         }
 
-        public Task<IEnumerable<Objective>> GetObjectivesByDepartment(int userId, string deptName)
+        public async Task<IEnumerable<Objective>> GetObjectivesByDepartment(int userId, string deptName)
         {
-            throw new System.NotImplementedException();
+            var objectives = await _context.Objectives
+                .Where(o => o.userId == userId)
+                .Where(o => o.deptName == deptName)
+                .ToListAsync();
+
+            return objectives;
         }
 
-        public Task<Step> GetStep(int userId, string deptName, string objectiveName, string stepNumber)
+        public async Task<Step> GetStep(int userId, string deptName, string objectiveName, string stepNumber)
         {
-            throw new System.NotImplementedException();
+            var step = await _context.Steps
+                .Where(s => s.userId == userId)
+                .Where(s => s.StepNumber == stepNumber)
+                .Where(s => s.objectiveName == objectiveName)
+                .Where(s => s.deptName == deptName)
+                .FirstOrDefaultAsync();
+
+            return step;
         }
 
-        public Task<IEnumerable<Step>> GetSteps(int userId, string deptName, string objectiveName)
+        public async Task<IEnumerable<Step>> GetSteps(int userId, string deptName, string objectiveName)
         {
-            throw new System.NotImplementedException();
+            var steps = await _context.Steps
+                .Where(s => s.userId == userId)
+                .Where(s => s.objectiveName == objectiveName)
+                .Where(s => s.deptName == deptName)
+                .ToListAsync();
+
+            return steps;
         }
 
-        public Task<BestPractice> GetBestPractice(int id)
+        public async Task<BestPractice> GetBestPractice(int id)
         {
-            throw new System.NotImplementedException();
+            var bestPractice = await _context.BestPractices
+                .Where(bp => bp.Id == id)
+                .FirstOrDefaultAsync();
+            
+            return bestPractice;
         }
 
-        public Task<IEnumerable<BestPractice>> GetBestPractices(int userId, string deptName, string objectiveName, string stepNumber)
+        public async Task<IEnumerable<BestPractice>> GetBestPractices(int userId, string deptName, string objectiveName, string stepNumber)
         {
-            throw new System.NotImplementedException();
+            var bestPractices = await _context.BestPractices
+                .Where(bp => bp.userId == userId)
+                .Where(bp => bp.DeptName == deptName)
+                .Where(bp => bp.ObjectiveName == objectiveName)
+                .Where(bp => bp.StepNumber == stepNumber)
+                .ToListAsync();
+
+            return bestPractices;
         }
 
-        public Task<IEnumerable<CommonDifficulty>> GetCommonDifficulties(int userId, string deptName, string objectiveName, string stepNumber)
+        public async Task<CommonDifficulty> GetCommonDifficulty(int id)
         {
-            throw new System.NotImplementedException();
+            var commonDifficulty = await _context.CommonDifficulties
+                .Where(cd => cd.Id == id)
+                .FirstOrDefaultAsync();
+            
+            return commonDifficulty;
         }
-
-        public Task<CommonDifficulty> GetCommonDifficulty(int id)
+        
+        public async Task<IEnumerable<CommonDifficulty>> GetCommonDifficulties(int userId, string deptName, string objectiveName, string stepNumber)
         {
-            throw new System.NotImplementedException();
+            var commonDifficultys = await _context.CommonDifficulties
+                .Where(cd => cd.userId == userId)
+                .Where(cd => cd.DeptName == deptName)
+                .Where(cd => cd.ObjectiveName == objectiveName)
+                .Where(cd => cd.StepNumber == stepNumber)
+                .ToListAsync();
+
+            return commonDifficultys;
         }
         
     }

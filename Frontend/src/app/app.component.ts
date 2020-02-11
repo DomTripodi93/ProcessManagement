@@ -52,7 +52,6 @@ export class AppComponent {
       // authentication fails
     } else {
       this.auth.logout();
-      this.router.navigate(["/"]);
       //Logs user out if no user id is available in local storage, as would be set
       // upon successful login
     }

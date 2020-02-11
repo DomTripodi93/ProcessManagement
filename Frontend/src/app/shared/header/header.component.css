@@ -10,3 +10,7 @@ li{
 img{
     margin: 2px 20px 2px 20px;
 }
+
+.nav a{
+    color: rgb(238, 238, 238);
+}

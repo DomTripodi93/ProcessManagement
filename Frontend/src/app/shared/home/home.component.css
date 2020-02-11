@@ -1,0 +1,13 @@
+.spaced{
+    margin: 25px 0px 35px 0px;
+}
+
+.border{
+    margin: auto;
+    width: 80vw;
+    max-width: 800px;
+}
+
+a{
+    color: rgb(2, 2, 151);
+}

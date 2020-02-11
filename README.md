@@ -61,7 +61,7 @@ Requirements:
         User dashboard:
             Departments
 
-        Objective creation:
+        Objective creation
         Objective editing
         Objective searching 
         Objective assignment

@@ -30,6 +30,7 @@ export class SigninComponent {
         this.auth.token = responseData.body['token'];
         localStorage.setItem('token', responseData.body['token']);
         this.auth.user = responseData.body["id"]
+        this.auth.apiUrl = this.auth.authApiUrl + "/" + this.auth.user;
         localStorage.setItem('id', responseData.body["id"]);
         if (this.auth.user) {
           this.auth.isAuthenticated = true;

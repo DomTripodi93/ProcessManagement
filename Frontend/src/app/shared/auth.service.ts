@@ -28,7 +28,7 @@ export class AuthService {
     localStorage.setItem('token', '');
     localStorage.setItem('id', '');
     localStorage.setItem('name', '');
-    this.authChanged.next();
+    this.apiUrl = this.authApiUrl + "/" + this.user;
   };
   //Resets all related values from Login to their initial values, and activated authentication 
   // observable subscription actions

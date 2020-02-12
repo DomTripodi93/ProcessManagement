@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AppRouteModule } from './app-routing.module';
@@ -18,10 +18,13 @@ import { ScheduleComponent } from './employees/schedule/schedule.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HomeComponent } from './shared/home/home.component';
+import { AuthInterceptorService } from './shared/auth-interceptor.service';
+import { DropdownDirective } from './shared/dropdown.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
+    DropdownDirective,
     RegisterComponent,
     SigninComponent,
     SignoutComponent,
@@ -42,9 +45,14 @@ import { HomeComponent } from './shared/home/home.component';
     ReactiveFormsModule,
     HttpClientModule,
     AppRouteModule
-
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS, 
+      useClass: AuthInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

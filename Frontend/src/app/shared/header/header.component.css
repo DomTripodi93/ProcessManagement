@@ -1,5 +1,5 @@
 .navbar {
-    background: rgb(64, 1, 165);
+    background: rgb(70, 181, 255);
 }
 
 li{
@@ -12,5 +12,6 @@ img{
 }
 
 .nav a{
-    color: rgb(238, 238, 238);
+    color: rgb(85, 0, 195);
+    font-weight: 600;
 }

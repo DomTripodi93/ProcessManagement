@@ -20,6 +20,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { HomeComponent } from './shared/home/home.component';
 import { AuthInterceptorService } from './shared/auth-interceptor.service';
 import { DropdownDirective } from './shared/dropdown.directive';
+import { DepartmentSingleComponent } from './department/department-single/department-single.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { DropdownDirective } from './shared/dropdown.directive';
     ScheduleComponent,
     HeaderComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    DepartmentSingleComponent
   ],
   imports: [
     BrowserModule,

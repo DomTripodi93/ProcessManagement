@@ -1,6 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+.btn{
+    border-radius: 0%;
+}
+
 .centered{
     text-align: center;
+}
+
+.middle{
+    margin: auto;
 }
 
 .input-width{
@@ -17,12 +25,20 @@
     max-width: 800px;
 }
 
+.inner-border{
+    border-style: solid;
+    border-color: rgb(0, 21, 44);
+    background-color: rgb(214, 206, 255);
+    margin: auto;
+}
+
 .danger{
     background-color: rgb(165, 2, 2);
     color: white;
     margin: auto;
     width: 100%;
     max-width: 800px;
+    line-height: 200%;
 }
 
 .flex { 
@@ -34,6 +50,12 @@
 .grid50 { 
     display: grid;
     grid-template-columns: 50% 50%;
+}
+
+.sized30{
+    width: 30%;
+    max-width: 400px;
+    margin: 17px 1.5% 17px 1.5%;
 }
 
 .spaced{
@@ -52,6 +74,17 @@ a{
     color: rgb(2, 2, 151);
 }
 
-h1,h2,h3,h4{
-    line-height: 200%;
+h1,h2,h3{
+    line-height: 120%;
+    font-weight: bold;
+}
+
+
+
+@media only screen and (max-width: 768px) {
+    .sized30{
+        width: 85%;
+        max-width: 768px;
+        margin: 17px 7.5% 17px 7.5%;
+    }
 }

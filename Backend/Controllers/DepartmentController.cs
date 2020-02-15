@@ -83,7 +83,7 @@ namespace Backend.Controllers
         }
 
         [HttpPut("{deptName}")]
-        public async Task<IActionResult> UpdateDepartment(int userId, string deptName, DepartmentForCreationDto departmentForUpdateDto)
+        public async Task<IActionResult> UpdateDepartment(int userId, string deptName, DepartmentForUpdateDto departmentForUpdateDto)
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();

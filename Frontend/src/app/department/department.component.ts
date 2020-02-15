@@ -21,7 +21,7 @@ export class DepartmentComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscriptions.push(this.deptServ.deptChanged.subscribe(()=>{
-      this.addMode = false;
+      this.deptServ.deptCancel.next();
       this.getDepartments();
     }));
     this.getDepartments();

@@ -1,1 +1,13 @@
-{{department.deptName}} : {{department.function}}
+<div *ngIf="!editMode" class="inner-border centered">
+    <h3>{{department.deptName}}</h3>
+    <h4>{{department.function}}</h4>
+    <div *ngIf="!editMode" class="grid50">
+        <button class="btn btn-primary" (click)="editDepartment()">Edit</button>
+        <button class="btn btn-danger">Delete</button>
+    </div>
+</div>
+<div *ngIf="editMode" class="spaced">
+    <div class="inner-border centered">
+        <app-department-form [departmentDefault]="department"></app-department-form>
+    </div>
+</div>

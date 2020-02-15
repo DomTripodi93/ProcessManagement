@@ -14,8 +14,10 @@
         <app-department-form></app-department-form>
     </div>
 </div>
-<div *ngIf="departments.length > 0">
-    <div *ngFor="let dept of departments">
-        <app-department-single [department]="dept"></app-department-single>
+<div *ngIf="departments.length > 0" class="middle">
+    <div class="flex">
+        <div *ngFor="let dept of departments" class="sized30">
+            <app-department-single [department]="dept"></app-department-single>
+        </div>
     </div>
 </div>

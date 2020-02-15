@@ -38,9 +38,10 @@ export class HttpService {
   }
   //Updates selected item
 
-  deleteItem(model, name){
+  deleteItem(model, value){
     return this.http.delete(
-        this.auth.apiUrl  + '/' + model + '/' + name
+        this.auth.apiUrl  + '/' + model + '/' + value,
+        {responseType: 'text'}
     );
   }
   //Deletes selected item

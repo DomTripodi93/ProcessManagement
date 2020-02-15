@@ -3,7 +3,7 @@
     <h4>{{department.function}}</h4>
     <div *ngIf="!editMode" class="grid50">
         <button class="btn btn-primary" (click)="editDepartment()">Edit</button>
-        <button class="btn btn-danger">Delete</button>
+        <button class="btn btn-danger" (click)="onDelete()">Delete</button>
     </div>
 </div>
 <div *ngIf="editMode" class="spaced">

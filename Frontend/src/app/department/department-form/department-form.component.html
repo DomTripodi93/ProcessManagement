@@ -21,11 +21,20 @@
         </div>
         <div class='grid50'>
             <button 
+                *ngIf="!departmentDefault"
                 class="btn btn-success" 
                 type="submit"
                 [disabled]="!departmentForm.valid"
             >
                 Add Department
+            </button>
+            <button 
+                *ngIf="departmentDefault"
+                class="btn btn-success" 
+                type="submit"
+                [disabled]="!departmentForm.valid"
+            >
+                Update
             </button>
             <button 
                 type='button' 

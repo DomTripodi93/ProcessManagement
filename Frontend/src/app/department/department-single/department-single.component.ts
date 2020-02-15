@@ -27,6 +27,14 @@ export class DepartmentSingleComponent implements OnInit, OnDestroy {
     this.editMode = true;
   }
 
+  onDelete(){
+    if (confirm("Are you sure you want to delete the " +this.department.deptName+ " department?")){
+      this.deptServ.deleteDepartment(this.department.deptName).subscribe(()=>{
+        this.deptServ.deptChanged.next();
+      });
+    }
+  }
+
   ngOnDestroy(){
     this.subscriptions.forEach(sub =>{
       sub.unsubscribe();

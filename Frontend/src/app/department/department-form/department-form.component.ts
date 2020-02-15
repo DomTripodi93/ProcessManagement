@@ -14,6 +14,8 @@ export class DepartmentFormComponent implements OnInit {
   @Input() departmentDefault: Department;
   canInput= false;
   departmentForm: FormGroup;
+  isError = false;
+  error = "";
   
   constructor(
     private deptServ: DepartmentService,
@@ -59,6 +61,10 @@ export class DepartmentFormComponent implements OnInit {
   newDepartment(data: Department) {
     this.deptServ.addDepartment(data).subscribe(()=>{
       this.deptServ.deptChanged.next();
+    },
+    (error) =>{
+      this.isError = true;
+      this.error = error.message;
     });
   }
 

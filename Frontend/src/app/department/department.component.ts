@@ -38,8 +38,16 @@ export class DepartmentComponent implements OnInit, OnDestroy {
 
   addDepartment(){
     this.addMode = true;
+    this.subscribeToCancel();
   }
   //Displays department form for adding new department
+
+  subscribeToCancel(){
+    this.subscriptions.push(this.deptServ.deptCancel.subscribe(()=>{
+      this.addMode = false;
+    }));
+  }
+  //subscribes to method of canceling add department form
 
   ngOnDestroy(){
     this.subscriptions.forEach(sub =>{

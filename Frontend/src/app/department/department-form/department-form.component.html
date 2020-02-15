@@ -1,25 +1,25 @@
 <div *ngIf="departmentForm && canInput">
     <form [formGroup]="departmentForm" (ngSubmit)='onSubmit()' >
-        <div *ngIf="!departmentDefault" class="form-group">
+        <div *ngIf="!departmentDefault" class="form-group spaced">
             <label for="deptName">Department Name</label>
             <input 
                 formControlName='deptName'
                 id="deptName" 
-                class="form-control"
+                class="form-control input-width"
             >
         </div>
-        <div *ngIf="departmentDefault">
+        <div *ngIf="departmentDefault" class="spaced">
             <h3 class="centered">{{departmentDefault.deptName}}</h3>
         </div>
-        <div class="form-group">
+        <div class="form-group spaced">
             <label for="function">Function</label>
             <input 
                 formControlName='function'
                 id="function" 
-                class="form-control"
+                class="form-control input-width"
             >
         </div>
-        <div class='grid'>
+        <div class='grid50'>
             <button 
                 class="btn btn-success" 
                 type="submit"
@@ -29,11 +29,14 @@
             </button>
             <button 
                 type='button' 
-                class='btn btn-danger pull-right' 
+                class='btn btn-danger' 
                 (click)='onCancel()'
             >
                 Cancel
             </button>
+        </div>
+        <div *ngIf="isError">
+            <h4 class="danger">{{error}}</h4>
         </div>
     </form>
 </div>

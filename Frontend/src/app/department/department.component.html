@@ -1,10 +1,18 @@
+<button class="btn btn-primary top" (click)="addDepartment()">
+    Add New Department
+</button>
 <div *ngIf="departments.length == 0" class="border centered">
     <h3 class="spaced">
         You don't have any departments! 
     </h3>
     <h3 class="spaced">
-        <a>Add some departments</a> to see them here.
+        <a (click)="addDepartment()">Add some departments</a> to see them here.
     </h3>
+</div>
+<div *ngIf="addMode" class="spaced">
+    <div class="border centered">
+        <app-department-form></app-department-form>
+    </div>
 </div>
 <div *ngIf="departments.length > 0">
     <div *ngFor="let dept of departments">

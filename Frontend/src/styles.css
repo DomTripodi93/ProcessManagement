@@ -12,8 +12,18 @@
     max-width: 800px;
 }
 
+.flex { 
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
 .spaced{
     margin: 25px 0px 35px 0px;
+}
+
+.top{
+    margin: 0px 0px 35px 45px;
 }
 
 a{

@@ -48,6 +48,8 @@ namespace Backend
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IProcessRepository, ProcessRepository>();
+            services.AddScoped<IScheduleRepository, ScheduleRepository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => {
                     options.TokenValidationParameters = new TokenValidationParameters

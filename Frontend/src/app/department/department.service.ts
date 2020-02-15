@@ -24,7 +24,7 @@ export class DepartmentService {
   //Gets specific department by name
 
   fetchDepartments() {
-    return this.httpServ.fetchAll("department")
+    return this.httpServ.fetchAll("department/byUser")
       .pipe(
         map((responseData: Department[]) => {
           return responseData;

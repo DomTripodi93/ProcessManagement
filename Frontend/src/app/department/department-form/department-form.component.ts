@@ -22,6 +22,7 @@ export class DepartmentFormComponent implements OnInit {
   
   ngOnInit(){
     this.canInput = this.auth.isAuthenticated;
+    this.pickForm();
   }
 
   pickForm(){
@@ -32,7 +33,7 @@ export class DepartmentFormComponent implements OnInit {
     }
   }
     
-  private initForm(name, funct) {
+  private initForm(name: string, funct: string) {
     this.departmentForm = new FormGroup({
       'deptName': new FormControl(name, Validators.required),
       'function': new FormControl(funct, Validators.required)
@@ -40,7 +41,19 @@ export class DepartmentFormComponent implements OnInit {
   }
 
   onSubmit(){
-    this.newDepartment(this.departmentForm.value);
+    if (this.departmentDefault){
+      this.updateDepartment({
+        function: this.departmentForm.value.function
+      });
+    } else {
+      this.newDepartment(this.departmentForm.value);
+    }
+  }
+
+  updateDepartment(data: any) {
+    this.deptServ.updateDepartment(data, this.departmentDefault.deptName).subscribe(()=>{
+      this.deptServ.deptChanged.next();
+    });
   }
 
   newDepartment(data: Department) {

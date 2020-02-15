@@ -64,7 +64,7 @@ export class DepartmentFormComponent implements OnInit {
     },
     (error) =>{
       this.isError = true;
-      this.error = error.message;
+      this.error = "That department already exists";
     });
   }
 

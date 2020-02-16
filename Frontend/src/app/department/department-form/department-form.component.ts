@@ -50,10 +50,17 @@ export class DepartmentFormComponent implements OnInit {
         function: this.departmentForm.value.function
       });
     } else {
-      this.departmentForm.value.deptName = this.helpers.capitalize(this.departmentForm.value.deptName);
-      this.departmentForm.value.deptName = this.helpers.slashToDash(this.departmentForm.value.deptName);
+      this.departmentForm.value.deptName = this.prepDeptName(this.departmentForm.value.deptName);
       this.newDepartment(this.departmentForm.value);
     }
+  }
+
+  prepDeptName(deptName: string){
+    deptName = this.helpers.capitalize(deptName);
+    deptName = this.helpers.slashToDash(deptName);
+    deptName = this.helpers.removeSpaceAtEnd(deptName);
+
+    return deptName;
   }
 
   updateDepartment(data: any) {
@@ -66,7 +73,7 @@ export class DepartmentFormComponent implements OnInit {
     this.deptServ.addDepartment(data).subscribe(()=>{
       this.deptServ.deptChanged.next();
     },
-    (error) =>{
+    () =>{
       this.isError = true;
       this.error = "That department already exists";
     });
@@ -74,10 +81,6 @@ export class DepartmentFormComponent implements OnInit {
 
   onCancel(){
     this.deptServ.deptCancel.next();
-  }
-
-  ngOnDestroy(){
-
   }
 
 }

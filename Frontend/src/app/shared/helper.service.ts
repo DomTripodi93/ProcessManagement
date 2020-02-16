@@ -24,6 +24,14 @@ export class HelperService {
     return string.split("-").join(" ");
   }
 
+  removeSpaceAtEnd(string: string){
+    if (string.charAt(string.length -1) == " "){
+        string = string.substring(0, string.length -1);
+    }
+
+    return string;
+  }
+
   dateForForm(date: string){
     let dateHold = date.split("-");
     if (dateHold[0].length != 2){

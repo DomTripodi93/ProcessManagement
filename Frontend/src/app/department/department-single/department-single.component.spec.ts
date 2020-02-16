@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DepartmentSingleComponent } from './department-single.component';
+import { DepartmentFormComponent } from '../department-form/department-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('DepartmentSingleComponent', () => {
   let component: DepartmentSingleComponent;
@@ -8,7 +11,14 @@ describe('DepartmentSingleComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DepartmentSingleComponent ]
+      imports:[
+          ReactiveFormsModule,
+          HttpClientTestingModule
+      ],
+      declarations: [ 
+        DepartmentSingleComponent,
+        DepartmentFormComponent 
+      ]
     })
     .compileComponents();
   }));
@@ -16,6 +26,10 @@ describe('DepartmentSingleComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DepartmentSingleComponent);
     component = fixture.componentInstance;
+    component.department = {
+      deptName: "Department",
+      function: "functionality"
+    } 
     fixture.detectChanges();
   });
 

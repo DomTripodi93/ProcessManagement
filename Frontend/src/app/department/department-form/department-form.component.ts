@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/shared/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Department } from '../department.model';
 import { DepartmentService } from '../department.service';
+import { HelperService } from '../../shared/helper.service';
 
 @Component({
   selector: 'app-department-form',
@@ -20,6 +21,7 @@ export class DepartmentFormComponent implements OnInit {
   constructor(
     private deptServ: DepartmentService,
     public auth: AuthService,
+    private helpers: HelperService
   ){}
   
   ngOnInit(){
@@ -48,6 +50,7 @@ export class DepartmentFormComponent implements OnInit {
         function: this.departmentForm.value.function
       });
     } else {
+      this.departmentForm.value.deptName = this.helpers.capitalize(this.departmentForm.value.deptName);
       this.newDepartment(this.departmentForm.value);
     }
   }

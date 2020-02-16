@@ -2,6 +2,7 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Department } from '../department.model';
 import { DepartmentService } from '../department.service';
 import { Subscription } from 'rxjs';
+import { HelperService } from '../../shared/helper.service';
 
 @Component({
   selector: 'app-department-single',
@@ -14,10 +15,12 @@ export class DepartmentSingleComponent implements OnInit, OnDestroy {
   editMode: boolean = false;
 
   constructor(
-    private deptServ: DepartmentService
+    private deptServ: DepartmentService,
+    private helpers: HelperService
   ) { }
 
   ngOnInit() {
+    this.department.deptName = this.helpers.dashToSlash(this.department.deptName);
     this.subscriptions.push(this.deptServ.deptCancel.subscribe(()=>{
       this.editMode = false;
     }));

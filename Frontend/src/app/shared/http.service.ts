@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../shared/auth.service';
+import { HelperService } from './helper.service';
 
 @Injectable({providedIn: 'root'})
 export class HttpService {
 
   constructor(
     private http: HttpClient,
-    private auth: AuthService
+    private auth: AuthService,
+    private helpers: HelperService
   ) {}
 
   fetchByValue(model, value) {
+    value = this.helpers.slashToDash(value);
     return this.http.get(
         this.auth.apiUrl + '/' + model + '/' + value + "/"
     )
@@ -32,6 +35,7 @@ export class HttpService {
   //Posts new item to API
 
   updateItem(model, data, value){
+    value = this.helpers.slashToDash(value);
     return this.http.put(
         this.auth.apiUrl  + '/' + model + '/' + value, data
     );
@@ -39,6 +43,7 @@ export class HttpService {
   //Updates selected item
 
   deleteItem(model, value){
+    value = this.helpers.slashToDash(value);
     return this.http.delete(
         this.auth.apiUrl  + '/' + model + '/' + value,
         {responseType: 'text'}

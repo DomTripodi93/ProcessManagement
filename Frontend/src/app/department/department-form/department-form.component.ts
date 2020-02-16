@@ -51,6 +51,7 @@ export class DepartmentFormComponent implements OnInit {
       });
     } else {
       this.departmentForm.value.deptName = this.helpers.capitalize(this.departmentForm.value.deptName);
+      this.departmentForm.value.deptName = this.helpers.slashToDash(this.departmentForm.value.deptName);
       this.newDepartment(this.departmentForm.value);
     }
   }

@@ -28,4 +28,10 @@ describe('DepartmentFormComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should set department.deptName to searchable value', ()=>{
+    let mockDeptName = "department/other "
+    mockDeptName = component.prepDeptName(mockDeptName);
+    expect(mockDeptName === "Department-other").toBeTruthy();
+  });
 });

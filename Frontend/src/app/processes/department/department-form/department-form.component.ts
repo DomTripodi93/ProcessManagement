@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { HttpService } from '../../shared/http.service';
+import { HttpService } from '../../../shared/http.service';
 import { AuthService } from 'src/app/shared/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Department } from '../department.model';
 import { DepartmentService } from '../department.service';
-import { HelperService } from '../../shared/helper.service';
+import { HelperService } from '../../../shared/helper.service';
 
 @Component({
   selector: 'app-department-form',

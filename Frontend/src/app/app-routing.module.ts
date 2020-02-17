@@ -5,10 +5,10 @@ import { SigninComponent } from './register/signin/signin.component';
 import { SignoutComponent } from './register/signout/signout.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { HomeComponent } from './shared/home/home.component';
-import { EmployeesComponent } from './employees/employees.component';
-import { ScheduleComponent } from './employees/schedule/schedule.component';
-import { DepartmentComponent } from './department/department.component';
-import { ObjectiveComponent } from './department/objective/objective.component';
+import { EmployeesComponent } from './scheduling/employees/employees.component';
+import { ScheduleComponent } from './scheduling/schedule/schedule.component';
+import { DepartmentComponent } from './processes/department/department.component';
+import { ObjectiveComponent } from './processes/objective/objective.component';
 
 const appRoutes: Routes = [
     {path: '', component: HomeComponent, pathMatch: 'full' },

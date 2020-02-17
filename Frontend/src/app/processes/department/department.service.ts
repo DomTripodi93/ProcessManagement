@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { map } from "rxjs/operators";
 import { Department } from './department.model';
-import { HttpService } from '../shared/http.service';
+import { HttpService } from '../../shared/http.service';
 import { Subject } from 'rxjs';
 
 @Injectable({providedIn: 'root'})

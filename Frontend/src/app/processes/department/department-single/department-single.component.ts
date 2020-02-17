@@ -2,7 +2,7 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Department } from '../department.model';
 import { DepartmentService } from '../department.service';
 import { Subscription } from 'rxjs';
-import { HelperService } from '../../shared/helper.service';
+import { HelperService } from '../../../shared/helper.service';
 
 @Component({
   selector: 'app-department-single',

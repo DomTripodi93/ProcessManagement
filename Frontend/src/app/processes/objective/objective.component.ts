@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { ObjectiveService } from './objective.service';
 import { AuthService } from '../../shared/auth.service';
 import { Objective } from './objective.model';
@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./objective.component.css']
 })
 export class ObjectiveComponent implements OnInit, OnDestroy {
+  @Input() department: string;
   subscriptions: Subscription[] = [];
   objectives: Objective[] = [];
   addMode: boolean = false;
@@ -30,7 +31,7 @@ export class ObjectiveComponent implements OnInit, OnDestroy {
 
   getObjectives(){
     this.subscriptions.push(
-      this.objectiveServ.fetchObjectives().subscribe(objectives =>{
+      this.objectiveServ.fetchObjectivesByDepartment(this.department).subscribe(objectives =>{
         this.objectives = objectives;
       })
     );

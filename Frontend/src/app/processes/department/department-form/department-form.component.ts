@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { HttpService } from '../../../shared/http.service';
 import { AuthService } from 'src/app/shared/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Department } from '../department.model';
@@ -31,16 +30,20 @@ export class DepartmentFormComponent implements OnInit {
 
   pickForm(){
     if (this.departmentDefault){
-      this.initForm(this.departmentDefault.deptName, this.departmentDefault.function)
+      this.initForm(this.departmentDefault)
     } else {
-      this.initForm("", "");
+      let emptyDepartment: Department = {
+        deptName: "",
+        function: ""
+      };
+      this.initForm(emptyDepartment);
     }
   }
     
-  private initForm(name: string, funct: string) {
+  private initForm(formDepartment: Department) {
     this.departmentForm = new FormGroup({
-      'deptName': new FormControl(name, Validators.required),
-      'function': new FormControl(funct, Validators.required)
+      'deptName': new FormControl(formDepartment.deptName, Validators.required),
+      'function': new FormControl(formDepartment.function, Validators.required)
     });
   }
 

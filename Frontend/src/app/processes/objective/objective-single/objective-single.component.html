@@ -1,1 +1,14 @@
-<p>objective-single works!</p>
+<div *ngIf="!editMode" class="inner-border centered">
+    <h3>{{objective.objectiveName}}</h3>
+    <h4>{{objective.goal}}</h4>
+    <h4>{{objective.time}}</h4>
+    <div *ngIf="!editMode" class="grid50">
+        <button class="btn btn-primary" (click)="editObjective()">Edit</button>
+        <button class="btn btn-danger" (click)="onDelete()">Delete</button>
+    </div>
+</div>
+<div *ngIf="editMode" class="spaced">
+    <div class="inner-border centered">
+        <app-objective-form [objectiveDefault]="objective" [department]="objective.deptName"></app-objective-form>
+    </div>
+</div>

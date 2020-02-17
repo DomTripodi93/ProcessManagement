@@ -1,6 +1,6 @@
 export interface Objective{
-    deptName: string,
     objectiveName: string,
+    deptName: string,
     goal: string,
     time: string
 }

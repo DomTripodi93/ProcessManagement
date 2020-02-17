@@ -23,8 +23,8 @@ export class ObjectiveService {
   }
   //Gets specific objective by name
 
-  fetchObjectives() {
-    return this.httpServ.fetchAll("objective/byUser")
+  fetchObjectivesByDepartment(department: string) {
+    return this.httpServ.fetchAll("objective/byDepartment/" + department)
       .pipe(
         map((responseData: Objective[]) => {
           return responseData;
@@ -41,7 +41,7 @@ export class ObjectiveService {
   updateObjective(data, name){
     return this.httpServ.updateItem("objective", data, name);
   }
-  //Updates function for objective
+  //Updates goal for objective
 
   deleteObjective(name){
     return this.httpServ.deleteItem("objective", name);

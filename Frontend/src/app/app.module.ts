@@ -22,6 +22,14 @@ import { AuthInterceptorService } from './shared/auth-interceptor.service';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { DepartmentSingleComponent } from './processes/department/department-single/department-single.component';
 import { DepartmentFormComponent } from './processes/department/department-form/department-form.component';
+import { ObjectiveSingleComponent } from './processes/objective/objective-single/objective-single.component';
+import { ObjectiveFormComponent } from './processes/objective/objective-form/objective-form.component';
+import { StepFormComponent } from './processes/step/step-form/step-form.component';
+import { StepSingleComponent } from './processes/step/step-single/step-single.component';
+import { BestPracticeSingleComponent } from './processes/best-practice/best-practice-single/best-practice-single.component';
+import { BestPracticeFormComponent } from './processes/best-practice/best-practice-form/best-practice-form.component';
+import { CommonDifficultySingleComponent } from './processes/common-difficulty/common-difficulty-single/common-difficulty-single.component';
+import { CommonDifficultyFormComponent } from './processes/common-difficulty/common-difficulty-form/common-difficulty-form.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +49,15 @@ import { DepartmentFormComponent } from './processes/department/department-form/
     FooterComponent,
     HomeComponent,
     DepartmentSingleComponent,
-    DepartmentFormComponent
+    DepartmentFormComponent,
+    ObjectiveSingleComponent,
+    ObjectiveFormComponent,
+    StepFormComponent,
+    StepSingleComponent,
+    BestPracticeSingleComponent,
+    BestPracticeFormComponent,
+    CommonDifficultySingleComponent,
+    CommonDifficultyFormComponent
   ],
   imports: [
     BrowserModule,

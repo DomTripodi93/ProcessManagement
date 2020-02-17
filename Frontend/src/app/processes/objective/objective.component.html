@@ -1,1 +1,23 @@
-<p>objective works!</p>
+<button class="btn btn-primary top" (click)="addObjective()">
+    Add New Objective
+</button>
+<div *ngIf="objectives.length == 0" class="border centered">
+    <h3 class="spaced">
+        You don't have any objectives! 
+    </h3>
+    <h3 class="spaced">
+        <a (click)="addObjective()">Add some objectives</a> to see them here.
+    </h3>
+</div>
+<div *ngIf="addMode" class="spaced">
+    <div class="border centered">
+        <app-objective-form></app-objective-form>
+    </div>
+</div>
+<div *ngIf="objectives.length > 0" class="middle">
+    <div class="flex">
+        <div *ngFor="let objective of objectives" class="sized30">
+            <app-objective-single [objective]="objective"></app-objective-single>
+        </div>
+    </div>
+</div>

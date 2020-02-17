@@ -30,6 +30,10 @@ import { BestPracticeSingleComponent } from './processes/best-practice/best-prac
 import { BestPracticeFormComponent } from './processes/best-practice/best-practice-form/best-practice-form.component';
 import { CommonDifficultySingleComponent } from './processes/common-difficulty/common-difficulty-single/common-difficulty-single.component';
 import { CommonDifficultyFormComponent } from './processes/common-difficulty/common-difficulty-form/common-difficulty-form.component';
+import { ScheduleFormComponent } from './scheduling/schedule/schedule-form/schedule-form.component';
+import { ScheduleSingleComponent } from './scheduling/schedule/schedule-single/schedule-single.component';
+import { EmployeeSingleComponent } from './scheduling/employees/employee-single/employee-single.component';
+import { EmployeeFormComponent } from './scheduling/employees/employee-form/employee-form.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +61,11 @@ import { CommonDifficultyFormComponent } from './processes/common-difficulty/com
     BestPracticeSingleComponent,
     BestPracticeFormComponent,
     CommonDifficultySingleComponent,
-    CommonDifficultyFormComponent
+    CommonDifficultyFormComponent,
+    ScheduleFormComponent,
+    ScheduleSingleComponent,
+    EmployeeSingleComponent,
+    EmployeeFormComponent
   ],
   imports: [
     BrowserModule,

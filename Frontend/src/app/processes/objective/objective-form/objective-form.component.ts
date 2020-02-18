@@ -56,7 +56,8 @@ export class ObjectiveFormComponent implements OnInit {
   onSubmit(){
     if (this.objectiveDefault){
       this.updateObjective({
-        goal: this.objectiveForm.value.goal
+        goal: this.objectiveForm.value.goal,
+        time: this.objectiveForm.value.time
       });
     } else {
       this.objectiveForm.value.objectiveName = this.prepDeptName(this.objectiveForm.value.objectiveName);
@@ -73,7 +74,7 @@ export class ObjectiveFormComponent implements OnInit {
   }
 
   updateObjective(data: any) {
-    this.objectiveServ.updateObjective(data, this.objectiveDefault.objectiveName).subscribe(()=>{
+    this.objectiveServ.updateObjective(data, this.department + "&" + this.objectiveDefault.objectiveName).subscribe(()=>{
       this.objectiveServ.objectiveChanged.next();
     });
   }

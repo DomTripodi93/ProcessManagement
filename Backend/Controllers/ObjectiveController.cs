@@ -79,7 +79,7 @@ namespace Backend.Controllers
         }
 
         [HttpPut("{deptName}&{objectiveName}")]
-        public async Task<IActionResult> UpdateObjective(int userId, string deptName, string objectiveName, ObjectiveForCreationDto objectiveForUpdateDto)
+        public async Task<IActionResult> UpdateObjective(int userId, string deptName, string objectiveName, ObjectiveForUpdateDto objectiveForUpdateDto)
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();

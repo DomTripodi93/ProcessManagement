@@ -32,8 +32,12 @@ export class ObjectiveSingleComponent implements OnInit, OnDestroy {
   //Shows edit form for selected Objective
 
   onDelete(){
-    if (confirm("Are you sure you want to delete the " +this.objective.objectiveName+ " objective?")){
-      this.objectiveServ.deleteObjective(this.objective.objectiveName).subscribe(()=>{
+    if (confirm(
+      "Are you sure you want to delete the " +this.objective.objectiveName+ " objective?"
+      )){
+      this.objectiveServ.deleteObjective(
+        this.objective.deptName + "&" + this.objective.objectiveName
+      ).subscribe(()=>{
         this.objectiveServ.objectiveChanged.next();
       });
     }

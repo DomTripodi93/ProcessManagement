@@ -38,19 +38,7 @@
             </ul>
           </li> 
           <li class="dropdown" *ngIf="auth.isAuthenticated" appDropdown>
-            <a
-            style ='cursor: pointer;'
-            class="dropdown-toggle"  
-            data-toggle="dropdown" 
-            type="button">
-              Processes
-              <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a routerLink='department'>Departments</a></li>
-              <li><a routerLink='objective'>Objectives</a></li>
-            </ul>
-          </li> 
+            <a routerLink='department'>Processes</a></li> 
         </ul>
       </strong>
     </div>

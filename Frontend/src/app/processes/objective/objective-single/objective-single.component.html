@@ -1,7 +1,7 @@
 <div *ngIf="!editMode" class="inner-border centered">
     <h3>{{objective.objectiveName}}</h3>
-    <h4>{{objective.goal}}</h4>
-    <h4>{{objective.time}}</h4>
+    <h4>Goal: {{objective.goal}}</h4>
+    <h4>Time: {{objective.time}}</h4>
     <div *ngIf="!editMode" class="grid50">
         <button class="btn btn-primary" (click)="editObjective()">Edit</button>
         <button class="btn btn-danger" (click)="onDelete()">Delete</button>

@@ -20,8 +20,7 @@ const appRoutes: Routes = [
             {path:'{employeeId}', component: ScheduleComponent}
         ]},
         {path: 'schedule', component: ScheduleComponent},
-        {path: 'department', component: DepartmentComponent},
-        {path: 'objective', component: ObjectiveComponent}
+        {path: 'department', component: DepartmentComponent}
     ]},
     {path: "**", redirectTo:"/", pathMatch: "full"}
 ];

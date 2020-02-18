@@ -10,7 +10,7 @@ namespace Backend.Models
         public string deptName { get; set; }
         public string ObjectiveName { get; set; }
         public string Goal { get; set; }
-        public string Time { get; set; }
+        public int Time { get; set; }
         public ICollection<Step> Step { get; set; }
         
     }

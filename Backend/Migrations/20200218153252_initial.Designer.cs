@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200210095640_initial")]
+    [Migration("20200218153252_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -168,8 +168,8 @@ namespace Backend.Migrations
                     b.Property<string>("Goal")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Time")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Time")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("userId", "deptName", "ObjectiveName");
 

@@ -37,7 +37,7 @@ export class ObjectiveFormComponent implements OnInit {
         objectiveName: "",
         deptName: "",
         goal: "",
-        time: ""
+        time: 0
       };
       this.initForm(emptyObjective);
     }

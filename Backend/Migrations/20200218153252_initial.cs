@@ -79,7 +79,7 @@ namespace Backend.Migrations
                     deptName = table.Column<string>(nullable: false),
                     ObjectiveName = table.Column<string>(nullable: false),
                     Goal = table.Column<string>(nullable: true),
-                    Time = table.Column<string>(nullable: true)
+                    Time = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {

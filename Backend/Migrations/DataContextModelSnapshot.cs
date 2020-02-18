@@ -166,8 +166,8 @@ namespace Backend.Migrations
                     b.Property<string>("Goal")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Time")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Time")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("userId", "deptName", "ObjectiveName");
 

@@ -8,7 +8,7 @@ import { HomeComponent } from './shared/home/home.component';
 import { EmployeesComponent } from './scheduling/employees/employees.component';
 import { ScheduleComponent } from './scheduling/schedule/schedule.component';
 import { DepartmentComponent } from './processes/department/department.component';
-import { ObjectiveComponent } from './processes/objective/objective.component';
+import { ObjectiveFullComponent } from './processes/objective/objective-full/objective-full.component';
 
 const appRoutes: Routes = [
     {path: '', component: HomeComponent, pathMatch: 'full' },
@@ -20,7 +20,8 @@ const appRoutes: Routes = [
             {path:'{employeeId}', component: ScheduleComponent}
         ]},
         {path: 'schedule', component: ScheduleComponent},
-        {path: 'department', component: DepartmentComponent}
+        {path: 'department', component: DepartmentComponent},
+        {path: 'objective/:department/:objective', component: ObjectiveFullComponent}
     ]},
     {path: "**", redirectTo:"/", pathMatch: "full"}
 ];

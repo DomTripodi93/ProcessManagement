@@ -11,6 +11,7 @@ import { HelperService } from '../../../shared/helper.service';
 })
 export class ObjectiveSingleComponent implements OnInit, OnDestroy {
   @Input() objective: Objective;
+  @Input() inDepartment: boolean;
   subscriptions: Subscription[] = [];
   editMode: boolean = false;
 

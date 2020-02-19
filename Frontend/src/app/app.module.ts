@@ -34,6 +34,7 @@ import { ScheduleFormComponent } from './scheduling/schedule/schedule-form/sched
 import { ScheduleSingleComponent } from './scheduling/schedule/schedule-single/schedule-single.component';
 import { EmployeeSingleComponent } from './scheduling/employees/employee-single/employee-single.component';
 import { EmployeeFormComponent } from './scheduling/employees/employee-form/employee-form.component';
+import { ObjectiveFullComponent } from './processes/objective/objective-full/objective-full.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { EmployeeFormComponent } from './scheduling/employees/employee-form/empl
     ScheduleFormComponent,
     ScheduleSingleComponent,
     EmployeeSingleComponent,
-    EmployeeFormComponent
+    EmployeeFormComponent,
+    ObjectiveFullComponent
   ],
   imports: [
     BrowserModule,

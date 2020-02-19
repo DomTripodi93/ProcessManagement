@@ -6,9 +6,11 @@
         <button class="btn btn-primary" (click)="editObjective()">Edit</button>
         <button class="btn btn-danger" (click)="onDelete()">Delete</button>
     </div>
-    <div *ngIf="inDepartment">
-        <button class="btn btn-primary" routerLink="/objective/{{objective.deptName}}/{{objective.objectiveName}}">View Details</button>
-    </div>
+</div>
+<div *ngIf="inDepartment && !editMode" class="grid100">
+    <br>
+    <button class="btn btn-success" routerLink="/objective/{{objective.deptName}}/{{objective.objectiveName}}">View Details</button>
+    <br>
 </div>
 <div *ngIf="editMode" class="spaced">
     <div class="inner-border centered">

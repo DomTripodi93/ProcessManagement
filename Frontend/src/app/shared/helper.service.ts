@@ -24,11 +24,12 @@ export class HelperService {
     return string.split("-").join(" ");
   }
 
-  removeSpaceAtEnd(string: string){
+  async removeSpaceAtEnd(string: string){
     if (string.charAt(string.length -1) == " "){
         string = string.substring(0, string.length -1);
+        string = await this.removeSpaceAtEnd(string);
     }
-
+    
     return string;
   }
 

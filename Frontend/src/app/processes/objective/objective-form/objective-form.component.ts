@@ -53,22 +53,22 @@ export class ObjectiveFormComponent implements OnInit {
   }
 
 
-  onSubmit(){
+  async onSubmit(){
     if (this.objectiveDefault){
       this.updateObjective({
         goal: this.objectiveForm.value.goal,
         time: this.objectiveForm.value.time
       });
     } else {
-      this.objectiveForm.value.objectiveName = this.prepDeptName(this.objectiveForm.value.objectiveName);
+      this.objectiveForm.value.objectiveName = await this.prepObjectiveName(this.objectiveForm.value.objectiveName);
       this.newObjective(this.objectiveForm.value);
     }
   }
 
-  prepDeptName(objectiveName: string){
+  async prepObjectiveName(objectiveName: string){
     objectiveName = this.helpers.capitalize(objectiveName);
     objectiveName = this.helpers.slashToDash(objectiveName);
-    objectiveName = this.helpers.removeSpaceAtEnd(objectiveName);
+    objectiveName = await this.helpers.removeSpaceAtEnd(objectiveName);
 
     return objectiveName;
   }

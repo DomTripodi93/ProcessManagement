@@ -13,8 +13,8 @@ export class ObjectiveService {
     private httpServ: HttpService
   ) {}
 
-  fetchObjectiveByName(name) {
-    return this.httpServ.fetchByValue("objective", name)
+  fetchObjectiveByName(search) {
+    return this.httpServ.fetchByValue("objective", search)
       .pipe(
         map((responseData: Objective) => {
           return responseData;

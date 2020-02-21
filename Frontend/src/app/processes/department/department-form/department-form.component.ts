@@ -47,21 +47,21 @@ export class DepartmentFormComponent implements OnInit {
     });
   }
 
-  onSubmit(){
+  async onSubmit(){
     if (this.departmentDefault){
       this.updateDepartment({
         function: this.departmentForm.value.function
       });
     } else {
-      this.departmentForm.value.deptName = this.prepDeptName(this.departmentForm.value.deptName);
+      this.departmentForm.value.deptName = await this.prepDeptName(this.departmentForm.value.deptName);
       this.newDepartment(this.departmentForm.value);
     }
   }
 
-  prepDeptName(deptName: string){
+  async prepDeptName(deptName: string){
     deptName = this.helpers.capitalize(deptName);
     deptName = this.helpers.slashToDash(deptName);
-    deptName = this.helpers.removeSpaceAtEnd(deptName);
+    deptName = await this.helpers.removeSpaceAtEnd(deptName);
 
     return deptName;
   }

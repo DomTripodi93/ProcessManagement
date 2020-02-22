@@ -74,7 +74,7 @@ export class ObjectiveFormComponent implements OnInit {
   }
 
   updateObjective(data: any) {
-    this.objectiveServ.updateObjective(data, this.department + "&" + this.objectiveDefault.objectiveName).subscribe(()=>{
+    this.objectiveServ.updateObjective(data, this.department, this.objectiveDefault.objectiveName).subscribe(()=>{
       this.objectiveServ.objectiveChanged.next();
     });
   }

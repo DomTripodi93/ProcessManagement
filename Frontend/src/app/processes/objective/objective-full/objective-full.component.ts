@@ -21,8 +21,7 @@ export class ObjectiveFullComponent implements OnInit {
   ngOnInit() {
     this.subscriptions.push(
       this.route.params.subscribe((params: Params) => {
-        let search = params["department"] + "&" + params["objective"];
-        this.objectiveServ.fetchObjectiveByName(search).subscribe(objective =>{
+        this.objectiveServ.fetchSingleObjective(params["department"], params["objective"]).subscribe(objective =>{
           this.objective = objective;
         })
       })

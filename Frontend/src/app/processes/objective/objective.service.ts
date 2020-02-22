@@ -13,15 +13,15 @@ export class ObjectiveService {
     private httpServ: HttpService
   ) {}
 
-  fetchObjectiveByName(search) {
-    return this.httpServ.fetchByValue("objective", search)
+  fetchSingleObjective(department: string, objective: string) {
+    return this.httpServ.fetchByValue("objective", department + "&" + objective)
       .pipe(
         map((responseData: Objective) => {
           return responseData;
         })
       )
   }
-  //Gets specific objective by name
+  //Gets specific objective by department and name
 
   fetchObjectivesByDepartment(department: string) {
     return this.httpServ.fetchAll("objective/byDepartment/" + department)
@@ -38,13 +38,13 @@ export class ObjectiveService {
   }
   //Posts new objective to API
 
-  updateObjective(data, name){
-    return this.httpServ.updateItem("objective", data, name);
+  updateObjective(data, department: string, objective: string){
+    return this.httpServ.updateItem("objective", data, department + "&" + objective);
   }
   //Updates goal for objective
 
-  deleteObjective(name){
-    return this.httpServ.deleteItem("objective", name);
+  deleteObjective(department: string, objective: string){
+    return this.httpServ.deleteItem("objective", department + "&" + objective);
   }
   //Deletes selected objective
 

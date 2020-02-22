@@ -13,7 +13,7 @@ export class DepartmentService {
     private httpServ: HttpService
   ) {}
 
-  fetchDepartmentByName(name) {
+  fetchSingleDepartment(name) {
     return this.httpServ.fetchByValue("department", name)
       .pipe(
         map((responseData: Department) => {

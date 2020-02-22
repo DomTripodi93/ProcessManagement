@@ -13,18 +13,8 @@ export class StepService {
     private httpServ: HttpService
   ) {}
 
-  fetchStepByName(name) {
-    return this.httpServ.fetchByValue("step", name)
-      .pipe(
-        map((responseData: Step) => {
-          return responseData;
-        })
-      )
-  }
-  //Gets specific step by name
-
-  fetchStepsByObjective(department: string, objective: string) {
-    return this.httpServ.fetchAll("step/byObjective/" + department + "&" + objective)
+  fetchSingleStep(department: string, objective: string, step: string) {
+    return this.httpServ.fetchAll("step/" + department + "&" + objective + "&" + step)
       .pipe(
         map((responseData: Step[]) => {
           return responseData;
@@ -33,8 +23,8 @@ export class StepService {
   }
   //Gets all steps
 
-  fetchSingleStep(department: string, objective: string, step: string) {
-    return this.httpServ.fetchAll("step/byObjective/" + department + "&" + objective + "&" + step)
+  fetchStepsByObjective(department: string, objective: string) {
+    return this.httpServ.fetchAll("step/byObjective/" + department + "&" + objective)
       .pipe(
         map((responseData: Step[]) => {
           return responseData;
@@ -48,13 +38,13 @@ export class StepService {
   }
   //Posts new step to API
 
-  updateStep(data, name){
-    return this.httpServ.updateItem("step", data, name);
+  updateStep(data, department: string, objective: string, step: string){
+    return this.httpServ.updateItem("step", data, department + "&" + objective + "&" + step);
   }
   //Updates goal for step
 
-  deleteStep(name){
-    return this.httpServ.deleteItem("step", name);
+  deleteStep(department: string, objective: string, step: string){
+    return this.httpServ.deleteItem("step", department + "&" + objective + "&" + step);
   }
   //Deletes selected step
 

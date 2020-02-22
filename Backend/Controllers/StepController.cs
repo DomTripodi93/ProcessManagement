@@ -43,7 +43,7 @@ namespace Backend.Controllers
             if (await _repo.SaveAll())
             {
                 var jobToReturn = _mapper.Map<StepForCreationDto>(step);
-                return CreatedAtRoute("GetStep", new {stepNumber = step.StepNumber, deptName = step.deptName, userId = userId }, jobToReturn);
+                return CreatedAtRoute("GetStep", new {stepNumber = step.StepNumber, deptName = step.deptName, objectiveName = step.objectiveName, userId = userId }, jobToReturn);
             }
             
             throw new Exception("Creation of Step failed on save");

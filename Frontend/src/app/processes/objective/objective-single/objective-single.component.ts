@@ -27,6 +27,10 @@ export class ObjectiveSingleComponent implements OnInit, OnDestroy {
     }));
   }
 
+  setObjectiveName(){
+
+  }
+
   editObjective(){
     this.editMode = true;
   }

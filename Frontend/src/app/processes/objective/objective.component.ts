@@ -3,6 +3,7 @@ import { ObjectiveService } from './objective.service';
 import { AuthService } from '../../shared/auth.service';
 import { Objective } from './objective.model';
 import { Subscription } from 'rxjs';
+import { HelperService } from '../../shared/helper.service';
 
 @Component({
   selector: 'app-objective',
@@ -17,6 +18,7 @@ export class ObjectiveComponent implements OnInit, OnDestroy {
 
   constructor(
     private objectiveServ: ObjectiveService,
+    private helper: HelperService,
     public authServ: AuthService
   ) { }
 
@@ -31,7 +33,9 @@ export class ObjectiveComponent implements OnInit, OnDestroy {
 
   getObjectives(){
     this.subscriptions.push(
-      this.objectiveServ.fetchObjectivesByDepartment(this.department).subscribe(objectives =>{
+      this.objectiveServ.fetchObjectivesByDepartment(
+        this.helper.slashToDash(this.department)
+      ).subscribe(objectives =>{
         this.objectives = objectives;
       })
     );

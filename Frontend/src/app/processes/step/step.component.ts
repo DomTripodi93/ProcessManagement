@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { Step } from './step.model';
 import { StepService } from './step.service';
 import { AuthService } from 'src/app/shared/auth.service';
+import { HelperService } from '../../shared/helper.service';
 
 @Component({
   selector: 'app-step',
@@ -18,6 +19,7 @@ export class StepComponent implements OnInit, OnDestroy {
 
   constructor(
     private stepServ: StepService,
+    private helper: HelperService,
     public authServ: AuthService
   ) { }
 
@@ -32,7 +34,10 @@ export class StepComponent implements OnInit, OnDestroy {
 
   getSteps(){
     this.subscriptions.push(
-      this.stepServ.fetchStepsByObjective(this.department, this.objective).subscribe(steps =>{
+      this.stepServ.fetchStepsByObjective(
+        this.helper.slashToDash(this.department), 
+        this.helper.slashToDash(this.objective)
+      ).subscribe(steps =>{
         this.steps = steps;
       })
     );

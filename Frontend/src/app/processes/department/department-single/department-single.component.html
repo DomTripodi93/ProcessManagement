@@ -1,4 +1,4 @@
-<div *ngIf="!editMode" class="inner-border centered">
+<div *ngIf="!editMode" class="border centered">
     <h3>{{department.deptName}}</h3>
     <h4>{{department.function}}</h4>
     <div *ngIf="!editMode" class="grid50">
@@ -7,7 +7,7 @@
     </div>
 </div>
 <div *ngIf="editMode" class="spaced">
-    <div class="inner-border centered">
+    <div class="border centered">
         <app-department-form [departmentDefault]="department"></app-department-form>
     </div>
 </div>

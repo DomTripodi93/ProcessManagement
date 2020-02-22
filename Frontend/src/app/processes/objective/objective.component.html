@@ -1,10 +1,11 @@
 <div *ngIf="!addMode" class="grid100">
-    <button class="btn btn-primary" (click)="addObjective()">
+    <br>
+    <button class="btn btn-primary open-btn" (click)="addObjective()">
         Add New Objective
     </button>
 </div>
 
-<div *ngIf="objectives.length == 0" class="inner-border centered">
+<div *ngIf="objectives.length == 0" class="border centered">
     <h3 class="spaced">
         The {{department}} department doesn't have any objectives! 
     </h3>
@@ -13,7 +14,7 @@
     </h3>
 </div>
 
-<div *ngIf="addMode" class="inner-border spaced">
+<div *ngIf="addMode" class="border spaced">
     <div class="centered">
         <app-objective-form [department]="department"></app-objective-form>
     </div>

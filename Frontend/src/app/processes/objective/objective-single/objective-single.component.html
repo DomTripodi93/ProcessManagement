@@ -1,4 +1,4 @@
-<div *ngIf="!editMode" class="inner-border centered">
+<div *ngIf="!editMode" class="border centered">
     <h3>{{objective.objectiveName}}</h3>
     <h4>Goal: {{objective.goal}}</h4>
     <h4>Time: {{objective.time}} hours</h4>
@@ -7,13 +7,20 @@
         <button class="btn btn-danger" (click)="onDelete()">Delete</button>
     </div>
 </div>
+
 <div *ngIf="inDepartment && !editMode" class="grid100">
     <br>
-    <button class="btn btn-success" routerLink="/objective/{{objective.deptName}}/{{objective.objectiveName}}">View Details</button>
+    <button 
+        class="btn btn-success open-btn" 
+        routerLink="/objective/{{objective.deptName}}/{{objective.objectiveName}}"
+        >
+        View Details
+    </button>
     <br>
 </div>
+
 <div *ngIf="editMode" class="spaced">
-    <div class="inner-border centered">
+    <div class="border centered">
         <app-objective-form [objectiveDefault]="objective"></app-objective-form>
     </div>
 </div>

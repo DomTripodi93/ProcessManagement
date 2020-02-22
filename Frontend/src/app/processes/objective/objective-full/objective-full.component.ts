@@ -10,7 +10,6 @@ import { Objective } from '../objective.model';
   styleUrls: ['./objective-full.component.css']
 })
 export class ObjectiveFullComponent implements OnInit {
-  @Input() department: string;
   subscriptions: Subscription[] = [];
   objective: Objective;
 

@@ -1,10 +1,10 @@
 <div *ngIf="!addMode" class="grid100">
-    <button class="btn btn-primary" (click)="addStep()">
+    <button class="btn btn-primary open-btn" (click)="addStep()">
         Add New Step
     </button>
 </div>
 
-<div *ngIf="steps.length == 0" class="inner-border centered">
+<div *ngIf="steps.length == 0" class="border centered">
     <h3 class="spaced">
         The {{objective}} objective doesn't have any steps! 
     </h3>
@@ -13,14 +13,14 @@
     </h3>
 </div>
 
-<div *ngIf="addMode" class="inner-border spaced">
+<div *ngIf="addMode" class="border spaced">
     <div class="centered">
         <app-step-form [objective]="objective" [department]="department"></app-step-form>
     </div>
 </div>
 
 <div *ngIf="steps.length > 0" class="middle">
-    <h2>Steps</h2>
+    <h2 class="centered">Steps</h2>
     <br>
     <div class="grid50">
         <div *ngFor="let step of steps">

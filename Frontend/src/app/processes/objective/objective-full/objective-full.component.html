@@ -1,4 +1,7 @@
-<app-objective-single [inDepartment]="false" [objective]="objective"></app-objective-single>
-<div>
-    <app-step [objective]="objective.objectiveName" [department]="department"></app-step>
+<div *ngIf="objective">
+    <app-objective-single [inDepartment]="false" [objective]="objective"></app-objective-single>
+</div>
+<br>
+<div *ngIf="objective">
+    <app-step [objective]="objective.objectiveName" [department]="objective.deptName"></app-step>
 </div>

@@ -1,5 +1,5 @@
-<div *ngIf="!editMode" class="inner-border centered">
-    <h3>{{step.stepNumber}} - {{step.name}}</h3>
+<div *ngIf="!editMode" class="border centered">
+    <h3>{{step.stepNumber}}: {{step.name}}</h3>
     <h4>Goal: {{step.goal}}</h4>
     <div *ngIf="!editMode" class="grid50">
         <button class="btn btn-primary" (click)="editStep()">Edit</button>
@@ -8,11 +8,16 @@
 </div>
 <div *ngIf="inDepartment && !editMode" class="grid100">
     <br>
-    <button class="btn btn-success" routerLink="/step/{{step.deptName}}/{{step.stepNumber}}">View Details</button>
+    <button 
+        class="btn btn-success open-btn" 
+        routerLink="/step/{{step.deptName}}/{{step.stepNumber}}"
+        >
+        View Details
+    </button>
     <br>
 </div>
 <div *ngIf="editMode" class="spaced">
-    <div class="inner-border centered">
+    <div class="border centered">
         <app-step-form [stepDefault]="step"></app-step-form>
     </div>
 </div>

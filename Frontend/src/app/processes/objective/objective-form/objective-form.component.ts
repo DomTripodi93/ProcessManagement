@@ -20,8 +20,8 @@ export class ObjectiveFormComponent implements OnInit {
   
   constructor(
     private objectiveServ: ObjectiveService,
-    public auth: AuthService,
-    private helpers: HelperService
+    private helpers: HelperService,
+    public auth: AuthService
   ){}
   
   ngOnInit(){
@@ -35,7 +35,7 @@ export class ObjectiveFormComponent implements OnInit {
     } else {
       let emptyObjective: Objective = {
         objectiveName: "",
-        deptName: "",
+        deptName: this.department,
         goal: "",
         time: 0
       };
@@ -46,7 +46,7 @@ export class ObjectiveFormComponent implements OnInit {
   private initForm(formObjective: Objective) {
     this.objectiveForm = new FormGroup({
       'objectiveName': new FormControl(formObjective.objectiveName, Validators.required),
-      'deptName': new FormControl(this.department, Validators.required),
+      'deptName': new FormControl(formObjective.deptName, Validators.required),
       'goal': new FormControl(formObjective.goal, Validators.required),
       'time': new FormControl(formObjective.time)
     });

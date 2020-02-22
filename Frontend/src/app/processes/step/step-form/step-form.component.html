@@ -1,1 +1,60 @@
-<p>step-form works!</p>
+<div *ngIf="stepForm && canInput">
+    <form [formGroup]="stepForm" (ngSubmit)='onSubmit()' >
+        <div *ngIf="!stepDefault" class="form-group spaced">
+            <label for="stepNumber">Step Number</label>
+            <input 
+                formControlName='stepNumber'
+                id="stepNumber" 
+                class="form-control input-width"
+            >
+        </div>
+        <div *ngIf="stepDefault" class="spaced">
+            <h3 class="centered">{{stepDefault.objectiveName}}</h3>
+            <h3 class="centered">{{stepDefault.stepNumber}}: {{stepDefault.name}}</h3>
+        </div>
+        <div class="form-group spaced">
+            <label for="name">Name</label>
+            <input 
+                formControlName='name'
+                id="name" 
+                class="form-control input-width"
+            >
+        </div>
+        <div class="form-group spaced">
+            <label for="goal">Goal</label>
+            <input 
+                formControlName='goal'
+                id="goal" 
+                class="form-control input-width"
+            >
+        </div>
+        <div class='grid50'>
+            <button 
+                *ngIf="!stepDefault"
+                class="btn btn-success" 
+                type="submit"
+                [disabled]="!stepForm.valid"
+            >
+                Add Step
+            </button>
+            <button 
+                *ngIf="stepDefault"
+                class="btn btn-success" 
+                type="submit"
+                [disabled]="!stepForm.valid"
+            >
+                Update
+            </button>
+            <button 
+                type='button' 
+                class='btn btn-danger' 
+                (click)='onCancel()'
+            >
+                Cancel
+            </button>
+        </div>
+        <div *ngIf="isError">
+            <h4 class="danger">{{error}}</h4>
+        </div>
+    </form>
+</div>

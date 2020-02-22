@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Backend.Helpers;
 using Backend.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -92,7 +93,7 @@ namespace Backend.Data
                 .Where(s => s.deptName == deptName)
                 .ToListAsync();
 
-            return steps;
+            return steps.OrderBy(s => s.StepNumber, new NaturalSort<string>());
         }
 
         public async Task<BestPractice> GetBestPractice(int id)

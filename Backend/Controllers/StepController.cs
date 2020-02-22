@@ -79,7 +79,7 @@ namespace Backend.Controllers
         }
 
         [HttpPut("{deptName}&{objectiveName}&{stepNumber}")]
-        public async Task<IActionResult> UpdateStep(int userId, string deptName, string objectiveName, string stepNumber, StepForCreationDto stepForUpdateDto)
+        public async Task<IActionResult> UpdateStep(int userId, string deptName, string objectiveName, string stepNumber, StepForUpdateDto stepForUpdateDto)
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();

@@ -9,6 +9,7 @@ import { EmployeesComponent } from './scheduling/employees/employees.component';
 import { ScheduleComponent } from './scheduling/schedule/schedule.component';
 import { DepartmentComponent } from './processes/department/department.component';
 import { ObjectiveFullComponent } from './processes/objective/objective-full/objective-full.component';
+import { StepFullComponent } from './processes/step/step-full/step-full.component';
 
 const appRoutes: Routes = [
     {path: '', component: HomeComponent, pathMatch: 'full' },
@@ -21,7 +22,8 @@ const appRoutes: Routes = [
         ]},
         {path: 'schedule', component: ScheduleComponent},
         {path: 'department', component: DepartmentComponent},
-        {path: 'objective/:department/:objective', component: ObjectiveFullComponent}
+        {path: 'objective/:department/:objective', component: ObjectiveFullComponent},
+        {path: 'step/:department/:objective/:step', component: StepFullComponent}
     ]},
     {path: "**", redirectTo:"/", pathMatch: "full"}
 ];

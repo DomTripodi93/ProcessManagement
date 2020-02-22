@@ -16,7 +16,7 @@ export class StepService {
   fetchSingleStep(department: string, objective: string, step: string) {
     return this.httpServ.fetchAll("step/" + department + "&" + objective + "&" + step)
       .pipe(
-        map((responseData: Step[]) => {
+        map((responseData: Step) => {
           return responseData;
         })
       )

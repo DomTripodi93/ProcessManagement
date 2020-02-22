@@ -35,6 +35,7 @@ import { ScheduleSingleComponent } from './scheduling/schedule/schedule-single/s
 import { EmployeeSingleComponent } from './scheduling/employees/employee-single/employee-single.component';
 import { EmployeeFormComponent } from './scheduling/employees/employee-form/employee-form.component';
 import { ObjectiveFullComponent } from './processes/objective/objective-full/objective-full.component';
+import { StepFullComponent } from './processes/step/step-full/step-full.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { ObjectiveFullComponent } from './processes/objective/objective-full/obj
     ScheduleSingleComponent,
     EmployeeSingleComponent,
     EmployeeFormComponent,
-    ObjectiveFullComponent
+    ObjectiveFullComponent,
+    StepFullComponent
   ],
   imports: [
     BrowserModule,

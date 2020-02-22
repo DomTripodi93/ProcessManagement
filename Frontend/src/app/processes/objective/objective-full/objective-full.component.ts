@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ObjectiveService } from '../objective.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -9,7 +9,7 @@ import { Objective } from '../objective.model';
   templateUrl: './objective-full.component.html',
   styleUrls: ['./objective-full.component.css']
 })
-export class ObjectiveFullComponent implements OnInit {
+export class ObjectiveFullComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   objective: Objective;
 
@@ -26,7 +26,13 @@ export class ObjectiveFullComponent implements OnInit {
         })
       })
     ) 
-
   }
+
+  ngOnDestroy(){
+    this.subscriptions.forEach(sub =>{
+      sub.unsubscribe();
+    })
+  }
+  //Unsubscribes from all component subscriptions
 
 }

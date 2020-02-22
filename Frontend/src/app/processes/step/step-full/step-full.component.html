@@ -1,0 +1,8 @@
+<div *ngIf="step">            
+    <app-step-single [inObjective]="false" [step]="step"></app-step-single>
+</div>
+<br>
+<div *ngIf="step" class="grid50">
+    <app-best-practice></app-best-practice>
+    <app-common-difficulty></app-common-difficulty>
+</div>

@@ -11,7 +11,7 @@ import { HelperService } from 'src/app/shared/helper.service';
 })
 export class StepSingleComponent implements OnInit, OnDestroy {
   @Input() step: Step;
-  @Input() inDepartment: boolean;
+  @Input() inObjective: boolean;
   subscriptions: Subscription[] = [];
   editMode: boolean = false;
 

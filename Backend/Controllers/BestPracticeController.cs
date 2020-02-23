@@ -66,7 +66,7 @@ namespace Backend.Controllers
 
         }
 
-        [HttpGet("byStep/{department}/{objective}/{step}")]
+        [HttpGet("byStep/{department}&{objective}&{step}")]
         public async Task<IActionResult> GetBestPractices(int userId, string department, string objective, string step)
         {
             var creator = await _userRepo.GetUser(userId);

@@ -8,6 +8,7 @@ namespace Backend.Models
         public string StepNumber { get; set; }
         public string ObjectiveName { get; set; }
         public string DeptName { get; set; }
+        public string Difficulty { get; set; }
         public string Cause { get; set; }
         public string Solution { get; set; }
         

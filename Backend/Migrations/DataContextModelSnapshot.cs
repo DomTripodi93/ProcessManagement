@@ -31,6 +31,9 @@ namespace Backend.Migrations
                     b.Property<string>("ObjectiveName")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Practice")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Purpose")
                         .HasColumnType("TEXT");
 
@@ -71,6 +74,9 @@ namespace Backend.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("DeptName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Difficulty")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ObjectiveName")

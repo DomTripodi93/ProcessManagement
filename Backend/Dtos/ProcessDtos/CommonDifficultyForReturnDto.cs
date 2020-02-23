@@ -6,6 +6,7 @@ namespace Backend.Dtos
         public string stepNumber { get; set; }
         public string objectiveName { get; set; }
         public string deptName { get; set; }
+        public string Difficulty { get; set; }
         public string Cause { get; set; }
         public string Solution { get; set; }
         

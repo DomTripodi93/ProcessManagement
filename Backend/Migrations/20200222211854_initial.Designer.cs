@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200218153252_initial")]
+    [Migration("20200222211854_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,6 +31,9 @@ namespace Backend.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ObjectiveName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Practice")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Purpose")
@@ -73,6 +76,9 @@ namespace Backend.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("DeptName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Difficulty")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ObjectiveName")

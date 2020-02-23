@@ -12,6 +12,9 @@ namespace Backend.Dtos
 
         [Required]
         public string deptName { get; set; }
+        
+        [Required]
+        public string Difficulty { get; set; }
         public string Cause { get; set; }
         public string Solution { get; set; }
         

@@ -15,6 +15,7 @@ namespace Backend.Dtos
         public string deptName { get; set; }
 
         [Required]
+        public string Practice { get; set; }
         public string Method { get; set; }
         public string Purpose { get; set; }
         

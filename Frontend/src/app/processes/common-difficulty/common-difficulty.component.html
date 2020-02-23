@@ -1,1 +1,30 @@
-<p>common-difficulty works!</p>
+<div *ngIf="!addMode" class="grid100">
+    <button class="btn btn-primary open-btn" (click)="addCommonDifficulty()">
+        Add New Common Difficulty
+    </button>
+</div>
+
+<div *ngIf="commonDifficulties.length == 0" class="border centered">
+    <h3 class="spaced">
+        The {{objective}} objective doesn't have any common difficulties! 
+    </h3>
+    <h3 class="spaced">
+        <a (click)="addCommonDifficulty()">Add some common difficulties</a> to see them here.
+    </h3>
+</div>
+
+<div *ngIf="addMode" class="border spaced">
+    <div class="centered">
+        <app-common-difficulty-form [objective]="objective" [department]="department" [step]="step"></app-common-difficulty-form>
+    </div>
+</div>
+
+<div *ngIf="commonDifficulties.length > 0" class="middle">
+    <h2 class="centered">Common Difficulties</h2>
+    <br>
+    <div class="grid50">
+        <div *ngFor="let commonDifficulty of commonDifficulties">
+            <app-common-difficulty-single [inStep]="true" [commonDifficulty]="commonDifficulty"></app-common-difficulty-single>
+        </div>
+    </div>
+</div>

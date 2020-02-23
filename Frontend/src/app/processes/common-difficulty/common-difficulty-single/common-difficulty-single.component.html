@@ -1,1 +1,24 @@
-<p>common-difficulty-single works!</p>
+<div *ngIf="!editMode" class="border centered">
+    <h3>{{commonDifficulty.difficulty}}</h3>
+    <h5>Cause: {{commonDifficulty.cause}}</h5>
+    <h5>Solution: {{commonDifficulty.solution}}</h5>
+    <div *ngIf="!editMode" class="grid50">
+        <button class="btn btn-primary" (click)="editCommonDifficulty()">Edit</button>
+        <button class="btn btn-danger" (click)="onDelete()">Delete</button>
+    </div>
+</div>
+<div *ngIf="inStep && !editMode" class="grid100">
+    <br>
+    <button 
+        class="btn btn-success open-btn" 
+        routerLink="/commonDifficulty/{{commonDifficulty.id}}"
+        >
+        View Details
+    </button>
+    <br>
+</div>
+<div *ngIf="editMode" class="spaced">
+    <div class="border centered">
+        <app-common-difficulty-form [commonDifficultyDefault]="commonDifficulty"></app-common-difficulty-form>
+    </div>
+</div>

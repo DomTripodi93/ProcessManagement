@@ -21,7 +21,7 @@ export class StepService {
         })
       )
   }
-  //Gets all steps
+  //Gets single step
 
   fetchStepsByObjective(department: string, objective: string) {
     return this.httpServ.fetchAll("step/byObjective/" + department + "&" + objective)

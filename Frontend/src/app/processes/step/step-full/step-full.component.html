@@ -3,6 +3,6 @@
 </div>
 <br>
 <div *ngIf="step" class="grid50">
-    <app-best-practice></app-best-practice>
-    <app-common-difficulty></app-common-difficulty>
+    <app-best-practice [objective]="step.objectiveName" [department]="step.deptName" [step]="step.stepNumber"></app-best-practice>
+    <app-common-difficulty [objective]="step.objectiveName" [department]="step.deptName" [step]="step.stepNumber"></app-common-difficulty>
 </div>

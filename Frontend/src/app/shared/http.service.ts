@@ -12,29 +12,36 @@ export class HttpService {
     private helpers: HelperService
   ) {}
 
-  fetchByValue(model, value) {
+  fetchByValue(model: string, value: string) {
     value = this.helpers.slashToDash(value);
     return this.http.get(
-        this.auth.apiUrl + '/' + model + '/' + value + "/"
+        this.auth.apiUrl + '/' + model + '/' + value
     )
   }
   //Gets specific model by defining value(s)
 
-  fetchAll(model) {
+  fetchById(model: string, id: number) {
+    return this.http.get(
+        this.auth.apiUrl + '/' + model + '/' + id
+    )
+  }
+  //Gets specific model by id
+
+  fetchAll(model: string) {
     return this.http.get(
         this.auth.apiUrl + '/' + model 
     );
   }
   //Gets all of an item for user
 
-  addItem(model, data){
+  addItem(model: string, data: any){
     return this.http.post(
         this.auth.apiUrl + '/' + model , data
     );
   }
   //Posts new item to API
 
-  updateItem(model, data, value){
+  updateItem(model: string, data: any, value: string){
     value = this.helpers.slashToDash(value);
     return this.http.put(
         this.auth.apiUrl  + '/' + model + '/' + value, data
@@ -42,7 +49,14 @@ export class HttpService {
   }
   //Updates selected item
 
-  deleteItem(model, value){
+  updateItemById(model: string, data: any, id: number){
+    return this.http.put(
+        this.auth.apiUrl  + '/' + model + '/' + id, data
+    );
+  }
+  //Updates selected item
+
+  deleteItem(model: string, value: string){
     value = this.helpers.slashToDash(value);
     return this.http.delete(
         this.auth.apiUrl  + '/' + model + '/' + value,
@@ -50,5 +64,13 @@ export class HttpService {
     );
   }
   //Deletes selected item
+
+  deleteItemById(model: string, id: number){
+    return this.http.delete(
+        this.auth.apiUrl  + '/' + model + '/' + id,
+        {responseType: 'text'}
+    );
+  }
+  //Deletes selected item by id
 
 }

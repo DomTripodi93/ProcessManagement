@@ -1,1 +1,59 @@
-<p>best-practice-form works!</p>
+<div *ngIf="bestPracticeForm && canInput">
+    <form [formGroup]="bestPracticeForm" (ngSubmit)='onSubmit()' >
+        <div *ngIf="!bestPracticeDefault" class="form-group spaced">
+            <label for="practice">Best Practice</label>
+            <input 
+                formControlName='practice'
+                id="practice" 
+                class="form-control input-width"
+            >
+        </div>
+        <div *ngIf="bestPracticeDefault" class="spaced">
+            <h3 class="centered">{{bestPracticeDefault.practice}}</h3>
+        </div>
+        <div class="form-group spaced">
+            <label for="method">Method</label>
+            <input 
+                formControlName='method'
+                id="method" 
+                class="form-control input-width"
+            >
+        </div>
+        <div class="form-group spaced">
+            <label for="purpose">Purpose</label>
+            <input 
+                formControlName='purpose'
+                id="purpose" 
+                class="form-control input-width"
+            >
+        </div>
+        <div class='grid50'>
+            <button 
+                *ngIf="!bestPracticeDefault"
+                class="btn btn-success" 
+                type="submit"
+                [disabled]="!bestPracticeForm.valid"
+            >
+                Add BestPractice
+            </button>
+            <button 
+                *ngIf="bestPracticeDefault"
+                class="btn btn-success" 
+                type="submit"
+                [disabled]="!bestPracticeForm.valid"
+            >
+                Update
+            </button>
+            <button 
+                type='button' 
+                class='btn btn-danger' 
+                (click)='onCancel()'
+            >
+                Cancel
+            </button>
+        </div>
+        <div *ngIf="isError">
+            <h4 class="danger">{{error}}</h4>
+        </div>
+    </form>
+</div>

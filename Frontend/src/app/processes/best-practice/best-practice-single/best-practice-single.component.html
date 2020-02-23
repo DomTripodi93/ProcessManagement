@@ -1,1 +1,24 @@
-<p>best-practice-single works!</p>
+<div *ngIf="!editMode" class="border centered">
+    <h3>{{bestPractice.practice}}</h3>
+    <h5>Method: {{bestPractice.method}}</h5>
+    <h5>Purpose: {{bestPractice.purpose}}</h5>
+    <div *ngIf="!editMode" class="grid50">
+        <button class="btn btn-primary" (click)="editBestPractice()">Edit</button>
+        <button class="btn btn-danger" (click)="onDelete()">Delete</button>
+    </div>
+</div>
+<div *ngIf="inStep && !editMode" class="grid100">
+    <br>
+    <button 
+        class="btn btn-success open-btn" 
+        routerLink="/bestPractice/{{bestPractice.deptName}}/{{bestPractice.objectiveName}}/{{bestPractice.practice}}"
+        >
+        View Details
+    </button>
+    <br>
+</div>
+<div *ngIf="editMode" class="spaced">
+    <div class="border centered">
+        <app-best-practice-form [bestPracticeDefault]="bestPractice"></app-best-practice-form>
+    </div>
+</div>

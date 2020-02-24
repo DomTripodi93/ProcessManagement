@@ -64,13 +64,13 @@ namespace Backend.Controllers
 
         }
 
-        [HttpGet("byUser")]
-        public async Task<IActionResult> GetScheduledTasks(int userId)
+        [HttpGet("byUser/{Month}&{Year}")]
+        public async Task<IActionResult> GetScheduledTasks(int userId, int Month, int Year)
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();
 
-            IEnumerable<Schedule> schedulesFromRepo = await _repo.GetScheduledTasksForAccount(userId);
+            IEnumerable<Schedule> schedulesFromRepo = await _repo.GetScheduledTasksForAccount(userId, Month, Year);
 
             IEnumerable<ScheduleForCreationDto> scheduleForReturn = _mapper.Map<IEnumerable<ScheduleForCreationDto>>(schedulesFromRepo);
 
@@ -78,13 +78,13 @@ namespace Backend.Controllers
 
         }
 
-        [HttpGet("byEmployee/{employeeId}")]
-        public async Task<IActionResult> GetScheduledTasksByEmployee(int userId, int employeeId)
+        [HttpGet("byEmployee/{employeeId}&{Month}&{Year}")]
+        public async Task<IActionResult> GetScheduledTasksByEmployee(int userId, int employeeId, int Month, int Year)
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();
 
-            IEnumerable<Schedule> schedulesFromRepo = await _repo.GetScheduledTasksForEmployee(userId, employeeId);
+            IEnumerable<Schedule> schedulesFromRepo = await _repo.GetScheduledTasksForEmployee(userId, employeeId, Month, Year);
 
             IEnumerable<ScheduleForCreationDto> schedulesForReturn = _mapper.Map<IEnumerable<ScheduleForCreationDto>>(schedulesFromRepo);
 

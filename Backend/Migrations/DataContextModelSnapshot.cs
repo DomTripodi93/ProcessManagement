@@ -158,6 +158,20 @@ namespace Backend.Migrations
                     b.ToTable("Employees");
                 });
 
+            modelBuilder.Entity("Backend.Models.EmployeeIdIncrement", b =>
+                {
+                    b.Property<int>("userId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("employeeId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("userId");
+
+                    b.ToTable("EmployeeIdIncrementors");
+                });
+
             modelBuilder.Entity("Backend.Models.Objective", b =>
                 {
                     b.Property<int>("userId")

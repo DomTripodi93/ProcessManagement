@@ -20,12 +20,14 @@ namespace Backend.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IAuthRepository _repo;
+        private readonly IScheduleRepository _schedRepo;
         private readonly IConfiguration _config;
         private readonly IMapper _mapper;
-        public AuthController(IAuthRepository repo, IMapper mapper, IConfiguration config)
+        public AuthController(IAuthRepository repo, IMapper mapper, IConfiguration config, IScheduleRepository schedRepo)
         {
             _mapper = mapper;
             _repo = repo;
+            _schedRepo = schedRepo;
             _config = config;
         }
 
@@ -45,8 +47,9 @@ namespace Backend.Controllers
 
             var createdUser = await _repo.Register(userToCreate, userForRegisterDto.Password);
 
-            return StatusCode(201);
+            _repo.InitializeEmployeeIdForIncrement(createdUser.Id);
 
+            return StatusCode(201);
         }
 
 

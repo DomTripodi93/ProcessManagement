@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200224151427_EmployeeIdIncrementer")]
-    partial class EmployeeIdIncrementer
+    [Migration("20200224152939_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -158,6 +158,20 @@ namespace Backend.Migrations
                     b.HasIndex("DepartmentuserId", "DepartmentDeptName");
 
                     b.ToTable("Employees");
+                });
+
+            modelBuilder.Entity("Backend.Models.EmployeeIdIncrement", b =>
+                {
+                    b.Property<int>("userId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("employeeId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("userId");
+
+                    b.ToTable("EmployeeIdIncrementors");
                 });
 
             modelBuilder.Entity("Backend.Models.Objective", b =>

@@ -29,6 +29,9 @@ namespace Backend.Controllers
         [HttpPost]
         public async Task<IActionResult> AddEmployee(int userId, EmployeeForCreationDto employeeForCreation)
         {
+            EmployeeIdIncrement employeeIdIncrement = await _repo.GetEmployeeIdForIncrement(userId);
+            employeeIdIncrement.employeeId = employeeIdIncrement.employeeId + 1;
+
             var creator = await _userRepo.GetUser(userId);
 
             if (creator.Id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
@@ -37,6 +40,8 @@ namespace Backend.Controllers
             var employee = _mapper.Map<Employee>(employeeForCreation);
 
             employee.User = creator;
+
+            employee.EmployeeId = employeeIdIncrement.employeeId;
 
             _repo.Add(employee);
 

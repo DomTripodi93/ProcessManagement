@@ -3,10 +3,23 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Backend.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "EmployeeIdIncrementors",
+                columns: table => new
+                {
+                    userId = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    employeeId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EmployeeIdIncrementors", x => x.userId);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
@@ -276,6 +289,9 @@ namespace Backend.Migrations
 
             migrationBuilder.DropTable(
                 name: "CommonDifficulties");
+
+            migrationBuilder.DropTable(
+                name: "EmployeeIdIncrementors");
 
             migrationBuilder.DropTable(
                 name: "Schedules");

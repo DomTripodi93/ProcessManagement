@@ -57,6 +57,16 @@ namespace Backend.Data
             return user;
         }
 
+        public async void InitializeEmployeeIdForIncrement (int userId)
+        {
+            EmployeeIdIncrement employeeIdIncrement = new EmployeeIdIncrement
+            {
+                userId = userId,
+                employeeId = 1
+            };
+            await _context.EmployeeIdIncrementors.AddAsync(employeeIdIncrement);
+        }
+
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
             using (var hmac = new System.Security.Cryptography.HMACSHA512())

@@ -2,9 +2,7 @@ namespace Backend.Dtos
 {
     public class EmployeeForUpdateDto
     {
-        public string deptName { get; set; }
-        public string Name { get; set; }
-        public bool CanEdit { get; set; }
+        public int EmployeeId { get; set; }
         
     }
 }

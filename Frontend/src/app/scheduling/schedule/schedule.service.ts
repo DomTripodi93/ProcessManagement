@@ -34,7 +34,7 @@ export class ScheduleService {
   //Gets all employees
 
   fetchSchedulesByEmployee(employeeId: number, month: number, year: number) {
-    return this.httpServ.fetchAll("schedule/byEmployee/" + employeeId + "&" + + month + "&" + year)
+    return this.httpServ.fetchAll("schedule/byEmployee/" + employeeId + "&" + month + "&" + year)
       .pipe(
         map((responseData: Schedule[]) => {
           return responseData;

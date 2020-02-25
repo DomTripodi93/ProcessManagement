@@ -57,13 +57,27 @@ namespace Backend.Data
             return user;
         }
 
-        public async void InitializeEmployeeIdForIncrement (int userId)
+        public async void InitializeEmployeeIdForIncrement (User user)
         {
             EmployeeIdIncrement employeeIdIncrement = new EmployeeIdIncrement
             {
-                userId = userId,
+                userId = user.Id,
                 employeeId = 1
             };
+
+            Employee accountOwner = new Employee
+            {
+                EmployeeId = employeeIdIncrement.employeeId,
+                User = user,
+                userId = user.Id,
+                Department = null,
+                deptName = null,
+                Name = user.Name,
+                Title = "Owner",
+                CanEdit = true
+            };
+
+            await _context.Employees.AddAsync(accountOwner);
             await _context.EmployeeIdIncrementors.AddAsync(employeeIdIncrement);
         }
 

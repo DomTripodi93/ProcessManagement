@@ -148,6 +148,9 @@ namespace Backend.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Title")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("deptName")
                         .HasColumnType("TEXT");
 
@@ -211,6 +214,9 @@ namespace Backend.Migrations
 
                     b.Property<int>("EmployeeId1")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("EmployeeName")
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("EmployeeuserId")
                         .HasColumnType("INTEGER");

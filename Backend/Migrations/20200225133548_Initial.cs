@@ -65,6 +65,7 @@ namespace Backend.Migrations
                     DepartmentDeptName = table.Column<string>(nullable: true),
                     deptName = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
+                    Title = table.Column<string>(nullable: true),
                     CanEdit = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -118,6 +119,7 @@ namespace Backend.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     userId = table.Column<int>(nullable: false),
+                    EmployeeName = table.Column<string>(nullable: true),
                     EmployeeId = table.Column<int>(nullable: false),
                     ObjectiveName = table.Column<string>(nullable: true),
                     DeptName = table.Column<string>(nullable: true),

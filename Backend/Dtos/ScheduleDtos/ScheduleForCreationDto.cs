@@ -9,6 +9,9 @@ namespace Backend.Dtos
         public string EmployeeId { get; set; }
         
         [Required]
+        public string EmployeeName { get; set; }
+        
+        [Required]
         public string ObjectiveName { get; set; }
         public string deptName { get; set; }
 

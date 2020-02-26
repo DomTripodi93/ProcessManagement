@@ -5,6 +5,7 @@ namespace Backend.Dtos
         public string deptName { get; set; }
         public string Title { get; set; }
         public string Name { get; set; }
+        public bool CanEdit { get; set; }
         
     }
 }

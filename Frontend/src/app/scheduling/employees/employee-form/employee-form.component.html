@@ -1,13 +1,5 @@
 <div *ngIf="employeeForm && canInput">
-    <form [formGroup]="employeeForm" (ngSubmit)='onSubmit()' >
-        <div *ngIf="!employeeDefault" class="form-group spaced">
-            <label for="employeeNumber">Employee Number</label>
-            <input 
-                formControlName='employeeNumber'
-                id="employeeNumber" 
-                class="form-control input-width"
-            >
-        </div>
+    <form [formGroup]="employeeForm" (ngSubmit)='onSubmit()'>
         <div *ngIf="employeeDefault" class="spaced">
             <h3 class="centered">{{employeeDefault.objectiveName}}</h3>
             <h3 class="centered">{{employeeDefault.employeeNumber}}: {{employeeDefault.name}}</h3>

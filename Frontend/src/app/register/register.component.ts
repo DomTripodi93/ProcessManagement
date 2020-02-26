@@ -1,17 +1,16 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { User } from './user.model';
-import { Subject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../shared/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { HelperService } from '../shared/helper.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
   @ViewChild('data') signupForm: NgForm;
   error = "";
   isError = false;
@@ -21,21 +20,29 @@ export class RegisterComponent {
   constructor(
     private auth: AuthService,
     private route: ActivatedRoute,
+    private helpers: HelperService,
     private router: Router
     ) {}
 
-  onSubmit(){
+  ngOnInit(){
     this.isError = false;
     this.submitted = true;
-    this.user = this.signupForm.value;
-    this.auth.registerUser(this.user)
+  }
+
+  onSubmit(){
+    this.signupForm.value.name = this.prepName(this.signupForm.value.name);
+    this.auth.registerUser(this.signupForm.value)
     .subscribe(() => {
-      this.router.navigate(["../login"], {relativeTo: this.route})
+      this.router.navigate(["login"])
     },
     () => {
       this.isError = true
       this.error = "an account with that email already exists!";
     });
+  }
+
+  prepName(name: string){
+    return this.helpers.capitalize(name);
   }
 
 }

@@ -5,6 +5,7 @@ import { EmployeeService } from '../employee.service';
 import { AuthService } from 'src/app/shared/auth.service';
 import { DepartmentService } from '../../../processes/department/department.service';
 import { Subscription } from 'rxjs';
+import { HelperService } from '../../../shared/helper.service';
 
 @Component({
   selector: 'app-employee-form',
@@ -24,6 +25,7 @@ export class EmployeeFormComponent implements OnInit, OnDestroy {
   constructor(
     private employeeServ: EmployeeService,
     private deptServ: DepartmentService,
+    private helpers: HelperService,
     public auth: AuthService
   ){}
   
@@ -74,6 +76,10 @@ export class EmployeeFormComponent implements OnInit, OnDestroy {
     } else {
       this.newEmployee(this.employeeForm.value);
     }
+  }
+
+  prepEmployeeName(name: string){
+    return this.helpers.capitalize(name);
   }
 
   updateEmployee(data: any) {

@@ -4,7 +4,6 @@ namespace Backend.Dtos
 {
     public class EmployeeForCreationDto
     {
-        [Required]
         public string deptName { get; set; }
         public string Title { get; set; }
 

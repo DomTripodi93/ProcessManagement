@@ -64,13 +64,14 @@ export class EmployeeFormComponent implements OnInit, OnDestroy {
     this.employeeForm = new FormGroup({
       'name': new FormControl(formEmployee.name, Validators.required),
       'deptName': new FormControl(formEmployee.deptName),
-      'title': new FormControl(formEmployee.name, Validators.required),
+      'title': new FormControl(formEmployee.name),
       'canEdit': new FormControl(formEmployee.canEdit, Validators.required),
     });
   }
 
 
   async onSubmit(){
+    this.employeeForm.value.name = this.prepEmployeeName(this.employeeForm.value.name);
     if (this.employeeDefault){
       this.updateEmployee(this.employeeForm.value);
     } else {

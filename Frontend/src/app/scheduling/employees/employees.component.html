@@ -1,1 +1,30 @@
-<p>employees works!</p>
+<div *ngIf="!addMode" class="grid100">
+    <button class="btn btn-primary open-btn" (click)="addEmployee()">
+        Add New Employee
+    </button>
+</div>
+
+<div *ngIf="employees.length == 0" class="border centered">
+    <h3 class="spaced">
+        You currently don't have any employees! 
+    </h3>
+    <h3 class="spaced">
+        <a (click)="addEmployee()">Add some employees</a> to see them here.
+    </h3>
+</div>
+
+<div *ngIf="addMode" class="border spaced">
+    <div class="centered">
+        <app-employee-form [objective]="objective" [department]="department"></app-employee-form>
+    </div>
+</div>
+
+<div *ngIf="employees.length > 0" class="middle">
+    <h2 class="centered">Employees</h2>
+    <br>
+    <div class="grid50">
+        <div *ngFor="let employee of employees">
+            <app-employee-single [inFull]="true" [employee]="employee"></app-employee-single>
+        </div>
+    </div>
+</div>

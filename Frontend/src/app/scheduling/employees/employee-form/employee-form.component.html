@@ -1,1 +1,80 @@
-<p>employee-form works!</p>
+<div *ngIf="employeeForm && canInput">
+    <form [formGroup]="employeeForm" (ngSubmit)='onSubmit()' >
+        <div *ngIf="!employeeDefault" class="form-group spaced">
+            <label for="employeeNumber">Employee Number</label>
+            <input 
+                formControlName='employeeNumber'
+                id="employeeNumber" 
+                class="form-control input-width"
+            >
+        </div>
+        <div *ngIf="employeeDefault" class="spaced">
+            <h3 class="centered">{{employeeDefault.objectiveName}}</h3>
+            <h3 class="centered">{{employeeDefault.employeeNumber}}: {{employeeDefault.name}}</h3>
+        </div>
+        <div class="form-group spaced">
+            <label for="name">Name</label>
+            <input 
+                formControlName='name'
+                id="name" 
+                class="form-control input-width"
+            >
+        </div>
+        <div class="form-group spaced">
+            <label for="deptName">Department</label>
+            <select
+                formControlName='deptName'
+                type="text" 
+                id="deptName" 
+                class="form-control">
+                <option *ngFor = "let deptName of departments">{{deptName}}</option>
+            </select>     
+        </div>
+        <div class="form-group spaced">
+            <label for="canEdit">Process Admin</label>
+            <select
+                formControlName='canEdit'
+                type="text" 
+                id="canEdit" 
+                class="form-control">
+                <option *ngFor = "let value of canEdit">{{value}}</option>
+            </select>     
+        </div>
+        <div class="form-group spaced">
+            <label for="title">Job Title</label>
+            <input 
+                formControlName='title'
+                id="title"
+                class="form-control input-width"
+            >
+        </div>
+        <div class='grid50'>
+            <button 
+                *ngIf="!employeeDefault"
+                class="btn btn-success" 
+                type="submit"
+                [disabled]="!employeeForm.valid"
+            >
+                Add Employee
+            </button>
+            <button 
+                *ngIf="employeeDefault"
+                class="btn btn-success" 
+                type="submit"
+                [disabled]="!employeeForm.valid"
+            >
+                Update
+            </button>
+            <button 
+                type='button' 
+                class='btn btn-danger' 
+                (click)='onCancel()'
+            >
+                Cancel
+            </button>
+        </div>
+        <div *ngIf="isError">
+            <h4 class="danger">{{error}}</h4>
+        </div>
+    </form>
+</div>

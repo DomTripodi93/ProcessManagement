@@ -79,6 +79,7 @@ namespace Backend.Data
 
             await _context.Employees.AddAsync(accountOwner);
             await _context.EmployeeIdIncrementors.AddAsync(employeeIdIncrement);
+            await _context.SaveChangesAsync();
         }
 
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)

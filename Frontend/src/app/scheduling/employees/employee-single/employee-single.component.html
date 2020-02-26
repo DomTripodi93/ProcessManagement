@@ -1,5 +1,5 @@
 <div *ngIf="!editMode" class="border centered">
-    <h3>{{employee.employeeNumber}}: {{employee.name}}</h3>
+    <h3>{{employee.employeeId}}: {{employee.name}}</h3>
     <h4>Title: {{employee.title}}</h4>
     <h4 *ngIf="employee.deptName">Department: {{employee.deptName}}</h4>
     <div *ngIf="!editMode" class="grid50">
@@ -7,6 +7,7 @@
         <button class="btn btn-danger" (click)="onDelete()">Delete</button>
     </div>
 </div>
+
 <div *ngIf="inFull && !editMode" class="grid100">
     <br>
     <button 
@@ -17,6 +18,7 @@
     </button>
     <br>
 </div>
+
 <div *ngIf="editMode" class="spaced">
     <div class="border centered">
         <app-employee-form [employeeDefault]="employee"></app-employee-form>

@@ -47,8 +47,8 @@ namespace Backend.Controllers
 
             if (await _repo.SaveAll())
             {
-                var jobToReturn = _mapper.Map<EmployeeForCreationDto>(employee);
-                return CreatedAtRoute("GetEmployee", new {employeeId = employee.EmployeeId, userId = userId }, jobToReturn);
+                var employeeToReturn = _mapper.Map<EmployeeForReturnDto>(employee);
+                return CreatedAtRoute("GetEmployee", new {employeeId = employee.EmployeeId, userId = userId }, employeeToReturn);
             }
             
             throw new Exception("Creation of Employee failed on save");
@@ -63,7 +63,7 @@ namespace Backend.Controllers
 
             var employeeFromRepo = await _repo.GetEmployee(userId, employeeId);
 
-            EmployeeForCreationDto employeeForReturn = _mapper.Map<EmployeeForCreationDto>(employeeFromRepo);
+            EmployeeForReturnDto employeeForReturn = _mapper.Map<EmployeeForReturnDto>(employeeFromRepo);
 
             return Ok(employeeForReturn);
 
@@ -77,7 +77,7 @@ namespace Backend.Controllers
 
             IEnumerable<Employee> employeesFromRepo = await _repo.GetEmployees(userId);
 
-            IEnumerable<EmployeeForCreationDto> employeeForReturn = _mapper.Map<IEnumerable<EmployeeForCreationDto>>(employeesFromRepo);
+            IEnumerable<EmployeeForReturnDto> employeeForReturn = _mapper.Map<IEnumerable<EmployeeForReturnDto>>(employeesFromRepo);
 
             return Ok(employeeForReturn);
 
@@ -91,7 +91,7 @@ namespace Backend.Controllers
 
             IEnumerable<Employee> employeesFromRepo = await _repo.GetEmployeesByDepartment(userId, deptName);
 
-            IEnumerable<EmployeeForCreationDto> employeesForReturn = _mapper.Map<IEnumerable<EmployeeForCreationDto>>(employeesFromRepo);
+            IEnumerable<EmployeeForReturnDto> employeesForReturn = _mapper.Map<IEnumerable<EmployeeForReturnDto>>(employeesFromRepo);
 
             return Ok(employeesForReturn);
 

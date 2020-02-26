@@ -15,7 +15,7 @@ export class EmployeeFormComponent implements OnInit, OnDestroy {
   @Input() employeeDefault: Employee;
   subscriptions: Subscription[] = [];
   departments: string[] = [""];
-  canEdit: boolean[]= [true, false]
+  canEdit: boolean[]= [false, true]
   canInput= false;
   employeeForm: FormGroup;
   isError = false;

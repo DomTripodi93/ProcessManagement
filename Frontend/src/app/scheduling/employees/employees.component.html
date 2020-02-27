@@ -1,5 +1,5 @@
-<div *ngIf="!addMode" class="grid100">
-    <button class="btn btn-primary open-btn" (click)="addEmployee()">
+<div *ngIf="!addMode">
+    <button class="btn btn-primary top" (click)="addEmployee()">
         Add New Employee
     </button>
 </div>
@@ -22,8 +22,8 @@
 <div *ngIf="employees.length > 0" class="middle">
     <h2 class="centered">Employees</h2>
     <br>
-    <div class="grid50">
-        <div *ngFor="let employee of employees">
+    <div class="flex">
+        <div *ngFor="let employee of employees" class="sized30">
             <app-employee-single [inFull]="true" [employee]="employee"></app-employee-single>
         </div>
     </div>

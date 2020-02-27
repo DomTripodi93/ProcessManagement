@@ -13,16 +13,17 @@
     </h3>
 </div>
 
-<div *ngIf="addMode" class="border spaced">
-    <div class="centered">
+<div *ngIf="addMode">
+    <br>
+    <div class="border centered">
         <app-best-practice-form [objective]="objective" [department]="department" [step]="step"></app-best-practice-form>
     </div>
 </div>
 
-<div *ngIf="bestPractices.length > 0" class="middle">
+<div *ngIf="bestPractices.length > 0" class="middle size-holder">
     <h2 class="centered">Best Practices</h2>
     <br>
-    <div class="grid50">
+    <div class="grid50 ">
         <div *ngFor="let bestPractice of bestPractices">
             <app-best-practice-single [inStep]="true" [bestPractice]="bestPractice"></app-best-practice-single>
         </div>

@@ -25,7 +25,7 @@ export class ScheduleComponent implements OnInit {
     "Thursday",
     "Friday",
     "Saturday"
-  ]
+  ];
   months = [
     "January",
     "February",
@@ -41,8 +41,8 @@ export class ScheduleComponent implements OnInit {
     "December"
   ];
   numberOfDays: number;
-  monthDays = []
-  firstDayOfMonth = []
+  monthDays = [];
+  firstDayOfMonth = [];
   firstDay: Date;
 
   constructor() { }

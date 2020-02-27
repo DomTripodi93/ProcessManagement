@@ -22,6 +22,11 @@
     margin: auto;
 }
 
+.size-holder{
+    width: 93%;
+    max-width: 830px;
+}
+
 .border{
     border-style: solid;
     border-color: rgb(0, 21, 44);

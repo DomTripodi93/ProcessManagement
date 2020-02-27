@@ -13,13 +13,14 @@
     </h3>
 </div>
 
-<div *ngIf="addMode" class="border spaced">
-    <div class="centered">
+<div *ngIf="addMode">
+    <br>
+    <div class="border centered">
         <app-common-difficulty-form [objective]="objective" [department]="department" [step]="step"></app-common-difficulty-form>
     </div>
 </div>
 
-<div *ngIf="commonDifficulties.length > 0" class="middle">
+<div *ngIf="commonDifficulties.length > 0" class="middle size-holder">
     <h2 class="centered">Common Difficulties</h2>
     <br>
     <div class="grid50">

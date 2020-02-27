@@ -2,7 +2,7 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { User } from './user.model';
 import { AuthService } from '../shared/auth.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { HelperService } from '../shared/helper.service';
 
 @Component({
@@ -19,7 +19,6 @@ export class RegisterComponent implements OnInit {
   
   constructor(
     private auth: AuthService,
-    private route: ActivatedRoute,
     private helpers: HelperService,
     private router: Router
     ) {}

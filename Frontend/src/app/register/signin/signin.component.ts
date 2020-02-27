@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Signin } from './signin.model';
 import { AuthService } from '../../shared/auth.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -18,8 +18,7 @@ export class SigninComponent {
 
   constructor(
     private auth: AuthService,
-    private router: Router,
-    private route: ActivatedRoute
+    private router: Router
     ) {}
 
   onSubmit(){
@@ -35,7 +34,7 @@ export class SigninComponent {
         if (this.auth.user) {
           this.auth.isAuthenticated = true;
           this.auth.authChanged.next();
-          this.router.navigate([".."], {relativeTo: this.route});
+          this.router.navigate(["department"]);
         }
       },() => {
         this.isError = true

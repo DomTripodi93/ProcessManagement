@@ -15,6 +15,7 @@ import { BestPracticeComponent } from './processes/best-practice/best-practice.c
 import { CommonDifficultyComponent } from './processes/common-difficulty/common-difficulty.component';
 import { EmployeesComponent } from './scheduling/employees/employees.component';
 import { ScheduleComponent } from './scheduling/schedule/schedule.component';
+import { ScheduleEmployeeComponent } from './scheduling/schedule/schedule-employee/schedule-employee.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HomeComponent } from './shared/home/home.component';
@@ -36,6 +37,7 @@ import { EmployeeSingleComponent } from './scheduling/employees/employee-single/
 import { EmployeeFormComponent } from './scheduling/employees/employee-form/employee-form.component';
 import { ObjectiveFullComponent } from './processes/objective/objective-full/objective-full.component';
 import { StepFullComponent } from './processes/step/step-full/step-full.component';
+import { ScheduleDayComponent } from './scheduling/schedule/schedule-day/schedule-day.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,7 @@ import { StepFullComponent } from './processes/step/step-full/step-full.componen
     CommonDifficultyComponent,
     EmployeesComponent,
     ScheduleComponent,
+    ScheduleEmployeeComponent,
     HeaderComponent,
     FooterComponent,
     HomeComponent,
@@ -69,7 +72,8 @@ import { StepFullComponent } from './processes/step/step-full/step-full.componen
     EmployeeSingleComponent,
     EmployeeFormComponent,
     ObjectiveFullComponent,
-    StepFullComponent
+    StepFullComponent,
+    ScheduleDayComponent
   ],
   imports: [
     BrowserModule,

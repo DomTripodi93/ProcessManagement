@@ -1,6 +1,6 @@
 <div *ngIf="!editMode" class="border centered">
     <h3>{{employee.employeeId}}: {{employee.name}}</h3>
-    <h4>Title: {{employee.title}}</h4>
+    <h4 *ngIf="employee.title">Title: {{employee.title}}</h4>
     <h4 *ngIf="employee.deptName">Department: {{employee.deptName}}</h4>
     <div *ngIf="!editMode" class="grid50">
         <button class="btn btn-primary" (click)="editEmployee()">Edit</button>
@@ -12,9 +12,9 @@
     <br>
     <button 
         class="btn btn-success open-btn" 
-        routerLink="/employee/{{employee.employeeName}}"
+        routerLink="/schedule/{{employee.employeeId}}"
         >
-        View Details
+        View Schedule
     </button>
     <br>
 </div>

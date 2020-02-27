@@ -47,7 +47,6 @@
 
 .day-label-border{
     height: 5.2vw;
-    color: rgb(53, 10, 124);
     border-style: solid;
     border-color: black;
     background-color: rgb(207, 181, 255);
@@ -55,6 +54,7 @@
 
 .label-text{
     font-weight: bold;
+    color: rgb(53, 10, 124);
     font-size: 1.8vw;
 }
 
@@ -99,7 +99,11 @@
 }
 
 .top{
-    margin: 0px 0px 35px 45px;
+    margin: 0px 0px 3% 3%;
+}
+
+.date{
+    margin: 7% 0px 0px 10%;
 }
 
 input.ng-invalid.ng-touched {
@@ -121,6 +125,10 @@ h3{
 
 
 @media only screen and (max-width: 768px) {
+    .top{
+        margin: 0px 0px 3% 11.5%;
+    }
+    
     .sized30{
         width: 85%;
         max-width: 768px;
@@ -129,14 +137,9 @@ h3{
 
     .day-label-border{
         height: 35px;
-        color: rgb(53, 10, 124);
-        border-style: solid;
-        border-color: black;
-        background-color: rgb(207, 181, 255);
     }
     
     .label-text{
-        font-weight: bold;
         font-size: 10px;
     }
 }
@@ -144,14 +147,17 @@ h3{
 @media only screen and (min-width: 1200px) {
     .day-label-border{
         height: 52px;
-        color: rgb(53, 10, 124);
-        border-style: solid;
-        border-color: black;
-        background-color: rgb(207, 181, 255);
     }
     
     .label-text{
-        font-weight: bold;
         font-size: 21px;
+    }
+
+    .today-border{
+        height: 200px;
+    }
+    
+    .day-border{
+        height: 200px;
     }
 }

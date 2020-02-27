@@ -9,7 +9,7 @@ export class ScheduleEmployeeComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
 }

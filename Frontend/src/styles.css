@@ -31,6 +31,33 @@
     max-width: 800px;
 }
 
+.today-border{
+    height: 20vw;
+    border-style: solid;
+    border-color: black;
+    background-color: rgb(111, 255, 123);
+}
+
+.day-border{
+    height: 20vw;
+    border-style: solid;
+    border-color: black;
+    background-color: rgb(207, 181, 255);
+}
+
+.day-label-border{
+    height: 5.2vw;
+    color: rgb(53, 10, 124);
+    border-style: solid;
+    border-color: black;
+    background-color: rgb(207, 181, 255);
+}
+
+.label-text{
+    font-weight: bold;
+    font-size: 1.8vw;
+}
+
 .danger{
     background-color: rgb(165, 2, 2);
     color: white;
@@ -54,6 +81,11 @@
 .grid50 { 
     display: grid;
     grid-template-columns: 50% 50%;
+}
+
+.grid7split { 
+    display: grid;
+    grid-template-columns: 14.289% 14.289% 14.289% 14.289% 14.289% 14.289% 14.289%;
 }
 
 .sized30{
@@ -93,5 +125,33 @@ h3{
         width: 85%;
         max-width: 768px;
         margin: 17px 7.5% 17px 7.5%;
+    }
+
+    .day-label-border{
+        height: 35px;
+        color: rgb(53, 10, 124);
+        border-style: solid;
+        border-color: black;
+        background-color: rgb(207, 181, 255);
+    }
+    
+    .label-text{
+        font-weight: bold;
+        font-size: 10px;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .day-label-border{
+        height: 52px;
+        color: rgb(53, 10, 124);
+        border-style: solid;
+        border-color: black;
+        background-color: rgb(207, 181, 255);
+    }
+    
+    .label-text{
+        font-weight: bold;
+        font-size: 21px;
     }
 }

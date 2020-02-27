@@ -1,1 +1,38 @@
-<p>schedule works!</p>
+<form (ngSubmit)='changeDate()' #newMonth="ngForm">
+    <div class="border">
+        <input
+        id="date" 
+        class="form-control"
+        [(ngModel)]="defaultMonth"
+        name="date"
+        type="month">
+        <div class="centered">
+            <button class="btn btn-primary open-btn"><strong>Change Month</strong></button>
+        </div>
+    </div>
+</form>
+
+<h1 class="centered">{{months[month]}}</h1>
+
+<div class="grid7split border">
+    <div *ngFor="let day of days">
+        <div class="day-label-border">
+            <h5 class="centered label-text">{{day}}</h5>
+        </div>
+    </div>
+    <div *ngFor="let date of firstDayOfMonth">
+        <div class="day-border"></div>
+    </div>  
+    <div *ngFor="let date of monthDays">
+        <div *ngIf="date !== today" class="day-border padded">
+            <h5>{{date}}</h5>
+        </div>
+        <div *ngIf="date == today && month == oldMonth" class="today-border padded">
+            <h5>{{date}}</h5>
+        </div>
+        <div *ngIf="date == today && month != oldMonth" class="day-border padded">
+            <h5>{{date}}</h5>
+        </div>
+    </div>  
+</div>
+<br>

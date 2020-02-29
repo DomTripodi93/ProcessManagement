@@ -46,6 +46,7 @@ export class BestPracticeFormComponent implements OnInit {
       this.initForm(emptyBestPractice);
     }
   }
+  //Checks whether the form should be used for editing or creation of new model object
     
   private initForm(formBestPractice: BestPractice) {
     this.bestPracticeForm = new FormGroup({

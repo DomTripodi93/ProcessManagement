@@ -42,6 +42,7 @@ export class ObjectiveFormComponent implements OnInit {
       this.initForm(emptyObjective);
     }
   }
+  //Checks whether the form should be used for editing or creation of new model object
     
   private initForm(formObjective: Objective) {
     this.objectiveForm = new FormGroup({

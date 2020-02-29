@@ -3,14 +3,22 @@ import { map } from "rxjs/operators";
 import { Schedule } from './schedule.model';
 import { HttpService } from '../../shared/http.service';
 import { Subject } from 'rxjs';
+import { EmployeeService } from '../employees/employee.service';
+import { DepartmentService } from 'src/app/processes/department/department.service';
+import { ObjectiveService } from 'src/app/processes/objective/objective.service';
 
 @Injectable({providedIn: 'root'})
 export class ScheduleService {
   scheduleChanged = new Subject();
   scheduleCancel = new Subject();
+  employeesForSelection = {};
+  departmentsForSelection = {};
 
   constructor(
-    private httpServ: HttpService
+    private httpServ: HttpService,
+    private employeeServ: EmployeeService,
+    private departmentServ: DepartmentService,
+    private objectiveServ: ObjectiveService,
   ) {}
 
   fetchSingleSchedule(id: number) {
@@ -57,5 +65,38 @@ export class ScheduleService {
     return this.httpServ.deleteItemById("schedule", id);
   }
   //Deletes selected best practice
+
+  getEmployees(){
+    this.employeeServ.fetchEmployees().subscribe(employees =>{
+      employees.forEach(employee =>{
+        this.employeesForSelection[employee.employeeId] = employee.name;
+      });
+    })
+  }
+  // Sets employee values for form employee selection
+
+  getDeparments(){
+    this.departmentServ.fetchDepartments().subscribe(departments =>{
+      departments.forEach(department =>{
+        this.getObjectives(department.deptName);
+      })
+    })
+  }
+  // Sets employee values for form employee selection
+
+  getObjectives(department: string){
+    let objectivesForReturn = [];
+    this.objectiveServ.fetchObjectivesByDepartment(department).subscribe(objectives =>{
+      let completionTracker = 0;
+      objectives.forEach(objective =>{
+        completionTracker++;
+        objectivesForReturn.push(objective.objectiveName);
+        if (completionTracker == objectives.length){
+          this.departmentsForSelection[department] = objectivesForReturn;
+        }
+      })
+    })
+  }
+  // Sets employee values for form employee selection
 
 }

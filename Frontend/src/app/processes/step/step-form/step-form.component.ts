@@ -44,6 +44,7 @@ export class StepFormComponent implements OnInit {
       this.initForm(emptyStep);
     }
   }
+  //Checks whether the form should be used for editing or creation of new model object
     
   private initForm(formStep: Step) {
     this.stepForm = new FormGroup({

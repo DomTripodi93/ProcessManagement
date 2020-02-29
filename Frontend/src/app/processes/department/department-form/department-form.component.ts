@@ -39,6 +39,7 @@ export class DepartmentFormComponent implements OnInit {
       this.initForm(emptyDepartment);
     }
   }
+  //Checks whether the form should be used for editing or creation of new model object
     
   private initForm(formDepartment: Department) {
     this.departmentForm = new FormGroup({

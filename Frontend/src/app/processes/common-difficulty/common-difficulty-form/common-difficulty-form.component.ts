@@ -46,6 +46,7 @@ export class CommonDifficultyFormComponent implements OnInit {
       this.initForm(emptyCommonDifficulty);
     }
   }
+  //Checks whether the form should be used for editing or creation of new model object
     
   private initForm(formCommonDifficulty: CommonDifficulty) {
     this.commonDifficultyForm = new FormGroup({

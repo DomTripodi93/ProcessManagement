@@ -1,14 +1,18 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import _ from 'lodash';
+import { ScheduleService } from './schedule.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-schedule',
   templateUrl: './schedule.component.html',
   styleUrls: ['./schedule.component.css']
 })
-export class ScheduleComponent implements OnInit {
+export class ScheduleComponent implements OnInit, OnDestroy {
   @ViewChild('newMonth') newMonthForm: NgForm;
+  subscriptions: Subscription[] = [];
+  addMode: boolean = false;
   date = new Date();
   today = this.date.getDate();
   month = this.date.getMonth();
@@ -45,11 +49,28 @@ export class ScheduleComponent implements OnInit {
   firstDayOfMonth = [];
   firstDay: Date;
 
-  constructor() { }
+  constructor(
+    private scheduleServ: ScheduleService
+  ) { }
 
   ngOnInit() {
     this.initializeMonth();
+    this.scheduleServ.getEmployees();
+    this.scheduleServ.getDeparments();
   }
+
+  addSchedule(){
+    this.addMode = true;
+    this.subscribeToCancel();
+  }
+  //Displays schedule form for adding new schedule
+
+  subscribeToCancel(){
+    this.subscriptions.push(this.scheduleServ.scheduleCancel.subscribe(()=>{
+      this.addMode = false;
+    }));
+  }
+  //subscribes to method of canceling add schedule form
 
   initializeMonth(){
     if (this.month < 10){
@@ -76,4 +97,11 @@ export class ScheduleComponent implements OnInit {
     this.month = +hold[1] - 1;
     this.setDate();
   }
+
+  ngOnDestroy(){
+    this.subscriptions.forEach(sub =>{
+      sub.unsubscribe();
+    })
+  }
+  //Unsubscribes from all component subscriptions
 }

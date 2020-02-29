@@ -59,6 +59,7 @@ export class EmployeeFormComponent implements OnInit, OnDestroy {
       this.initForm(emptyEmployee);
     }
   }
+  //Checks whether the form should be used for editing or creation of new model object
     
   private initForm(formEmployee: Employee) {
     this.employeeForm = new FormGroup({

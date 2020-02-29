@@ -1,3 +1,15 @@
+<div *ngIf="!addMode">
+    <button class="btn btn-primary top" (click)="addSchedule()">
+        Add New Scheduled Task
+    </button>
+</div>
+
+<div *ngIf="addMode" class="border spaced">
+    <div class="centered">
+        <app-schedule-form [objective]="objective" [department]="department" [step]="step"></app-schedule-form>
+    </div>
+</div>
+
 <form (ngSubmit)='changeDate()' #newMonth="ngForm">
     <div class="border">
         <input

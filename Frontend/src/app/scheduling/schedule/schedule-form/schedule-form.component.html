@@ -26,7 +26,7 @@
                 formControlName="deptName"
                 id="deptName" 
                 class="form-control input-width"
-                (change)="changeEmployee($event.target.value)">
+                (change)="changeDepartment($event.target.value)">
                 <option *ngFor = "let department of departments">{{department}}</option>
             </select>
         </div>
@@ -35,8 +35,7 @@
             <select
                 formControlName="objectiveName"
                 id="objectiveName"
-                class="form-control input-width"
-                (change)="changeEmployee($event.target.value)">
+                class="form-control input-width">
                 <option *ngFor = "let objective of objectives">{{objective}}</option>
             </select>
         </div>

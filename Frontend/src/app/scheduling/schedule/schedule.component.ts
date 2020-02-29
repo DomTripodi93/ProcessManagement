@@ -44,10 +44,8 @@ export class ScheduleComponent implements OnInit, OnDestroy {
     "November",
     "December"
   ];
-  numberOfDays: number;
   monthDays = [];
   firstDayOfMonth = [];
-  firstDay: Date;
 
   constructor(
     private scheduleServ: ScheduleService
@@ -56,18 +54,28 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.initializeMonth();
     this.getEmployeesAndDepartmentsForForm();
+    this.subscribeToChanges();
   }
 
   getEmployeesAndDepartmentsForForm(){
     this.scheduleServ.getEmployees();
     this.scheduleServ.getDeparments();
   }
+  //stores values for all employees departments and related objectives for quick 
+  // lookup in scheduled task creation form
 
   addSchedule(){
     this.addMode = true;
     this.subscribeToCancel();
   }
   //Displays schedule form for adding new schedule
+
+  subscribeToChanges(){
+    this.subscriptions.push(this.scheduleServ.scheduleChanged.subscribe(()=>{
+      this.scheduleServ.scheduleCancel.next();
+    }));
+  }
+  //subscribes to changes in schedule to cancel form
 
   subscribeToCancel(){
     this.subscriptions.push(this.scheduleServ.scheduleCancel.subscribe(()=>{
@@ -83,17 +91,18 @@ export class ScheduleComponent implements OnInit, OnDestroy {
     this.defaultMonth = this.year +"-"+ this.monthHold;
     this.setDate();
   }
+  //Holds default values for current month and year, for styling of current day
 
   setDate(){
-    this.numberOfDays = this.daysInMonth(this.year, this.month+1);
-    this.monthDays = _.range(1, this.numberOfDays + 1);
-    this.firstDay = new Date(this.year, this.month, 1);
-    this.firstDayOfMonth = _.range(0, this.firstDay.getDay());
+    this.monthDays = _.range(1, this.daysInMonth(this.year, this.month+1) + 1);
+    this.firstDayOfMonth = _.range(0, new Date(this.year, this.month, 1).getDay());
   }
+  //Sets values for days of month to be displayed in expected format
 
   daysInMonth(year: number, month: number){
     return new Date(year, month, 0).getDate();
   }
+  //Returns number of days in the month
 
   changeDate(){
     let hold = this.newMonthForm.value.date.split("-")
@@ -101,6 +110,7 @@ export class ScheduleComponent implements OnInit, OnDestroy {
     this.month = +hold[1] - 1;
     this.setDate();
   }
+  //Sets values of selected month, and resets calender display values
 
   ngOnDestroy(){
     this.subscriptions.forEach(sub =>{

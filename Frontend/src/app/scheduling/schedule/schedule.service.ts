@@ -23,8 +23,8 @@ export class ScheduleService {
   }
   //Gets single best practice
 
-  fetchSchedule(month: number, year: number) {
-    return this.httpServ.fetchAll("schedule/byUser/" + month + "&" + year)
+  fetchSchedule(month: number, year: number, day: number) {
+    return this.httpServ.fetchAll("schedule/byUser/" + month + "&" + year + "&" + day)
       .pipe(
         map((responseData: Schedule[]) => {
           return responseData;
@@ -33,8 +33,8 @@ export class ScheduleService {
   }
   //Gets all employees
 
-  fetchSchedulesByEmployee(employeeId: number, month: number, year: number) {
-    return this.httpServ.fetchAll("schedule/byEmployee/" + employeeId + "&" + month + "&" + year)
+  fetchSchedulesByEmployee(employeeId: number, month: number, year: number, day: number) {
+    return this.httpServ.fetchAll("schedule/byEmployee/" + employeeId + "&" + month + "&" + year + "&" + day)
       .pipe(
         map((responseData: Schedule[]) => {
           return responseData;

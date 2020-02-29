@@ -1,2 +1,81 @@
+<div *ngIf="noEmployees" class="border middle">
+    <h5>
+        You need to add some <a routerLink="employee">employees</a> 
+        before you can schedule tasks for them
+    </h5>
+</div>
 
-<p>schedule-form works!</p>
+<div *ngIf="scheduleForm && canInput && !noEmployees">
+    <form [formGroup]="scheduleForm" (ngSubmit)='onSubmit()' >
+        <div *ngIf="!scheduleDefault" class="form-group spaced">
+            <label for="employeeId">Employee</label>
+            <select
+                formControlName="employeeId"
+                id="employeeId" 
+                class="form-control input-width"
+                (change)="changeEmployee($event.target.value)">
+                <option *ngFor = "let key of employeeKeys">{{key}}-{{scheduleServ.employeesForSelection[key]}}</option>
+            </select>
+        </div>
+        <div *ngIf="scheduleDefault" class="spaced">
+            <h3 class="centered">{{scheduleDefault.practice}}</h3>
+        </div>
+        <div class="form-group spaced">
+            <label for="deptName">Department</label>
+            <select
+                formControlName="deptName"
+                id="deptName" 
+                class="form-control input-width"
+                (change)="changeEmployee($event.target.value)">
+                <option *ngFor = "let department of departments">{{department}}</option>
+            </select>
+        </div>
+        <div class="form-group spaced">
+            <label for="objectiveName">Objective</label>
+            <select
+                formControlName="objectiveName"
+                id="objectiveName"
+                class="form-control input-width"
+                (change)="changeEmployee($event.target.value)">
+                <option *ngFor = "let objective of objectives">{{objective}}</option>
+            </select>
+        </div>
+        <div class="form-group spaced">
+            <label for="date">Scheduled Time</label>
+            <input 
+                formControlName='date'
+                id="date" 
+                type = "datetime-local"
+                class="form-control input-width"
+            >
+        </div>
+        <div class='grid50'>
+            <button 
+                *ngIf="!scheduleDefault"
+                class="btn btn-success" 
+                type="submit"
+                [disabled]="!scheduleForm.valid"
+            >
+                Add Schedule
+            </button>
+            <button 
+                *ngIf="scheduleDefault"
+                class="btn btn-success" 
+                type="submit"
+                [disabled]="!scheduleForm.valid"
+            >
+                Update
+            </button>
+            <button 
+                type='button' 
+                class='btn btn-danger' 
+                (click)='onCancel()'
+            >
+                Cancel
+            </button>
+        </div>
+        <div *ngIf="isError">
+            <h4 class="danger">{{error}}</h4>
+        </div>
+    </form>
+</div>

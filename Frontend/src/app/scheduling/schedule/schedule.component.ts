@@ -55,6 +55,10 @@ export class ScheduleComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.initializeMonth();
+    this.getEmployeesAndDepartmentsForForm();
+  }
+
+  getEmployeesAndDepartmentsForForm(){
     this.scheduleServ.getEmployees();
     this.scheduleServ.getDeparments();
   }

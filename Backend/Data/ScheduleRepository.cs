@@ -79,7 +79,7 @@ namespace Backend.Data
             return scheduledTask;
         }
 
-        public async Task<IEnumerable<Schedule>> GetScheduledTasksForAccount(int userId, int Month, int Year)
+        public async Task<IEnumerable<Schedule>> GetScheduledTasksForAccountDay(int userId, int Month, int Year, int Day)
         {
             var scheduledTasks = await _context.Schedules
                 .Where(s => s.userId == userId)
@@ -88,7 +88,7 @@ namespace Backend.Data
             return scheduledTasks;
         }
 
-        public async Task<IEnumerable<Schedule>> GetScheduledTasksForEmployee(int userId, int employeeId, int Month, int Year)
+        public async Task<IEnumerable<Schedule>> GetScheduledTasksForEmployeeDay(int userId, int employeeId, int Month, int Year, int Day)
         {
             var scheduledTasks = await _context.Schedules
                 .Where(s => s.userId == userId)

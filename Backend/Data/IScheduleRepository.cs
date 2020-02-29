@@ -14,7 +14,7 @@ namespace Backend.Data
         Task<IEnumerable<Employee>> GetEmployees(int userId);
         Task<IEnumerable<Employee>> GetEmployeesByDepartment(int userId, string deptName);
         Task<Schedule> GetScheduledTask(int id);
-        Task<IEnumerable<Schedule>> GetScheduledTasksForAccount(int userId, int Month, int Year);
-        Task<IEnumerable<Schedule>> GetScheduledTasksForEmployee(int userId, int employeeId, int Month, int Year);
+        Task<IEnumerable<Schedule>> GetScheduledTasksForAccountDay(int userId, int Month, int Year, int Day);
+        Task<IEnumerable<Schedule>> GetScheduledTasksForEmployeeDay(int userId, int employeeId, int Month, int Year, int Day);
     }
 }

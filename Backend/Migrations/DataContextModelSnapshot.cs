@@ -212,14 +212,8 @@ namespace Backend.Migrations
                     b.Property<int>("EmployeeId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("EmployeeId1")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("EmployeeName")
                         .HasColumnType("TEXT");
-
-                    b.Property<int>("EmployeeuserId")
-                        .HasColumnType("INTEGER");
 
                     b.Property<string>("ObjectiveName")
                         .HasColumnType("TEXT");
@@ -230,8 +224,6 @@ namespace Backend.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("userId");
-
-                    b.HasIndex("EmployeeuserId", "EmployeeId1");
 
                     b.ToTable("Schedules");
                 });
@@ -352,12 +344,6 @@ namespace Backend.Migrations
                     b.HasOne("Backend.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("userId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Backend.Models.Employee", null)
-                        .WithMany("Schedule")
-                        .HasForeignKey("EmployeeuserId", "EmployeeId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

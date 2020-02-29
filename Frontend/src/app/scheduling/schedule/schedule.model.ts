@@ -4,6 +4,6 @@ export interface Schedule{
     employeeName: string,
     objectiveName: string,
     deptName: string,
-    date: Date
+    date: string
 }
 

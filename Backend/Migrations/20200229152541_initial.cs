@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Backend.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -49,6 +49,30 @@ namespace Backend.Migrations
                     table.PrimaryKey("PK_Departments", x => new { x.userId, x.DeptName });
                     table.ForeignKey(
                         name: "FK_Departments_Users_userId",
+                        column: x => x.userId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Schedules",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    userId = table.Column<int>(nullable: false),
+                    EmployeeName = table.Column<string>(nullable: true),
+                    EmployeeId = table.Column<int>(nullable: false),
+                    ObjectiveName = table.Column<string>(nullable: true),
+                    DeptName = table.Column<string>(nullable: true),
+                    Date = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Schedules", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Schedules_Users_userId",
                         column: x => x.userId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -109,38 +133,6 @@ namespace Backend.Migrations
                         columns: x => new { x.userId, x.deptName },
                         principalTable: "Departments",
                         principalColumns: new[] { "userId", "DeptName" },
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Schedules",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    userId = table.Column<int>(nullable: false),
-                    EmployeeName = table.Column<string>(nullable: true),
-                    EmployeeId = table.Column<int>(nullable: false),
-                    ObjectiveName = table.Column<string>(nullable: true),
-                    DeptName = table.Column<string>(nullable: true),
-                    Date = table.Column<DateTime>(nullable: false),
-                    EmployeeId1 = table.Column<int>(nullable: false),
-                    EmployeeuserId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Schedules", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Schedules_Users_userId",
-                        column: x => x.userId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Schedules_Employees_EmployeeuserId_EmployeeId1",
-                        columns: x => new { x.EmployeeuserId, x.EmployeeId1 },
-                        principalTable: "Employees",
-                        principalColumns: new[] { "userId", "EmployeeId" },
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -277,11 +269,6 @@ namespace Backend.Migrations
                 name: "IX_Schedules_userId",
                 table: "Schedules",
                 column: "userId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Schedules_EmployeeuserId_EmployeeId1",
-                table: "Schedules",
-                columns: new[] { "EmployeeuserId", "EmployeeId1" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -296,13 +283,13 @@ namespace Backend.Migrations
                 name: "EmployeeIdIncrementors");
 
             migrationBuilder.DropTable(
+                name: "Employees");
+
+            migrationBuilder.DropTable(
                 name: "Schedules");
 
             migrationBuilder.DropTable(
                 name: "Steps");
-
-            migrationBuilder.DropTable(
-                name: "Employees");
 
             migrationBuilder.DropTable(
                 name: "Objectives");

@@ -12,7 +12,6 @@ namespace Backend.Models
         public string Name { get; set; }
         public string Title { get; set; }
         public bool CanEdit { get; set; }
-        public ICollection<Schedule> Schedule { get; set; }
         
     }
 }

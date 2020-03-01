@@ -1,1 +1,17 @@
-<p>schedule-single works!</p>
+<div *ngIf="!editMode" class="border centered">
+    <div>
+        <h4>{{time}}</h4>
+        <h5>employee: {{schedule.employeeId}} - {{schedule.employeeName}}</h5>
+        <h5>{{schedule.deptName}} - {{schedule.objectiveName}}</h5>
+        <div *ngIf="!editMode" class="grid50">
+            <button class="btn btn-primary" (click)="editSchedule()">Edit</button>
+            <button class="btn btn-danger" (click)="onDelete()">Delete</button>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="editMode" class="spaced">
+    <div class="border centered">
+        <app-schedule-form [scheduleDefault]="schedule"></app-schedule-form>
+    </div>
+</div>

@@ -26,7 +26,8 @@ const appRoutes: Routes = [
         {path: 'schedule', component: ScheduleComponent, children: [
             {path: '', component: ScheduleCalendarComponent},
             {path: ':employeeId', component: ScheduleEmployeeComponent},
-            {path: ':month/:day/:year', component: ScheduleDayComponent}
+            {path: ':month/:day/:year', component: ScheduleDayComponent},
+            {path: ':employeeId/:month/:day/:year', component: ScheduleDayComponent}
         ]},
         {path: 'department', component: DepartmentComponent},
         {path: 'objective/:department/:objective', component: ObjectiveFullComponent},

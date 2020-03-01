@@ -1,1 +1,6 @@
-<p>schedule-day works!</p>
+<div class="flex"> 
+    <div *ngFor="let task of scheduledTasks" class="sized30">
+        <app-schedule-single [schedule]="task"></app-schedule-single>
+        <br>
+    </div>
+</div>

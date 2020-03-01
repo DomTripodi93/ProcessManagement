@@ -31,7 +31,7 @@ export class ScheduleComponent implements OnInit, OnDestroy {
 
   addSchedule(){
     this.addMode = true;
-    this.subscribeToChanges();
+    this.subscribeToCancel();
   }
   //Displays schedule form for adding new schedule
 

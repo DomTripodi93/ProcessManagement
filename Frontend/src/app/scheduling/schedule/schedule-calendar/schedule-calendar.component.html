@@ -24,13 +24,13 @@
         <div class="day-border"></div>
     </div>  
     <div *ngFor="let date of monthDays">
-        <div *ngIf="date !== today" class="day-border padded">
+        <div *ngIf="date !== today" class="day-border padded" routerLink="{{month+1}}/{{date}}/{{year}}">
             <h5 class="label-text date">{{date}}</h5>
         </div>
-        <div *ngIf="date == today && month == oldMonth" class="today-border padded">
+        <div *ngIf="date == today && month == oldMonth" class="today-border padded" routerLink="{{month+1}}/{{date}}/{{year}}">
             <h5 class="label-text date">{{date}}</h5>
         </div>
-        <div *ngIf="date == today && month != oldMonth" class="day-border padded">
+        <div *ngIf="date == today && month != oldMonth" class="day-border padded" routerLink="{{month+1}}/{{date}}/{{year}}">
             <h5 class="label-text date">{{date}}</h5>
         </div>
     </div>  

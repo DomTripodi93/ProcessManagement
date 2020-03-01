@@ -32,7 +32,7 @@ export class ScheduleDayComponent implements OnInit, OnDestroy {
       this.day = params["day"];
       this.month = params["month"];
       this.year = params["year"];
-      this.employeeId = params["employee"];
+      this.employeeId = params["employeeId"];
       this.fetchScheduledTasks();
     }));
   }

@@ -1,8 +1,9 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import _ from 'lodash';
 import { Subscription } from 'rxjs';
 import { ScheduleService } from '../schedule.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-schedule-calendar',
@@ -11,6 +12,7 @@ import { ScheduleService } from '../schedule.service';
 })
 export class ScheduleCalendarComponent implements OnInit, OnDestroy {
   @ViewChild('newMonth') newMonthForm: NgForm;
+  @Input() employeeId: number;
   subscriptions: Subscription[] = [];
   date = new Date();
   today = this.date.getDate();
@@ -20,6 +22,7 @@ export class ScheduleCalendarComponent implements OnInit, OnDestroy {
   day = this.date.getDay();
   defaultMonth = ""; 
   oldMonth: number = this.month;
+  baseRoute: string;
   days = [
     "Sunday",
     "Monday",
@@ -73,6 +76,11 @@ export class ScheduleCalendarComponent implements OnInit, OnDestroy {
   setDate(){
     this.monthDays = _.range(1, this.daysInMonth(this.year, this.month+1) + 1);
     this.firstDayOfMonth = _.range(0, new Date(this.year, this.month, 1).getDay());
+    if (this.employeeId){
+      this.baseRoute = this.employeeId + "/" + (this.month+1);
+    } else {
+      this.baseRoute = "" + (this.month+1);
+    }
   }
   //Sets values for days of month to be displayed in expected format
 

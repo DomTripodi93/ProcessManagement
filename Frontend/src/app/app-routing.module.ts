@@ -11,6 +11,8 @@ import { DepartmentComponent } from './processes/department/department.component
 import { ObjectiveFullComponent } from './processes/objective/objective-full/objective-full.component';
 import { StepFullComponent } from './processes/step/step-full/step-full.component';
 import { ScheduleEmployeeComponent } from './scheduling/schedule/schedule-employee/schedule-employee.component';
+import { ScheduleDayComponent } from './scheduling/schedule/schedule-day/schedule-day.component';
+import { ScheduleCalendarComponent } from './scheduling/schedule/schedule-calendar/schedule-calendar.component';
 
 const appRoutes: Routes = [
     {path: '', component: HomeComponent, pathMatch: 'full' },
@@ -21,8 +23,11 @@ const appRoutes: Routes = [
         {path: 'employee', component: EmployeesComponent, children: [
             {path:'{employeeId}', component: ScheduleComponent}
         ]},
-        {path: 'schedule', component: ScheduleComponent},
-        {path: 'schedule/:employeeId', component: ScheduleEmployeeComponent},
+        {path: 'schedule', component: ScheduleComponent, children: [
+            {path: '', component: ScheduleCalendarComponent},
+            {path: ':employeeId', component: ScheduleEmployeeComponent},
+            {path: ':month/:day/:year', component: ScheduleDayComponent}
+        ]},
         {path: 'department', component: DepartmentComponent},
         {path: 'objective/:department/:objective', component: ObjectiveFullComponent},
         {path: 'step/:department/:objective/:step', component: StepFullComponent}

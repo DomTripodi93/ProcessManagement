@@ -34,7 +34,24 @@ export class HelperService {
   }
 
   timeFromDate(date: string){
-    return date.split("T")[1].substring(0,5)
+    return date.split("T")[1].substring(0,5);
+  }
+
+  timeForDisplay(time: string){
+    if (+time[0] > 0){
+      if (+time[0] > 1){
+        let hour = +time.substring(0,2) - 12;
+        time = hour + time.substring(2,5) + " PM"
+      } else if (+time[1] > 2){
+        let hour = +time.substring(0,2) - 12;
+        time = hour + time.substring(2,5) + " PM"
+      } else {
+        time = time + " AM"
+      }
+    } else {
+      time = time + " AM"
+    }
+    return time;
   }
 
 }

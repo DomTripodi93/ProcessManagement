@@ -21,6 +21,6 @@ export class ScheduleSingleComponent implements OnInit {
   }
 
   setTime(){
-    this.time = this.helpers.timeFromDate(this.schedule.date);
+    this.time = this.helpers.timeForDisplay(this.helpers.timeFromDate(this.schedule.date));
   }
 }

@@ -20,7 +20,7 @@
         <div *ngIf="scheduleDefault" class="spaced">
             <h3 class="centered">{{scheduleDefault.practice}}</h3>
         </div>
-        <div class="form-group spaced">
+        <div *ngIf="!scheduleDefault" class="form-group spaced">
             <label for="deptName">Department</label>
             <select
                 formControlName="deptName"
@@ -28,6 +28,20 @@
                 class="form-control input-width"
                 (change)="changeDepartment($event.target.value)">
                 <option *ngFor = "let department of departments">{{department}}</option>
+            </select>
+        </div>
+        <div *ngIf="scheduleDefault" class="form-group spaced">
+            <label for="deptName">Department</label>
+            <select
+                formControlName="deptName"
+                id="deptName" 
+                class="form-control input-width"
+                (change)="changeDepartment($event.target.value)">
+                <option 
+                    *ngFor = "let department of departments"
+                    [selected]="department === scheduleDefault.deptName"
+                    >{{department}}
+                </option>
             </select>
         </div>
         <div *ngIf="!scheduleDefault" class="form-group spaced">

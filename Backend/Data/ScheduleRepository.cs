@@ -83,6 +83,9 @@ namespace Backend.Data
         {
             var scheduledTasks = await _context.Schedules
                 .Where(s => s.userId == userId)
+                .Where(s => s.Date.Year == Year)
+                .Where(s => s.Date.Month == Month)
+                .Where(s => s.Date.Day == Day)
                 .ToListAsync();
 
             return scheduledTasks;
@@ -95,6 +98,7 @@ namespace Backend.Data
                 .Where(s => s.EmployeeId == employeeId)
                 .Where(s => s.Date.Year == Year)
                 .Where(s => s.Date.Month == Month)
+                .Where(s => s.Date.Day == Day)
                 .ToListAsync();
 
             return scheduledTasks;

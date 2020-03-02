@@ -11,7 +11,7 @@ import { HelperService } from 'src/app/shared/helper.service';
 })
 export class ScheduleSingleComponent implements OnInit, OnDestroy {
   @Input() schedule: Schedule;
-  @Input() forEmployee: boolean;
+  @Input() oneEmployee: boolean;
   subscriptions: Subscription[] = [];
   editMode: boolean = false;
   time: string;

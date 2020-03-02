@@ -57,10 +57,40 @@
     background-color: rgb(207, 181, 255);
 }
 
-.label-text{
-    font-weight: bold;
-    color: rgb(53, 10, 124);
-    font-size: 1.8vw;
+.inner-border-left{
+    height: 100%;
+    border-style: hidden hidden solid solid;
+    border-color: black;
+    background-color: rgb(255, 255, 255);
+    border-width: 2px;
+    text-align: center;
+}
+
+.inner-border-right{
+    height: 100%;
+    border-style: hidden solid solid solid;
+    border-color: black;
+    background-color: rgb(255, 255, 255);
+    border-width: 2px;
+    text-align: center;
+}
+
+.inner-border-left-header{
+    height: 100%;
+    border-style: solid hidden solid solid;
+    border-color: black;
+    background-color: rgb(228, 188, 255);
+    border-width: 2px;
+    text-align: center;
+}
+
+.inner-border-right-header{
+    height: 100%;
+    border-style: solid;
+    border-color: black;
+    background-color: rgb(228, 188, 255);
+    border-width: 2px;
+    text-align: center;
 }
 
 .danger{
@@ -88,6 +118,16 @@
     grid-template-columns: 50% 50%;
 }
 
+.grid25 { 
+    display: grid;
+    grid-template-columns: 15% 30% 30% 25%;
+}
+
+.grid20 { 
+    display: grid;
+    grid-template-columns: 20% 15% 22.5% 22.5% 20%;
+}
+
 .grid7split { 
     display: grid;
     grid-template-columns: 14.289% 14.289% 14.289% 14.289% 14.289% 14.289% 14.289%;
@@ -109,6 +149,12 @@
 
 .date{
     margin: 7% 0px 0px 10%;
+}
+
+.label-text{
+    font-weight: bold;
+    color: rgb(53, 10, 124);
+    font-size: 1.8vw;
 }
 
 input.ng-invalid.ng-touched {

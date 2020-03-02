@@ -1,12 +1,21 @@
-<div *ngIf="!editMode" class="border centered">
-    <div>
-        <h4>{{time}}</h4>
-        <h5>employee: {{schedule.employeeId}} - {{schedule.employeeName}}</h5>
-        <h5>{{schedule.deptName}} - {{schedule.objectiveName}}</h5>
-        <div *ngIf="!editMode" class="grid50">
-            <button class="btn btn-primary" (click)="editSchedule()">Edit</button>
-            <button class="btn btn-danger" (click)="onDelete()">Delete</button>
-        </div>
+<div *ngIf="!editMode && !oneEmployee" class="grid20">
+    <div class="inner-border-left"><h5>{{schedule.employeeId}} - {{schedule.employeeName}}</h5></div>
+    <div class="inner-border-left"><h5>{{time}}</h5></div>
+    <div class="inner-border-left"><h5>{{schedule.deptName}}</h5></div>
+    <div class="inner-border-left"><h5>{{schedule.objectiveName}}</h5></div>
+    <div class="grid50 inner-border-right">
+        <button class="btn btn-primary" (click)="editSchedule()">Edit</button>
+        <button class="btn btn-danger" (click)="onDelete()">Delete</button>
+    </div>
+</div>
+
+<div *ngIf="!editMode && oneEmployee" class="grid25">
+    <div class="inner-border-left"><h5>{{time}}</h5></div>
+    <div class="inner-border-left"><h5>{{schedule.deptName}}</h5></div>
+    <div class="inner-border-left"><h5>{{schedule.objectiveName}}</h5></div>
+    <div class="grid50 inner-border-right">
+        <button class="btn btn-primary" (click)="editSchedule()">Edit</button>
+        <button class="btn btn-danger" (click)="onDelete()">Delete</button>
     </div>
 </div>
 

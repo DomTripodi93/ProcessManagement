@@ -1,24 +1,42 @@
+<div *ngIf="editMode" class="spaced">
+    <div class="border centered">
+        <app-schedule-form [scheduleDefault]="inputSchedule"></app-schedule-form>
+    </div>
+</div>
+
 <div *ngIf="employeeId"> 
-    <div class="grid25 size-holder middle">
-        <div class="inner-border-left-header"><h5>Time</h5></div>
-        <div class="inner-border-left-header"><h5>Department</h5></div>
-        <div class="inner-border-left-header"><h5>Objective</h5></div>
+    <div class="grid-one-employee-button size-holder middle">
+        <div class="grid-one-employee">
+            <div class="inner-border-left-header"><h5>Time</h5></div>
+            <div class="inner-border-left-header"><h5>Department</h5></div>
+            <div class="inner-border-left-header"><h5>Objective</h5></div>
+        </div>
         <div class="inner-border-right-header"></div>
     </div>
-    <div *ngFor="let task of scheduledTasks" class="size-holder middle">
+    <div *ngFor="let task of scheduledTasks" class="size-holder middle grid-one-employee-button">
         <app-schedule-single [schedule]="task" [oneEmployee]="true"></app-schedule-single>
+        <div class="grid50 inner-border-right">
+            <button class="btn btn-primary" (click)="editSchedule(task)">Edit</button>
+            <button class="btn btn-danger" (click)="onDelete(task)">Delete</button>
+        </div>
     </div>
 </div>
 
 <div *ngIf="!employeeId"> 
-    <div class="grid20 size-holder middle">
-        <div class="inner-border-left-header"><h5>Employee</h5></div>
-        <div class="inner-border-left-header"><h5>Time</h5></div>
-        <div class="inner-border-left-header"><h5>Department</h5></div>
-        <div class="inner-border-left-header"><h5>Objective</h5></div>
+    <div class="grid-all-employees-button size-holder middle">
+        <div class="grid-all-employees">
+            <div class="inner-border-left-header"><h5>Employee</h5></div>
+            <div class="inner-border-left-header"><h5>Time</h5></div>
+            <div class="inner-border-left-header"><h5>Department</h5></div>
+            <div class="inner-border-left-header"><h5>Objective</h5></div>
+        </div>
         <div class="inner-border-right-header"></div>
     </div>
-    <div *ngFor="let task of scheduledTasks" class="size-holder middle">
+    <div *ngFor="let task of scheduledTasks" class="size-holder middle grid-all-employees-button">
         <app-schedule-single [schedule]="task" [oneEmployee]="false"></app-schedule-single>
+        <div class="grid50 inner-border-right">
+            <button class="btn btn-primary" (click)="editSchedule(task)">Edit</button>
+            <button class="btn btn-danger" (click)="onDelete(task)">Delete</button>
+        </div>
     </div>
 </div>

@@ -14,8 +14,10 @@ export class ScheduleDayComponent implements OnInit, OnDestroy {
   month: number;
   year: number;
   employeeId: number;
+  editMode = false;
   subscriptions: Subscription[] =[];
   scheduledTasks: Schedule[] = [];
+  inputSchedule: Schedule;
 
   constructor(
     private scheduleServ: ScheduleService,
@@ -43,6 +45,36 @@ export class ScheduleDayComponent implements OnInit, OnDestroy {
     }));
   }
   //subscribes to changes in schedule to cancel form
+
+  subscribeToCancel(){
+    this.subscriptions.push(this.scheduleServ.scheduleCancel.subscribe(()=>{
+      this.editMode = false;
+    }));
+  }
+  //subscribes component to cancelation signal
+
+  editSchedule(schedule: Schedule){
+    if (this.editMode){
+      this.editMode = false;
+      setTimeout(()=>{this.editSchedule(schedule)}, 10)
+    } else {
+      this.subscribeToCancel();
+      this.inputSchedule = schedule;
+      this.editMode = true;
+    }
+  }
+  //Shows edit form for selected Schedule
+
+  onDelete(schedule: Schedule){
+    if (confirm(
+      "Are you sure you want to delete the scheduled " + schedule.objectiveName + "?"
+      )){
+      this.scheduleServ.deleteSchedule(schedule.id).subscribe(()=>{
+        this.scheduleServ.scheduleChanged.next();
+      });
+    }
+  }
+  //Deletes selected Schedule
 
   fetchScheduledTasks(){
     if (this.employeeId){

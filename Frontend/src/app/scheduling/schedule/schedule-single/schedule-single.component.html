@@ -1,26 +1,12 @@
-<div *ngIf="!editMode && !oneEmployee" class="grid20">
+<div *ngIf="!oneEmployee" class="grid-all-employees">
     <div class="inner-border-left"><h5>{{schedule.employeeId}} - {{schedule.employeeName}}</h5></div>
     <div class="inner-border-left"><h5>{{time}}</h5></div>
     <div class="inner-border-left"><h5>{{schedule.deptName}}</h5></div>
     <div class="inner-border-left"><h5>{{schedule.objectiveName}}</h5></div>
-    <div class="grid50 inner-border-right">
-        <button class="btn btn-primary" (click)="editSchedule()">Edit</button>
-        <button class="btn btn-danger" (click)="onDelete()">Delete</button>
-    </div>
 </div>
 
-<div *ngIf="!editMode && oneEmployee" class="grid25">
+<div *ngIf="oneEmployee" class="grid-one-employee">
     <div class="inner-border-left"><h5>{{time}}</h5></div>
     <div class="inner-border-left"><h5>{{schedule.deptName}}</h5></div>
     <div class="inner-border-left"><h5>{{schedule.objectiveName}}</h5></div>
-    <div class="grid50 inner-border-right">
-        <button class="btn btn-primary" (click)="editSchedule()">Edit</button>
-        <button class="btn btn-danger" (click)="onDelete()">Delete</button>
-    </div>
-</div>
-
-<div *ngIf="editMode" class="spaced">
-    <div class="border centered">
-        <app-schedule-form [scheduleDefault]="schedule"></app-schedule-form>
-    </div>
 </div>

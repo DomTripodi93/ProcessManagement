@@ -118,14 +118,24 @@
     grid-template-columns: 50% 50%;
 }
 
-.grid25 { 
+.grid-one-employee { 
     display: grid;
-    grid-template-columns: 15% 30% 30% 25%;
+    grid-template-columns: 20% 40% 40%;
 }
 
-.grid20 { 
+.grid-all-employees { 
     display: grid;
-    grid-template-columns: 20% 15% 22.5% 22.5% 20%;
+    grid-template-columns: 27% 17% 28% 28%;
+}
+
+.grid-one-employee-button { 
+    display: grid;
+    grid-template-columns: 75% 25%;
+}
+
+.grid-all-employees-button { 
+    display: grid;
+    grid-template-columns: 80% 20%;
 }
 
 .grid7split { 

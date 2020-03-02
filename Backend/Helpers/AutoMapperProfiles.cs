@@ -13,7 +13,7 @@ namespace Backend.Helpers
             CreateMap<StepForUpdateDto, Step>().ReverseMap();
             CreateMap<Step, StepForReturnDto>();
             CreateMap<ScheduleForCreationDto, Schedule>().ReverseMap();
-            CreateMap<Schedule, ScheduleForCreationDto>();
+            CreateMap<Schedule, ScheduleForReturnDto>();
             CreateMap<ObjectiveForCreationDto, Objective>().ReverseMap();
             CreateMap<ObjectiveForUpdateDto, Objective>().ReverseMap();
             CreateMap<Objective, ObjectiveForReturnDto>();

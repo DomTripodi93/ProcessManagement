@@ -58,7 +58,7 @@ namespace Backend.Controllers
 
             var scheduleFromRepo = await _repo.GetScheduledTask(Id);
 
-            ScheduleForCreationDto scheduleForReturn = _mapper.Map<ScheduleForCreationDto>(scheduleFromRepo);
+            ScheduleForReturnDto scheduleForReturn = _mapper.Map<ScheduleForReturnDto>(scheduleFromRepo);
 
             return Ok(scheduleForReturn);
 
@@ -72,7 +72,7 @@ namespace Backend.Controllers
 
             IEnumerable<Schedule> schedulesFromRepo = await _repo.GetScheduledTasksForAccountDay(userId, Month, Year, Day);
 
-            IEnumerable<ScheduleForCreationDto> scheduleForReturn = _mapper.Map<IEnumerable<ScheduleForCreationDto>>(schedulesFromRepo);
+            IEnumerable<ScheduleForReturnDto> scheduleForReturn = _mapper.Map<IEnumerable<ScheduleForReturnDto>>(schedulesFromRepo);
 
             return Ok(scheduleForReturn);
 
@@ -86,7 +86,7 @@ namespace Backend.Controllers
 
             IEnumerable<Schedule> schedulesFromRepo = await _repo.GetScheduledTasksForEmployeeDay(userId, employeeId, Month, Year, Day);
 
-            IEnumerable<ScheduleForCreationDto> schedulesForReturn = _mapper.Map<IEnumerable<ScheduleForCreationDto>>(schedulesFromRepo);
+            IEnumerable<ScheduleForReturnDto> schedulesForReturn = _mapper.Map<IEnumerable<ScheduleForReturnDto>>(schedulesFromRepo);
 
             return Ok(schedulesForReturn);
 

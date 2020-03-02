@@ -30,13 +30,26 @@
                 <option *ngFor = "let department of departments">{{department}}</option>
             </select>
         </div>
-        <div class="form-group spaced">
+        <div *ngIf="!scheduleDefault" class="form-group spaced">
             <label for="objectiveName">Objective</label>
             <select
                 formControlName="objectiveName"
                 id="objectiveName"
                 class="form-control input-width">
                 <option *ngFor = "let objective of objectives">{{objective}}</option>
+            </select>
+        </div>
+        <div *ngIf="scheduleDefault" class="form-group spaced">
+            <label for="objectiveName">Objective</label>
+            <select
+                formControlName="objectiveName"
+                id="objectiveName"
+                class="form-control input-width">
+                <option 
+                    *ngFor = "let objective of objectives"
+                    [selected]="objective === scheduleDefault.objectiveName"
+                    >{{objective}}
+                </option>
             </select>
         </div>
         <div class="form-group spaced">

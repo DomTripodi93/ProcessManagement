@@ -61,6 +61,7 @@ export class ScheduleFormComponent implements OnInit {
   // and initializes form
     
   private initForm(formSchedule: Schedule) {
+    this.changeDepartment(formSchedule.deptName);
     this.scheduleForm = new FormGroup({
       'employeeId': new FormControl(formSchedule.employeeId),
       'employeeName': new FormControl(formSchedule.employeeName), 
@@ -68,7 +69,6 @@ export class ScheduleFormComponent implements OnInit {
       'deptName': new FormControl(formSchedule.deptName, Validators.required),
       'date': new FormControl(formSchedule.date, Validators.required),
     });
-    this.changeDepartment(formSchedule.deptName);
   }
 
   changeEmployee(employee){

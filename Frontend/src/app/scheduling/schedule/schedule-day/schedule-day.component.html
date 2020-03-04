@@ -24,12 +24,15 @@
 </div>
 
 <div *ngIf="employeeId && scheduledTasks.length == 0" class="border size-holder">
-    <h4 class="centered">
+    <h1 class="centered">
         No Scheduled Tasks for Employee # {{employeeId}} for {{month}}-{{day}}-{{year}}
+    </h1>
+    <h4 class="centered">
+        Use the button above to schedule Employee # {{employeeId}} tasks for {{month}}-{{day}}-{{year}}
     </h4>
 </div>
 
-<div *ngIf="!employeeId && scheduledTasks.length == 0"> 
+<div *ngIf="!employeeId && scheduledTasks.length > 0"> 
     <div class="grid-all-employees-button size-holder middle">
         <div class="grid-all-employees">
             <div class="inner-border-left-header"><h5>Employee</h5></div>
@@ -49,8 +52,11 @@
 </div>
 
 <div *ngIf="!employeeId && scheduledTasks.length == 0" class="border size-holder">
-    <h4 class="centered">
+    <h1 class="centered">
         No Scheduled Tasks for {{month}}-{{day}}-{{year}}
+    </h1>
+    <h4 class="centered">
+        Use the button above to schedule employee tasks for {{month}}-{{day}}-{{year}}
     </h4>
 </div>
 

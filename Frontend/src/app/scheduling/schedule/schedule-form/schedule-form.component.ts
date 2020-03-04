@@ -3,6 +3,7 @@ import { Schedule } from '../schedule.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ScheduleService } from '../schedule.service';
 import { AuthService } from 'src/app/shared/auth.service';
+import { HelperService } from 'src/app/shared/helper.service';
 
 @Component({
   selector: 'app-schedule-form',
@@ -21,6 +22,7 @@ export class ScheduleFormComponent implements OnInit {
   noEmployees: boolean = false;
   
   constructor(
+    private helpers: HelperService,
     public scheduleServ: ScheduleService,
     public auth: AuthService
   ){}
@@ -52,7 +54,7 @@ export class ScheduleFormComponent implements OnInit {
         employeeName: this.scheduleServ.employeesForSelection[this.employeeKeys[0]],
         objectiveName: this.scheduleServ.departmentsForSelection[this.departments[0]][0],
         deptName: this.departments[0],
-        date: new Date().toISOString().slice(0, 16)
+        date: this.helpers.getCurrentTimeAndDate()
       };
       this.initForm(emptySchedule);
     }

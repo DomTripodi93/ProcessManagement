@@ -33,6 +33,19 @@ export class HelperService {
     return string;
   }
 
+  getCurrentTimeAndDate(){
+    let date = new Date().toISOString().slice(0, 11);
+    let hour = "" + new Date().getHours();
+    let minute = "" + new Date().getMinutes();
+    if (+minute <10){
+      minute = "0"+minute;
+    }
+    if (+hour < 10){
+      hour ="0"+hour;
+    }
+    return date + hour + ":" + minute;
+  }
+
   timeFromDate(date: string){
     return date.split("T")[1].substring(0,5);
   }

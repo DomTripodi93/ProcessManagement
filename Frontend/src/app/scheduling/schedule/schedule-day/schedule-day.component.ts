@@ -3,6 +3,7 @@ import { Schedule } from '../schedule.model';
 import { ScheduleService } from '../schedule.service';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Params } from '@angular/router';
+import { HelperService } from 'src/app/shared/helper.service';
 
 @Component({
   selector: 'app-schedule-day',
@@ -20,6 +21,7 @@ export class ScheduleDayComponent implements OnInit, OnDestroy {
   inputSchedule: Schedule;
 
   constructor(
+    private helpers: HelperService,
     private scheduleServ: ScheduleService,
     private route: ActivatedRoute,
   ) { }
@@ -35,8 +37,14 @@ export class ScheduleDayComponent implements OnInit, OnDestroy {
       this.month = params["month"];
       this.year = params["year"];
       this.employeeId = params["employeeId"];
+      this.setDaySelection(params["year"], params["month"], params["day"]);
       this.fetchScheduledTasks();
     }));
+  }
+
+  setDaySelection(year: string, month: string, day: string){
+    this.scheduleServ.selectedDate = this.helpers.setDateForIso(year, month, day)
+    this.scheduleServ.usingSpecificDate = true;
   }
 
   subscribeToChanges(){
@@ -96,7 +104,8 @@ export class ScheduleDayComponent implements OnInit, OnDestroy {
   ngOnDestroy(){
     this.subscriptions.forEach(sub =>{
       sub.unsubscribe();
-    })
+    });
+    this.scheduleServ.usingSpecificDate = false;
   }
   //Unsubscribes from all component subscriptions
 

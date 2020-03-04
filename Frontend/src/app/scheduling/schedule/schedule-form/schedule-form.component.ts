@@ -56,6 +56,9 @@ export class ScheduleFormComponent implements OnInit {
         deptName: this.departments[0],
         date: this.helpers.getCurrentTimeAndDate()
       };
+      if (this.scheduleServ.usingSpecificDate){
+        emptySchedule.date = this.scheduleServ.selectedDate + emptySchedule.date.slice(10)
+      }
       this.initForm(emptySchedule);
     }
   }

@@ -13,6 +13,8 @@ export class ScheduleService {
   scheduleCancel = new Subject();
   employeesForSelection = {};
   departmentsForSelection = {};
+  selectedDate: string;
+  usingSpecificDate: boolean = false;
 
   constructor(
     private httpServ: HttpService,

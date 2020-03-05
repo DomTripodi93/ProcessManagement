@@ -1,19 +1,18 @@
-<form (ngSubmit)='changeDate()' #newMonth="ngForm">
-    <div class="border">
+<div class="grid50 border">
+    <h1 class="centered ">{{months[month]}}</h1>
+    <form (ngSubmit)='changeDate()' #newMonth="ngForm">
         <input
-        id="date" 
-        class="form-control"
-        [(ngModel)]="defaultMonth"
-        name="date"
-        type="month">
-        <div class="centered">
-            <button class="btn btn-primary open-btn"><strong>Change Month</strong></button>
+            id="date"
+            class="form-control"
+            [(ngModel)]="defaultMonth"
+            name="date"
+            type="month">
+        <div class="grid100">
+            <button class="btn btn-primary"><strong>Change Month</strong></button>
         </div>
-    </div>
-</form>
-
-<h1 class="centered">{{months[month]}}</h1><br>
-
+    </form>
+</div>
+<br>
 <div class="grid7split border">
     <div *ngFor="let day of days">
         <div class="day-label-border">

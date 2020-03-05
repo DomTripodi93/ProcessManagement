@@ -4,6 +4,7 @@ import { ScheduleService } from '../schedule.service';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Params } from '@angular/router';
 import { HelperService } from 'src/app/shared/helper.service';
+import { EmployeeService } from '../../employees/employee.service';
 
 @Component({
   selector: 'app-schedule-day',
@@ -15,6 +16,7 @@ export class ScheduleDayComponent implements OnInit, OnDestroy {
   month: number;
   year: number;
   employeeId: number;
+  employeeName: string;
   editMode = false;
   subscriptions: Subscription[] =[];
   scheduledTasks: Schedule[] = [];
@@ -23,7 +25,8 @@ export class ScheduleDayComponent implements OnInit, OnDestroy {
   constructor(
     private helpers: HelperService,
     private scheduleServ: ScheduleService,
-    private route: ActivatedRoute,
+    private employeeServ: EmployeeService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -39,11 +42,32 @@ export class ScheduleDayComponent implements OnInit, OnDestroy {
       this.employeeId = params["employeeId"];
       this.setDaySelection(params["year"], params["month"], params["day"]);
       this.fetchScheduledTasks();
+      if (this.employeeId){
+        this.setEmployeeName();
+      }
     }));
   }
 
+  setEmployeeName(){
+    if (this.scheduleServ.employeesForSelection[this.employeeId]){
+      this.employeeName = this.scheduleServ.employeesForSelection[this.employeeId];
+    } else {
+      this.getEmployeeName();
+    }
+  }
+  //Sets cached employee's name value, or retrieves employee name if not cached
+
+  getEmployeeName(){
+    this.subscriptions.push(
+      this.employeeServ.fetchSingleEmployee(this.employeeId).subscribe(employee =>{
+        this.employeeName = employee.name;
+      })
+    );
+  }
+  //Retrieves employee's name when it is not found in cache
+
   setDaySelection(year: string, month: string, day: string){
-    this.scheduleServ.selectedDate = this.helpers.setDateForIso(year, month, day)
+    this.scheduleServ.selectedDate = this.helpers.setDateForIso(year, month, day);
     this.scheduleServ.usingSpecificDate = true;
   }
 
@@ -76,7 +100,7 @@ export class ScheduleDayComponent implements OnInit, OnDestroy {
   onDelete(schedule: Schedule){
     if (confirm(
       "Are you sure you want to delete the scheduled " + schedule.objectiveName + "?"
-      )){
+    )){
       this.scheduleServ.deleteSchedule(schedule.id).subscribe(()=>{
         this.scheduleServ.scheduleChanged.next();
       });

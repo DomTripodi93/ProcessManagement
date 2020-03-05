@@ -25,10 +25,10 @@
 
 <div *ngIf="employeeId && scheduledTasks.length == 0" class="border size-holder">
     <h1 class="centered">
-        No Scheduled Tasks for Employee # {{employeeId}} for {{month}}-{{day}}-{{year}}
+        No Scheduled Tasks for {{employeeName}}({{employeeId}}) for {{month}}-{{day}}-{{year}}
     </h1>
     <h4 class="centered">
-        Use the button above to schedule Employee # {{employeeId}} tasks for {{month}}-{{day}}-{{year}}
+        Use the button above to schedule {{employeeName}}'s tasks for {{month}}-{{day}}-{{year}}
     </h4>
 </div>
 

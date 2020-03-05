@@ -43,6 +43,7 @@ export class ScheduleDayComponent implements OnInit, OnDestroy {
       this.setDaySelection(params["year"], params["month"], params["day"]);
       this.fetchScheduledTasks();
       if (this.employeeId){
+        this.scheduleServ.selectedEmployeeId = this.employeeId;
         this.setEmployeeName();
       }
     }));

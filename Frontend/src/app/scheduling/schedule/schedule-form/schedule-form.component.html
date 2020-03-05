@@ -14,7 +14,11 @@
                 id="employeeId" 
                 class="form-control input-width"
                 (change)="changeEmployee($event.target.value)">
-                <option *ngFor = "let key of employeeKeys">{{key}}-{{scheduleServ.employeesForSelection[key]}}</option>
+                <option 
+                    *ngFor = "let key of employeeKeys"
+                    [selected]="key === employeeId"
+                    >{{key}}-{{scheduleServ.employeesForSelection[key]}}
+                </option>
             </select>
         </div>
         <div *ngIf="scheduleDefault" class="spaced">

@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { ScheduleService } from '../schedule.service';
 
 @Component({
   selector: 'app-schedule-employee',
@@ -12,6 +13,7 @@ export class ScheduleEmployeeComponent implements OnInit, OnDestroy {
   employeeId: number;
 
   constructor(
+    private scheduleServ: ScheduleService,
     private route: ActivatedRoute
   ) { }
 
@@ -21,6 +23,7 @@ export class ScheduleEmployeeComponent implements OnInit, OnDestroy {
   subscribeToParams(){
     this.subscriptions.push(this.route.params.subscribe((params: Params) =>{
       this.employeeId = params["employeeId"];
+      this.scheduleServ.selectedEmployeeId = this.employeeId;
     }));
   }
 

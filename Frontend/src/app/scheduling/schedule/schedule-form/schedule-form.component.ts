@@ -20,6 +20,7 @@ export class ScheduleFormComponent implements OnInit {
   departments = [];
   objectives = [];
   noEmployees: boolean = false;
+  employeeId: number;
   
   constructor(
     private helpers: HelperService,
@@ -47,11 +48,13 @@ export class ScheduleFormComponent implements OnInit {
 
   pickForm(){
     if (this.scheduleDefault){
+      this.employeeId = this.scheduleDefault.employeeId;
       this.initForm(this.scheduleDefault)
     } else {
+      this.employeeId = this.setDefaultEmployee();
       let emptySchedule: Schedule = {
-        employeeId: parseInt(this.employeeKeys[0]),
-        employeeName: this.scheduleServ.employeesForSelection[this.employeeKeys[0]],
+        employeeId: this.employeeId,
+        employeeName: this.scheduleServ.employeesForSelection[this.employeeId],
         objectiveName: this.scheduleServ.departmentsForSelection[this.departments[0]][0],
         deptName: this.departments[0],
         date: this.helpers.getCurrentTimeAndDate()
@@ -75,6 +78,16 @@ export class ScheduleFormComponent implements OnInit {
       'date': new FormControl(formSchedule.date, Validators.required),
     });
   }
+
+  setDefaultEmployee(){
+    let employeeId: number = parseInt(this.employeeKeys[0]);
+    if (this.scheduleServ.selectedEmployeeId){
+      employeeId = this.scheduleServ.selectedEmployeeId;
+    }
+    return employeeId;
+  }
+  //Sets default employee for form based on whether if form is being initialized 
+  // from a specific employee's schedule
 
   changeEmployee(employee){
     let employeeInfo = employee.split("-");

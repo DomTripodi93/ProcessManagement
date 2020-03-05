@@ -15,6 +15,7 @@ export class ScheduleService {
   departmentsForSelection = {};
   selectedDate: string;
   usingSpecificDate: boolean = false;
+  selectedEmployeeId: number;
 
   constructor(
     private httpServ: HttpService,

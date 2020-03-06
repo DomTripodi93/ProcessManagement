@@ -12,8 +12,8 @@ export class AuthService {
   user = '';
   name = '';
   isAuthenticated = true;
-  authApiUrl = 'http://localhost:5000/api';
-  apiUrl = 'http://localhost:5000/api/' + localStorage.getItem('id');
+  authApiUrl = 'https://scheduleanddirection.azurewebsites.net/api';
+  apiUrl = 'https://scheduleanddirection.azurewebsites.net/api/' + localStorage.getItem('id');
   authChanged = new Subject();
 
   constructor(

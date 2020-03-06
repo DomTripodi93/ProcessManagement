@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Process Manager';
+  title = 'Schedule and Direction';
 
   public constructor(
     public auth: AuthService,

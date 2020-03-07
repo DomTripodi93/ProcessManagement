@@ -12,9 +12,9 @@ import { EmployeeService } from '../../employees/employee.service';
   styleUrls: ['./schedule-day.component.css']
 })
 export class ScheduleDayComponent implements OnInit, OnDestroy {
-  day: number;
-  month: number;
-  year: number;
+  @Input() day: number;
+  @Input() month: number;
+  @Input() year: number;
   employeeId: number;
   employeeName: string;
   editMode = false;
@@ -30,7 +30,9 @@ export class ScheduleDayComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.subscribeToParams();
+    if(!this.day){
+      this.subscribeToParams();
+    }
     this.subscribeToChanges();
   }
 

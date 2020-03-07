@@ -1,10 +1,8 @@
 import { Injectable } from "@angular/core";
-import { Subject, Observable } from 'rxjs';
-import { HttpClient, HttpParams} from '@angular/common/http';
+import { Subject } from 'rxjs';
+import { HttpClient} from '@angular/common/http';
 import { User } from '../register/user.model';
 import { Signin } from '../register/signin/signin.model';
-import { map } from 'rxjs/operators';
-import { PaginatedResult } from './pagination';
 
 @Injectable({providedIn:'root'})
 export class AuthService {
@@ -12,8 +10,8 @@ export class AuthService {
   user = '';
   name = '';
   isAuthenticated = true;
-  authApiUrl = 'https://scheduleanddirection.azurewebsites.net/api';
-  apiUrl = 'https://scheduleanddirection.azurewebsites.net/api/' + localStorage.getItem('id');
+  authApiUrl = 'http://localhost:5000/api';
+  apiUrl = 'http://localhost:5000/api/' + localStorage.getItem('id');
   authChanged = new Subject();
 
   constructor(

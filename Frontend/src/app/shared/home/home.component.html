@@ -7,3 +7,39 @@
         If you already have an account, you can <a routerLink='/login'>log in</a>
     </h4>
 </div>
+
+<div *ngIf="auth.isAuthenticated" class="centered border grid33">
+    <h4>
+        <br>
+        To view, update or add scheduled tasks:
+    </h4>
+    <h4>
+        <br>
+        To view, update or add employees:
+    </h4>
+    <h4>
+        <br>
+        To view, update or add departments, and objectives:
+    </h4>
+    <button 
+        class="btn btn-primary input-width" 
+        routerLink="schedule">
+        Schedule
+    </button>
+    <button 
+        class="btn btn-primary input-width" 
+        routerLink="employee">
+        Employees
+    </button>
+    <button 
+        class="btn btn-primary input-width" 
+        routerLink="department">
+        Processes
+    </button>
+    <br>
+</div>
+
+<div *ngIf="auth.isAuthenticated">
+    <br>
+    <app-schedule-day [day]="day" [month]="month" [year]="year"></app-schedule-day>
+</div>

@@ -18,6 +18,7 @@ export class ScheduleEmployeeComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    this.subscribeToParams();
   }
 
   subscribeToParams(){

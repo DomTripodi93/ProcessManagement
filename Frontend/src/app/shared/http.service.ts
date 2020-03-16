@@ -16,7 +16,7 @@ export class HttpService {
     value = this.helpers.slashToDash(value);
     return this.http.get(
         this.auth.apiUrl + '/' + model + '/' + value
-    )
+    );
   }
   //Gets specific model by defining value(s)
 

@@ -1,4 +1,4 @@
 export interface Department{
     deptName: string,
-    function: string
+    funcName: string
 }

@@ -55,7 +55,7 @@ export class ScheduleFormComponent implements OnInit {
       let emptySchedule: Schedule = {
         employeeId: this.employeeId,
         employeeName: this.scheduleServ.employeesForSelection[this.employeeId],
-        objectiveName: this.scheduleServ.departmentsForSelection[this.departments[0]][0],
+        objectiveName: this.scheduleServ.departmentsForSelection[this.departments[0]],
         deptName: this.departments[0],
         date: this.helpers.getCurrentTimeAndDate()
       };

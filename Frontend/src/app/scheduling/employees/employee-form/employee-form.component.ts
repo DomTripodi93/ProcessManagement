@@ -65,7 +65,7 @@ export class EmployeeFormComponent implements OnInit, OnDestroy {
     this.employeeForm = new FormGroup({
       'name': new FormControl(formEmployee.name, Validators.required),
       'deptName': new FormControl(formEmployee.deptName),
-      'title': new FormControl(formEmployee.name),
+      'title': new FormControl(formEmployee.title),
       'canEdit': new FormControl(formEmployee.canEdit, Validators.required),
     });
   }

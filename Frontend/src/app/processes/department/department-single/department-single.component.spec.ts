@@ -28,7 +28,7 @@ describe('DepartmentSingleComponent', () => {
     component = fixture.componentInstance;
     component.department = {
       deptName: "Department",
-      function: "functionality"
+      funcName: "functionality"
     } 
     fixture.detectChanges();
   });

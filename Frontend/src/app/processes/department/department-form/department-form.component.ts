@@ -34,7 +34,7 @@ export class DepartmentFormComponent implements OnInit {
     } else {
       let emptyDepartment: Department = {
         deptName: "",
-        function: ""
+        funcName: ""
       };
       this.initForm(emptyDepartment);
     }
@@ -44,14 +44,14 @@ export class DepartmentFormComponent implements OnInit {
   private initForm(formDepartment: Department) {
     this.departmentForm = new FormGroup({
       'deptName': new FormControl(formDepartment.deptName, Validators.required),
-      'function': new FormControl(formDepartment.function, Validators.required)
+      'funcName': new FormControl(formDepartment.funcName, Validators.required)
     });
   }
 
   async onSubmit(){
     if (this.departmentDefault){
       this.updateDepartment({
-        function: this.departmentForm.value.function
+        funcName: this.departmentForm.value.funcName
       });
     } else {
       this.departmentForm.value.deptName = await this.prepDeptName(this.departmentForm.value.deptName);
